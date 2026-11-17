@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>Screen 20 Field App</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+input::placeholder{color:#5B6B7F}
+button{cursor:pointer}
+summary{list-style:none;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+</style>
+</helmet>
+<div style="width:820px;height:1180px;box-sizing:border-box;background:#F5F7FA;font-family:'Sarabun','Noto Sans Thai',system-ui,sans-serif;color:#263445;line-height:1.35;display:flex;flex-direction:column">
+  <div style="flex:0 0 64px;background:#142B4F;display:flex;align-items:center;padding:0 18px;gap:12px"><div style="width:36px;height:36px;border-radius:9px;background:#F28C28;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#142B4F">O</div><div style="flex:1;display:flex;flex-direction:column;line-height:1.15"><span style="color:#fff;font-weight:700;font-size:17px">งานซ่อมของฉัน</span><span style="color:#9FB4D1;font-size:11.5px">ORL-SignTrack · มือถือ / Tablet</span></div>
+  <div style="display:flex;border:1px solid #4A6591;border-radius:10px;overflow:hidden"><sc-for list="{{roles}}" as="r" hint-placeholder-count="2"><button onClick="{{r.go}}" style="border:0;height:40px;padding:0 16px;font-family:inherit;font-size:14px;font-weight:700;background:{{r.bg}};color:{{r.fg}}">{{r.t}}</button></sc-for></div></div>
+  <div style="flex:1;min-height:0;overflow:auto;padding:16px 18px;display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;gap:8px;overflow:auto"><sc-for list="{{jobs}}" as="j" hint-placeholder-count="3"><button onClick="{{j.go}}" style="flex:1;min-width:170px;text-align:left;border:2px solid {{j.bd}};background:{{j.bg}};border-radius:12px;padding:10px 12px;font-family:inherit"><div style="font-size:14px;font-weight:700;color:#142B4F">{{j.no}} · {{j.st}}</div><div style="font-size:12px;color:#5B6B7F">{{j.txt}}</div><div style="margin-top:4px;font-size:11.5px;font-weight:700;color:{{j.sfg}}">{{j.stage}}</div></button></sc-for></div>
+    <sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}"><div style="background:#E1F4EA;color:#1B6B43;border-radius:10px;padding:10px 14px;font-size:14px;font-weight:600">{{toast}}</div></sc-if>
+    <div style="background:#fff;border:1px solid #E1E7EF;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:18px;font-weight:700;color:#142B4F">{{cur.no}} · {{cur.st}}</span><span style="font-size:12px;color:#5B6B7F">ผู้ใช้งาน: {{meRole}}</span></div>
+      <div style="font-size:14px;color:#263445">{{cur.txt}}</div>
+      <div style="display:flex;gap:6px"><sc-for list="{{steps}}" as="s" hint-placeholder-count="7"><div style="flex:1;display:flex;flex-direction:column;gap:4px;align-items:center"><div style="width:100%;height:8px;border-radius:4px;background:{{s.bg}}"></div><span style="font-size:10.5px;text-align:center;line-height:1.15;color:{{s.fg}};font-weight:{{s.w}}">{{s.t}}</span></div></sc-for></div>
+    </div>
+    <div style="background:#fff;border:1px solid #E1E7EF;border-radius:14px;padding:16px">
+<sc-if value="{{s0}}" hint-placeholder-val="{{ true }}"><div style="display:flex;flex-direction:column;gap:12px"><span style="font-size:15px;color:#263445">งานนี้ยังไม่มีผู้รับ กดรับงานเพื่อเริ่มขั้นตอนขอเข้าพื้นที่</span><button onClick="{{doAccept}}" style="height:60px;width:100%;border-radius:14px;border:0;background:#F28C28;color:#142B4F;font-family:inherit;font-size:18px;font-weight:700">รับงาน</button></div></sc-if>
+<sc-if value="{{s1}}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:15px;font-weight:700;color:#142B4F">ทำเอกสารขอเข้าพื้นที่ — ติ๊กให้ครบ</span>
+<sc-for list="{{checks}}" as="k" hint-placeholder-count="3"><button onClick="{{k.go}}" style="min-height:56px;display:flex;align-items:center;gap:12px;text-align:left;border:1.5px solid {{k.bd}};background:{{k.bg}};border-radius:12px;padding:0 14px;font-family:inherit;font-size:15px;color:#263445"><span style="flex:0 0 28px;height:28px;border-radius:7px;border:2px solid #142B4F;background:{{k.cb}};color:#fff;font-size:18px;line-height:24px;text-align:center">{{k.ck}}</span>{{k.t}}</button></sc-for>
+<button onClick="{{doSubmitDoc}}" style="height:60px;width:100%;border-radius:14px;border:0;background:#F28C28;color:#142B4F;font-family:inherit;font-size:18px;font-weight:700">ส่งเอกสารให้ตรวจ</button></div></sc-if>
+<sc-if value="{{s2}}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:15px;font-weight:700;color:#142B4F">รอตรวจเอกสาร — ต้องอนุมัติทั้ง 2 ฝ่าย</span>
+<div style="display:flex;gap:10px"><div style="flex:1;border-radius:12px;padding:12px;background:{{enBg}};font-size:14px;font-weight:700;color:{{enFg}}">Chief Engineer (CN)<br>{{enTxt}}</div><div style="flex:1;border-radius:12px;padding:12px;background:{{eBg}};font-size:14px;font-weight:700;color:{{eFg}}">Engineer (E)<br>{{eTxt}}</div></div>
+<div style="border:1.5px dashed #B8C4D4;border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px"><span style="font-size:11.5px;color:#5B6B7F">สำหรับดู prototype — จำลองฝั่งผู้อนุมัติ (ของจริงอนุมัติจากหน้า อนุมัติ/ตรวจรับ)</span><div style="display:flex;gap:8px"><button onClick="{{simEN}}" style="flex:1;height:42px;border-radius:10px;border:1px solid #142B4F;background:#fff;color:#142B4F;font-family:inherit;font-size:13px;font-weight:700">จำลอง: CN อนุมัติ</button><button onClick="{{simE}}" style="flex:1;height:42px;border-radius:10px;border:1px solid #142B4F;background:#fff;color:#142B4F;font-family:inherit;font-size:13px;font-weight:700">จำลอง: E อนุมัติ</button></div></div></div></sc-if>
+<sc-if value="{{s3}}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:12px"><span style="font-size:15px;font-weight:700;color:#142B4F">เอกสารอนุมัติแล้ว — ติดต่อหัวหน้าสถานีเพื่อเข้าพื้นที่</span>
+<div style="border:1.5px solid #B8C4D4;border-radius:12px;padding:12px;display:flex;align-items:center;gap:12px"><div style="flex:1"><div style="font-size:15px;font-weight:700;color:#142B4F">Station Manager · {{stn}}</div><div style="font-size:13px;color:#5B6B7F">โทร 02-000-0000 (ตัวอย่าง)</div></div><a href="tel:020000000" style="height:44px;padding:0 18px;border-radius:10px;background:#1E8E5A;color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;text-decoration:none">โทร</a></div>
+<button onClick="{{doEnter}}" style="height:60px;width:100%;border-radius:14px;border:0;background:#F28C28;color:#142B4F;font-family:inherit;font-size:18px;font-weight:700">หัวหน้าสถานีอนุญาตแล้ว · เข้าพื้นที่</button></div></sc-if>
+<sc-if value="{{s4}}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:12px"><span style="font-size:15px;color:#263445">อยู่ในพื้นที่แล้ว · เริ่มเวลา {{tin}} · ทำงานเสร็จแล้วกดปุ่มด้านล่างเพื่อบันทึกผล</span><button onClick="{{doWorkDone}}" style="height:60px;width:100%;border-radius:14px;border:0;background:#F28C28;color:#142B4F;font-family:inherit;font-size:18px;font-weight:700">ทำงานเสร็จ · บันทึกผลงาน</button></div></sc-if>
+<sc-if value="{{s5}}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:15px;font-weight:700;color:#142B4F">อัปโหลดภาพงานที่เสร็จ + ใส่ข้อมูล</span>
+<button onClick="{{addPhoto}}" style="height:56px;border-radius:12px;border:2px dashed #2878C7;background:#EEF5FC;color:#1B5C9E;font-family:inherit;font-size:16px;font-weight:700">📷 ถ่าย / แนบภาพ (แนบแล้ว {{photos}} ภาพ)</button>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:700;color:#142B4F">สาเหตุที่พบ</span><input value="{{cause}}" onChange="{{causeSet}}" placeholder="เช่น หลอดไฟเสื่อม" style="height:48px;border:1.5px solid #B8C4D4;border-radius:10px;padding:0 12px;font-family:inherit;font-size:16px;color:#263445"></div><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:700;color:#142B4F">วิธีแก้ไข</span><input value="{{fix}}" onChange="{{fixSet}}" placeholder="เช่น เปลี่ยนหลอด LED" style="height:48px;border:1.5px solid #B8C4D4;border-radius:10px;padding:0 12px;font-family:inherit;font-size:16px;color:#263445"></div><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:700;color:#142B4F">จำนวนป้ายที่แก้ (ชิ้น)</span><input value="{{qty}}" onChange="{{qtySet}}" placeholder="1" style="height:48px;border:1.5px solid #B8C4D4;border-radius:10px;padding:0 12px;font-family:inherit;font-size:16px;color:#263445"></div><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:700;color:#142B4F">หมายเหตุ</span><input value="{{note}}" onChange="{{noteSet}}" placeholder="ไม่บังคับ" style="height:48px;border:1.5px solid #B8C4D4;border-radius:10px;padding:0 12px;font-family:inherit;font-size:16px;color:#263445"></div>
+<span style="font-size:13px;color:#A32019;min-height:16px">{{err}}</span><button onClick="{{doSaveData}}" style="height:60px;width:100%;border-radius:14px;border:0;background:#F28C28;color:#142B4F;font-family:inherit;font-size:18px;font-weight:700">บันทึกผลงาน</button></div></sc-if>
+<sc-if value="{{s6}}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:12px"><span style="font-size:15px;color:#263445">บันทึกผลแล้ว ({{photos}} ภาพ) · ปิดงานและออกจากพื้นที่ ระบบจะแจ้งเตือน Chief Engineer (CN) และ Engineer (E) ทันที</span><button onClick="{{doClose}}" style="height:60px;width:100%;border-radius:14px;border:0;background:#1E8E5A;color:#FFFFFF;font-family:inherit;font-size:18px;font-weight:700">ปิดงาน · ออกจากพื้นที่</button></div></sc-if>
+<sc-if value="{{s7}}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:10px"><div style="border-radius:12px;background:#E1F4EA;color:#1B6B43;padding:14px;font-size:16px;font-weight:700">✓ ปิดงานเรียบร้อย · ออกจากพื้นที่ {{tout}}</div><span style="font-size:13px;font-weight:700;color:#142B4F">การแจ้งเตือนที่ส่งแล้ว</span><sc-for list="{{notes}}" as="n" hint-placeholder-count="2"><div style="border:1px solid #D5DDE8;border-radius:10px;padding:10px 12px;font-size:13px;color:#263445;background:#fff">🔔 {{n.t}}</div></sc-for></div></sc-if></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":820,"height":1180}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const mk = (no, st, txt, step) => ({ no, st, txt, step, ck: [false, false, false], en: false, e: false, photos: 0, cause: '', fix: '', qty: '', note: '', tin: '', tout: '', notes: [] });
+    const j = [mk('RQ-0412', 'OR13', 'ไฟไม่ติด · Surface Mount · ชั้นออกบัตรโดยสาร', 0), mk('RQ-0415', 'OR14', 'ป้ายหลุด/เอียง · Wall Mount · ชั้นออกบัตรโดยสาร', 3), mk('RQ-0419', 'OR16', 'สติกเกอร์ลอก · ชั้นชานชาลา', 5)];
+    j[1].ck = [true, true, true]; j[1].en = true; j[1].e = true; j[2].ck = [true, true, true]; j[2].en = true; j[2].e = true; j[2].tin = '09:40'; j[2].photos = 0;
+    this.state = { role: 'CT', cur: 0, jobs: j, toast: '', err: '' };
+  }
+  renderVals() {
+    const S = this.state, set = (p) => this.setState(p);
+    const J = S.jobs[S.cur];
+    const upd = (patch, toast) => set({ jobs: S.jobs.map((x, i) => (i === S.cur ? { ...x, ...patch } : x)), toast: toast || '', err: '' });
+    const now = () => { const d = new Date('2026-11-16T10:15:00'); return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); };
+    const STG = ['รับงาน', 'เอกสารเข้าพื้นที่', 'ตรวจเอกสาร', 'ติดต่อ SM', 'ทำงาน', 'ภาพ+ข้อมูล', 'ปิดงาน'];
+    const stageName = (x) => (x.step > 6 ? 'ปิดงานแล้ว' : STG[x.step]);
+    const CK = ['กรอกแบบฟอร์มขอเข้าพื้นที่ (ช่วงเวลา / ตำแหน่งงาน)', 'ระบุรายชื่อผู้เข้าพื้นที่และอุปกรณ์ PPE', 'แนบแผนงาน / ขั้นตอนความปลอดภัย'];
+    const checks = J.ck.map((v, i) => ({ t: CK[i], ck: v ? '✓' : '', cb: v ? '#142B4F' : '#FFFFFF', bg: v ? '#EEF5FC' : '#FFFFFF', bd: v ? '#2878C7' : '#B8C4D4', go: () => upd({ ck: J.ck.map((y, k) => (k === i ? !y : y)) }) }));
+    const fin = (patch, toast) => upd(patch, toast);
+    const F = (k) => (e) => upd({ [k]: e.target.value });
+    return {
+      meRole: S.role === 'CT' ? 'Chief Technician' : 'Technician', stn: J.st, tin: J.tin || '—', tout: J.tout, photos: String(J.photos), notes: J.notes.map((t) => ({ t })), checks,
+      cur: J, cause: J.cause, fix: J.fix, qty: J.qty, note: J.note, causeSet: F('cause'), fixSet: F('fix'), qtySet: F('qty'), noteSet: F('note'),
+      roles: ['CT', 'T'].map((r) => ({ t: r, bg: S.role === r ? '#F28C28' : 'transparent', fg: S.role === r ? '#142B4F' : '#FFFFFF', go: () => set({ role: r }) })),
+      jobs: S.jobs.map((x, i) => ({ no: x.no, st: x.st, txt: x.txt, stage: stageName(x), sfg: x.step > 6 ? '#1B6B43' : '#8A4B08', bg: i === S.cur ? '#EEF5FC' : '#FFFFFF', bd: i === S.cur ? '#2878C7' : '#D5DDE8', go: () => set({ cur: i, toast: '', err: '' }) })),
+      steps: STG.map((t, i) => ({ t, bg: J.step > i ? '#1E8E5A' : (J.step === i ? '#F28C28' : '#D5DDE8'), fg: J.step === i ? '#142B4F' : '#5B6B7F', w: J.step === i ? '700' : '500' })),
+      s0: J.step === 0, s1: J.step === 1, s2: J.step === 2, s3: J.step === 3, s4: J.step === 4, s5: J.step === 5, s6: J.step === 6, s7: J.step > 6,
+      enBg: J.en ? '#E1F4EA' : '#FFF6E8', enFg: J.en ? '#1B6B43' : '#8A4B08', enTxt: J.en ? '✓ อนุมัติแล้ว' : 'รอตรวจ', eBg: J.e ? '#E1F4EA' : '#FFF6E8', eFg: J.e ? '#1B6B43' : '#8A4B08', eTxt: J.e ? '✓ อนุมัติแล้ว' : 'รอตรวจ',
+      doAccept: () => fin({ step: 1 }, 'รับงานแล้ว — ' + (S.role === 'CT' ? 'Chief Technician' : 'Technician')),
+      doSubmitDoc: () => (J.ck.every((x) => x) ? fin({ step: 2 }, 'ส่งเอกสารให้ CN และ E ตรวจแล้ว') : set({ err: 'ติ๊กให้ครบทุกข้อก่อนส่ง', toast: '' })),
+      simEN: () => fin({ en: true, step: J.e ? 3 : 2 }, 'Chief Engineer (CN) อนุมัติเอกสารแล้ว' + (J.e ? ' — ครบทั้ง 2 ฝ่าย' : '')),
+      simE: () => fin({ e: true, step: J.en ? 3 : 2 }, 'Engineer (E) อนุมัติเอกสารแล้ว' + (J.en ? ' — ครบทั้ง 2 ฝ่าย' : '')),
+      doEnter: () => fin({ step: 4, tin: now() }, 'เข้าพื้นที่ ' + J.st + ' เวลา ' + now()),
+      doWorkDone: () => fin({ step: 5 }, 'ไปขั้นตอนบันทึกผลงาน'),
+      addPhoto: () => fin({ photos: J.photos + 1 }, ''),
+      doSaveData: () => (J.photos < 1 ? set({ err: 'ต้องแนบภาพงานที่เสร็จอย่างน้อย 1 ภาพ', toast: '' }) : (!J.cause.trim() || !J.fix.trim()) ? set({ err: 'กรอกสาเหตุและวิธีแก้ไข', toast: '' }) : fin({ step: 6 }, 'บันทึกผลงานแล้ว')),
+      doClose: () => fin({ step: 7, tout: now(), notes: ['แจ้ง Chief Engineer (CN): ' + J.no + ' ปิดงานแล้ว · ' + J.st + ' · ออกจากพื้นที่ ' + now(), 'แจ้ง Engineer (E): ' + J.no + ' ปิดงานแล้ว · ' + J.cause + ' → ' + J.fix] }, 'ปิดงานแล้ว ระบบแจ้งเตือน CN และ E'),
+      toastOn: !!S.toast, toast: S.toast, err: S.err
+    };
+  }
+}
+</script>
+</body>
+</html>

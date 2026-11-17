@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>Screen 19 Manpower & Shift</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+input::placeholder{color:#5B6B7F}
+button{cursor:pointer}
+summary{list-style:none;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+</style>
+</helmet>
+<div style="width:1440px;height:1180px;box-sizing:border-box;display:flex;background:#F5F7FA;font-family:'Sarabun','Noto Sans Thai',system-ui,sans-serif;color:#263445;line-height:1.3">
+
+  <!-- SIDEBAR -->
+  <div style="width:208px;flex:0 0 208px;background:#142B4F;display:flex;flex-direction:column;padding:16px 12px;box-sizing:border-box;gap:16px">
+    <div style="display:flex;align-items:center;gap:9px;padding:0 4px">
+      <div style="width:34px;height:34px;flex:0 0 34px;border-radius:9px;background:#F28C28;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="20" height="20" style="fill:none;stroke:#142B4F;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M4 7h11l5 5-5 5H4zM8 12h6"></path></svg></div>
+      <div style="display:flex;flex-direction:column;line-height:1.15"><span style="color:#fff;font-weight:700;font-size:15px">ORL-SignTrack</span><span style="color:#9FB4D1;font-size:10px">MRT Orange Line · GRS</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <sc-for list="{{nav}}" as="n" hint-placeholder-count="9">
+<sc-if value="{{n.isLink}}" hint-placeholder-val="{{ false }}"><a href="{{n.href}}" style="display:block;text-decoration:none;color:inherit">
+        <div style="display:flex;align-items:center;gap:10px;padding:{{n.pad}};margin-left:{{n.ml}};border-radius:8px;background:{{n.bg}};color:{{n.fg}}">
+          <svg viewBox="0 0 24 24" width="{{n.is}}" height="{{n.is}}" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+          <div style="display:flex;flex-direction:column;line-height:1.15;flex:1;min-width:0"><span style="font-size:{{n.fs}};font-weight:600">{{n.th}}</span><span style="font-size:10px;color:{{n.sub}}">{{n.en}}</span></div>
+        </div>
+      
+</a></sc-if>
+<sc-if value="{{n.isBtn}}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:10px;padding:{{n.pad}};margin-left:{{n.ml}};border-radius:8px;background:{{n.bg}};color:{{n.fg}}">
+          <svg viewBox="0 0 24 24" width="{{n.is}}" height="{{n.is}}" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+          <div style="display:flex;flex-direction:column;line-height:1.15;flex:1;min-width:0"><span style="font-size:{{n.fs}};font-weight:600">{{n.th}}</span><span style="font-size:10px;color:{{n.sub}}">{{n.en}}</span></div>
+        </div>
+      
+</sc-if>
+</sc-for>
+    </div>
+    <div style="margin-top:auto;background:rgba(255,255,255,0.08);border-radius:8px;padding:9px 11px;display:flex;flex-direction:column;line-height:1.2">
+      <span style="font-size:10px;color:#9FB4D1">ผู้ใช้งาน</span>
+      <span style="font-size:13px;font-weight:600;color:#fff">{{meRole}}</span>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+    <div style="height:54px;flex:0 0 54px;background:#fff;border-bottom:1px solid #E1E7EF;display:flex;align-items:center;padding:0 20px;gap:16px">
+      <div style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:#5B6B7F"><span>งาน Maintenance</span><span>/</span><span style="color:#142B4F;font-weight:700">กำลังคน / กะ</span></div>
+      <div style="flex:1"></div>
+      <details style="position:relative"><summary aria-label="การแจ้งเตือน 3 รายการ" style="width:32px;height:32px;border:1px solid #D5DDE8;background:#fff;border-radius:16px;color:#263445;display:flex;align-items:center;justify-content:center;list-style:none;cursor:pointer;box-sizing:border-box;font-size:12px;font-weight:700">3</summary><div style="position:absolute;right:0;top:38px;width:300px;background:#fff;border:1px solid #D5DDE8;border-radius:10px;box-shadow:0 10px 30px rgba(20,43,79,0.18);padding:6px;z-index:30;display:flex;flex-direction:column;gap:2px"><span style="padding:6px 8px;font-size:12px;font-weight:700;color:#142B4F">การแจ้งเตือน (3)</span><a href="Progress.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>OR22 ติดตั้งล่าช้ากว่า Forecast</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 05</span></a><a href="RepairMgmt.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>ใบแจ้งซ่อมรอแจกงาน 2 ใบ</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 13</span></a><a href="Approvals.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>รออนุมัติ / รอตรวจรับ</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 12</span></a></div></details>
+      <div style="display:flex;align-items:center;gap:9px"><div style="width:32px;height:32px;border-radius:16px;background:#142B4F;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">{{meInit}}</div>
+        <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:12.5px;font-weight:600;color:#142B4F">ผู้ใช้ตัวอย่าง</span><span style="font-size:10px;color:#5B6B7F">{{meRole}}</span></div></div>
+    </div>
+    <div style="flex:1;min-height:0;padding:18px 20px 16px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px">
+      <div style="flex:0 0 40px;display:flex;align-items:center;justify-content:space-between;gap:12px"><div style="display:flex;align-items:baseline;gap:12px"><span style="font-size:22px;font-weight:700;color:#142B4F">กำลังคนและตารางกะ</span><span style="font-size:12.5px;color:#5B6B7F">Manpower & Shift Management · งาน Maintenance · คลิกช่องเพื่อเปลี่ยนกะ · ข้อมูลเป็นตัวอย่าง</span></div><div style="display:flex;gap:10px;align-items:center"><button onClick="{{copyPrev}}" style="height:34px;padding:0 16px;border-radius:8px;border:1px solid #142B4F;background:#fff;color:#142B4F;font-family:inherit;font-size:12.5px;font-weight:700;">คัดลอกจากสัปดาห์ก่อน</button><button onClick="{{doSave}}" style="height:34px;padding:0 16px;border-radius:8px;border:1px solid #F28C28;background:#F28C28;color:#142B4F;font-family:inherit;font-size:12.5px;font-weight:700;">บันทึกตารางกะ</button></div></div>
+      <sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}"><div style="flex:0 0 34px;display:flex;align-items:center;background:#E1F4EA;color:#1B6B43;border-radius:8px;padding:0 14px;font-size:12.5px;font-weight:600">{{toast}}</div></sc-if>
+      <div style="flex:0 0 80px;display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:12px">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4"><div style="background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:10px 15px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between"><span style="font-size:12.5px;font-weight:600">{{k.th}}</span><div style="display:flex;align-items:baseline;gap:6px"><span style="font-size:26px;font-weight:700;line-height:1;color:{{k.fg}}">{{k.val}}</span><span style="font-size:11.5px;color:#5B6B7F">{{k.unit}}</span></div></div></sc-for>
+      </div>
+      <div style="flex:0 0 auto;background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:8px 14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span style="font-size:11.5px;font-weight:700;color:#142B4F">สัปดาห์</span><sc-for list="{{fWk}}" as="c" hint-placeholder-count="4"><button onClick="{{c.pick}}" style="height:26px;padding:0 13px;border-radius:14px;border:1px solid {{c.bd}};background:{{c.bg}};color:{{c.fg}};font-family:inherit;font-size:12px;font-weight:600">{{c.label}}</button></sc-for><span style="width:14px"></span><span style="font-size:11.5px;font-weight:700;color:#142B4F">ตำแหน่ง</span><sc-for list="{{fRole}}" as="c" hint-placeholder-count="4"><button onClick="{{c.pick}}" style="height:26px;padding:0 13px;border-radius:14px;border:1px solid {{c.bd}};background:{{c.bg}};color:{{c.fg}};font-family:inherit;font-size:12px;font-weight:600">{{c.label}}</button></sc-for><span style="flex:1"></span><span style="font-size:11px;color:#5B6B7F">ช = เช้า 08–16 · บ = บ่าย 16–24 · ด = ดึก 00–08 · ห = หยุด · ล = ลา</span></div>
+      <div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:12px;overflow:auto">
+        <div style="background:#fff;border:1px solid #E1E7EF;border-radius:10px;overflow:hidden">
+          <div style="display:grid;grid-template-columns:150px 54px repeat(7, minmax(0, 1fr)) 70px;gap:6px;align-items:center;padding:8px 12px;background:#F0F3F8;font-size:10.5px;font-weight:700;color:#5B6B7F"><span>ชื่อ</span><span>ตำแหน่ง</span><span style="text-align:center">{{d0}}</span><span style="text-align:center">{{d1}}</span><span style="text-align:center">{{d2}}</span><span style="text-align:center">{{d3}}</span><span style="text-align:center">{{d4}}</span><span style="text-align:center">{{d5}}</span><span style="text-align:center">{{d6}}</span><span style="text-align:center">ชม./สัปดาห์</span></div>
+          <sc-for list="{{rows}}" as="r" hint-placeholder-count="10"><div style="display:grid;grid-template-columns:150px 54px repeat(7, minmax(0, 1fr)) 70px;gap:6px;align-items:center;padding:6px 12px;border-top:1px solid #EEF1F5;font-size:12px"><span style="font-weight:600;color:#142B4F">{{r.name}}</span><span style="color:#5B6B7F">{{r.role}}</span><button onClick="{{r.c0.go}}" aria-label="เปลี่ยนกะ" style="height:30px;border-radius:6px;border:1px solid {{r.c0.bd}};background:{{r.c0.bg}};color:{{r.c0.fg}};font-family:inherit;font-size:12px;font-weight:700;padding:0">{{r.c0.t}}</button><button onClick="{{r.c1.go}}" aria-label="เปลี่ยนกะ" style="height:30px;border-radius:6px;border:1px solid {{r.c1.bd}};background:{{r.c1.bg}};color:{{r.c1.fg}};font-family:inherit;font-size:12px;font-weight:700;padding:0">{{r.c1.t}}</button><button onClick="{{r.c2.go}}" aria-label="เปลี่ยนกะ" style="height:30px;border-radius:6px;border:1px solid {{r.c2.bd}};background:{{r.c2.bg}};color:{{r.c2.fg}};font-family:inherit;font-size:12px;font-weight:700;padding:0">{{r.c2.t}}</button><button onClick="{{r.c3.go}}" aria-label="เปลี่ยนกะ" style="height:30px;border-radius:6px;border:1px solid {{r.c3.bd}};background:{{r.c3.bg}};color:{{r.c3.fg}};font-family:inherit;font-size:12px;font-weight:700;padding:0">{{r.c3.t}}</button><button onClick="{{r.c4.go}}" aria-label="เปลี่ยนกะ" style="height:30px;border-radius:6px;border:1px solid {{r.c4.bd}};background:{{r.c4.bg}};color:{{r.c4.fg}};font-family:inherit;font-size:12px;font-weight:700;padding:0">{{r.c4.t}}</button><button onClick="{{r.c5.go}}" aria-label="เปลี่ยนกะ" style="height:30px;border-radius:6px;border:1px solid {{r.c5.bd}};background:{{r.c5.bg}};color:{{r.c5.fg}};font-family:inherit;font-size:12px;font-weight:700;padding:0">{{r.c5.t}}</button><button onClick="{{r.c6.go}}" aria-label="เปลี่ยนกะ" style="height:30px;border-radius:6px;border:1px solid {{r.c6.bd}};background:{{r.c6.bg}};color:{{r.c6.fg}};font-family:inherit;font-size:12px;font-weight:700;padding:0">{{r.c6.t}}</button><span style="text-align:center;font-weight:700;color:{{r.hfg}}">{{r.hrs}}</span></div></sc-for>
+        </div>
+        <div style="background:#fff;border:1px solid #E1E7EF;border-radius:10px;overflow:hidden">
+          <div style="padding:8px 12px;font-size:13px;font-weight:700;color:#142B4F">ความพร้อมของกะ (คนจริง / ขั้นต่ำ) <span style="font-weight:400;color:#5B6B7F;font-size:11px">· แดง = ขาดคน</span></div>
+          <div style="display:grid;grid-template-columns:150px 54px repeat(7, minmax(0, 1fr)) 70px;gap:6px;align-items:center;padding:6px 12px;background:#F0F3F8;font-size:10.5px;font-weight:700;color:#5B6B7F"><span>กะ</span><span></span><span style="text-align:center">{{d0}}</span><span style="text-align:center">{{d1}}</span><span style="text-align:center">{{d2}}</span><span style="text-align:center">{{d3}}</span><span style="text-align:center">{{d4}}</span><span style="text-align:center">{{d5}}</span><span style="text-align:center">{{d6}}</span><span></span></div>
+          <sc-for list="{{cov}}" as="v" hint-placeholder-count="3"><div style="display:grid;grid-template-columns:150px 54px repeat(7, minmax(0, 1fr)) 70px;gap:6px;align-items:center;padding:6px 12px;border-top:1px solid #EEF1F5;font-size:12px"><span style="font-weight:600;color:#142B4F">{{v.name}}</span><span></span><span style="text-align:center;font-weight:700;color:{{v.c0.fg}};background:{{v.c0.bg}};border-radius:6px;padding:4px 0">{{v.c0.t}}</span><span style="text-align:center;font-weight:700;color:{{v.c1.fg}};background:{{v.c1.bg}};border-radius:6px;padding:4px 0">{{v.c1.t}}</span><span style="text-align:center;font-weight:700;color:{{v.c2.fg}};background:{{v.c2.bg}};border-radius:6px;padding:4px 0">{{v.c2.t}}</span><span style="text-align:center;font-weight:700;color:{{v.c3.fg}};background:{{v.c3.bg}};border-radius:6px;padding:4px 0">{{v.c3.t}}</span><span style="text-align:center;font-weight:700;color:{{v.c4.fg}};background:{{v.c4.bg}};border-radius:6px;padding:4px 0">{{v.c4.t}}</span><span style="text-align:center;font-weight:700;color:{{v.c5.fg}};background:{{v.c5.bg}};border-radius:6px;padding:4px 0">{{v.c5.t}}</span><span style="text-align:center;font-weight:700;color:{{v.c6.fg}};background:{{v.c6.bg}};border-radius:6px;padding:4px 0">{{v.c6.t}}</span><span></span></div></sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const P = [['สมชาย ใจดี', 'CT'], ['วิชัย รุ่งเรือง', 'CT'], ['ประสิทธิ์ แก้วมณี', 'CT'], ['อนันต์ สุขสวัสดิ์', 'T'], ['ธนากร พึ่งบุญ', 'T'], ['กิตติ ศรีสุข', 'T'], ['นพดล คำแก้ว', 'T'], ['ปรีชา ทองดี', 'T'], ['สุรศักดิ์ มั่นคง', 'T'], ['ณัฐพล เพชรรัตน์', 'T']];
+    const pat = ['ช', 'ช', 'ช', 'ห', 'บ', 'บ', 'ด'];
+    const mk = (seed) => P.map((p, i) => ({ name: p[0], role: p[1], sh: pat.map((_, d) => (i % 7 === 6 && d === 2 ? 'ล' : pat[(d + i + seed) % 7])) }));
+    this.state = { wk: 0, role: 'all', w: [mk(0), mk(3)], toast: '' };
+    this.MIN = { 'ช': 3, 'บ': 3, 'ด': 3 };
+  }
+  renderVals() {
+    const IC = { man: 'M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 19c0-3 3-5 6-5s6 2 6 5M14 14c3 0 8 1 8 5', fld: 'M7 2h10a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM11 18h2', dash: 'M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z', proj: 'M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z', prog: 'M3 17l5-5 4 4 8-9M15 7h5v5', job: 'M9 4h6v3H9zM7 5H5v15h14V5h-2M9 13l2 2 4-4', apr: 'M5 12l4 4 10-10M4 20h16', db: 'M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6', war: 'M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6zM9 12l2 2 4-4', doc: 'M6 3h8l5 5v13H6zM14 3v5h5M9 13h6M9 17h6', fix: 'M14.7 6.3a4 4 0 0 0-5 5L3 18l3 3 6.7-6.7a4 4 0 0 0 5-5l-2.5 2.5-2.2-.5-.5-2.2z', rep: 'M5 20V10M12 20V4M19 20v-7M3 20h18', set: 'M4 7h10M18 7h2M4 17h2M10 17h10M14 5v4M8 15v4', qr: 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h3v3h-3zM18 18h2v2h-2z' };
+    const HR = { 'Dashboard': 'Dashboard.dc.html', 'Projects': 'ProjectEdit.dc.html', 'Production & Install': 'Progress.dc.html', 'Job Management': 'Jobs.dc.html', 'Approvals': 'Approvals.dc.html', 'Signage Database': 'SignDB.dc.html', 'Warranty': 'Warranty.dc.html', 'Documents': 'Docs.dc.html', 'Maintenance': 'RepairMgmt.dc.html', 'Reports': 'MaintReport.dc.html', 'Manpower': 'Manpower.dc.html', 'Field App': 'FieldApp.dc.html', 'Settings': 'Admin.dc.html' };
+    const NAVF = (active) => [['ภาพรวม', 'Dashboard', 'dash'], ['โครงการ', 'Projects', 'proj'], ['ความคืบหน้าผลิต/ติดตั้ง', 'Production & Install', 'prog', 1], ['จัดการงาน', 'Job Management', 'job'], ['อนุมัติ / ตรวจรับ', 'Approvals', 'apr'], ['ฐานข้อมูลป้าย', 'Signage Database', 'db'], ['การรับประกัน', 'Warranty', 'war'], ['เอกสาร', 'Documents', 'doc'], ['แจ้งซ่อม', 'Maintenance', 'fix'], ['กำลังคน / กะ', 'Manpower', 'man'], ['งานภาคสนาม (มือถือ)', 'Field App', 'fld', 1], ['รายงาน', 'Reports', 'rep'], ['ตั้งค่าระบบ', 'Settings', 'set']].map((x) => {
+      const on = x[1] === active, sub = !!x[3];
+      const link = !on && !!HR[x[1]];
+      return { th: x[0], en: x[1], d: IC[x[2]], pad: sub ? '7px 10px' : '8px 10px', ml: sub ? '14px' : '0px', is: sub ? '15' : '17', fs: sub ? '12px' : '13px', bg: on ? '#2878C7' : 'transparent', fg: on ? '#FFFFFF' : '#C9D6E8', sub: on ? '#E3F0FB' : '#9FB4D1', href: HR[x[1]] || '#', isLink: link, isBtn: !link };
+    });
+    const chip = (label, on, fn) => ({ label, bg: on ? '#142B4F' : '#FFFFFF', fg: on ? '#FFFFFF' : '#263445', bd: on ? '#142B4F' : '#B8C4D4', pick: fn });
+    const nf = (n) => Math.round(n).toLocaleString('en-US');
+    const S = this.state, set = (p) => this.setState(p);
+    const NEXT = { 'ช': 'บ', 'บ': 'ด', 'ด': 'ห', 'ห': 'ล', 'ล': 'ช' };
+    const CL = { 'ช': ['#DCEBFA', '#1B5C9E'], 'บ': ['#FDE9D0', '#8A4B08'], 'ด': ['#E4E1F4', '#43368A'], 'ห': ['#EEF1F5', '#5B6B7F'], 'ล': ['#FBE4E2', '#A32019'] };
+    const WK = [['16–22 พ.ย. 69', 16], ['23–29 พ.ย. 69', 23]];
+    const DN = ['จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.', 'อา.'];
+    const cur = S.w[S.wk];
+    const setCell = (pi, d) => { const nw = S.w.map((wk, k) => (k !== S.wk ? wk : wk.map((p, i) => (i !== pi ? p : { ...p, sh: p.sh.map((x, j) => (j === d ? NEXT[x] : x)) })))); set({ w: nw, toast: '' }); };
+    const shown = cur.map((p, pi) => ({ p, pi })).filter((x) => S.role === 'all' || x.p.role === S.role);
+    const rows = shown.map((x) => { const hrs = x.p.sh.filter((s) => 'ชบด'.indexOf(s) >= 0).length * 8; const o = { name: x.p.name, role: x.p.role, hrs: String(hrs), hfg: hrs > 48 ? '#A32019' : '#263445' };
+      x.p.sh.forEach((s, d) => { o['c' + d] = { t: s, bg: CL[s][0], fg: CL[s][1], bd: CL[s][1], go: () => setCell(x.pi, d) }; }); return o; });
+    const need = (s, d) => cur.filter((p) => p.sh[d] === s).length;
+    const cov = ['ช', 'บ', 'ด'].map((s) => { const o = { name: { 'ช': 'เช้า 08–16', 'บ': 'บ่าย 16–24', 'ด': 'ดึก 00–08' }[s] }; for (let d = 0; d < 7; d++) { const n = need(s, d), ok = n >= this.MIN[s]; o['c' + d] = { t: n + ' / ' + this.MIN[s], bg: ok ? '#E1F4EA' : '#FBE4E2', fg: ok ? '#1B6B43' : '#A32019' }; } return o; });
+    const gaps = cov.reduce((t, v) => t + [0, 1, 2, 3, 4, 5, 6].filter((d) => v['c' + d].bg === '#FBE4E2').length, 0);
+    const today = need('ช', 0) + need('บ', 0) + need('ด', 0);
+    const ot = cur.filter((p) => p.sh.filter((s) => 'ชบด'.indexOf(s) >= 0).length * 8 > 48).length;
+    const out = { nav: NAVF('Manpower'), meRole: 'Chief Engineer', meInit: 'CE', rows, cov, kpis: [
+      { th: 'พนักงานทั้งหมด', val: String(cur.length), unit: 'คน (CT ' + cur.filter((p) => p.role === 'CT').length + ' · T ' + cur.filter((p) => p.role === 'T').length + ')', fg: '#142B4F' },
+      { th: 'เข้ากะวันจันทร์', val: String(today), unit: 'คน', fg: '#1B5C9E' },
+      { th: 'กะที่ขาดคน', val: String(gaps), unit: 'ช่อง', fg: gaps ? '#A32019' : '#1B6B43' },
+      { th: 'เกิน 48 ชม./สัปดาห์', val: String(ot), unit: 'คน', fg: ot ? '#A32019' : '#1B6B43' }],
+      fWk: WK.map((w, k) => chip(w[0], S.wk === k, () => set({ wk: k, toast: '' }))), fRole: [['all', 'ทั้งหมด'], ['CT', 'Chief Technician'], ['T', 'Technician']].map((x) => chip(x[1], S.role === x[0], () => set({ role: x[0] }))),
+      copyPrev: () => { if (S.wk === 0) { set({ toast: 'สัปดาห์นี้ไม่มีสัปดาห์ก่อนหน้าในตัวอย่าง' }); return; } set({ w: S.w.map((wk, k) => (k === S.wk ? S.w[0].map((p) => ({ ...p, sh: p.sh.slice() })) : wk)), toast: 'คัดลอกตารางสัปดาห์ก่อนมาแล้ว' }); },
+      doSave: () => set({ toast: gaps ? 'บันทึกแล้ว — ยังมี ' + gaps + ' ช่องที่ขาดคน (ตัวอย่างใน prototype)' : 'บันทึกตารางกะแล้ว (ตัวอย่างใน prototype)' }), toastOn: !!S.toast, toast: S.toast };
+    DN.forEach((n, i) => { out['d' + i] = n + ' ' + (WK[S.wk][1] + i); });
+    return out;
+  }
+}
+</script>
+</body>
+</html>

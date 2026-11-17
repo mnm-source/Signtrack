@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>Screen 08 Station Manager Repair Report</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+input::placeholder,textarea::placeholder{color:#5B6B7F}
+button{cursor:pointer}
+summary{list-style:none;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+</style>
+</helmet>
+<div style="width:1440px;height:1180px;box-sizing:border-box;display:flex;background:#F5F7FA;font-family:'Sarabun','Noto Sans Thai',system-ui,sans-serif;color:#263445;line-height:1.3">
+
+  <!-- SIDEBAR -->
+  <div style="width:208px;flex:0 0 208px;background:#142B4F;display:flex;flex-direction:column;padding:16px 12px;box-sizing:border-box;gap:16px">
+    <div style="display:flex;align-items:center;gap:9px;padding:0 4px">
+      <div style="width:34px;height:34px;flex:0 0 34px;border-radius:9px;background:#F28C28;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="20" height="20" style="fill:none;stroke:#142B4F;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M4 7h11l5 5-5 5H4zM8 12h6"></path></svg></div>
+      <div style="display:flex;flex-direction:column;line-height:1.15"><span style="color:#fff;font-weight:700;font-size:15px">ORL-SignTrack</span><span style="color:#9FB4D1;font-size:10px">MRT Orange Line · GRS</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <sc-for list="{{nav}}" as="n" hint-placeholder-count="4">
+<sc-if value="{{n.isLink}}" hint-placeholder-val="{{ false }}"><a href="{{n.href}}" style="display:block;text-decoration:none;color:inherit">
+        <div style="display:flex;align-items:center;gap:10px;padding:{{n.pad}};margin-left:{{n.ml}};border-radius:8px;background:{{n.bg}};color:{{n.fg}}">
+          <svg viewBox="0 0 24 24" width="{{n.is}}" height="{{n.is}}" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+          <div style="display:flex;flex-direction:column;line-height:1.15;flex:1;min-width:0"><span style="font-size:{{n.fs}};font-weight:600">{{n.th}}</span><span style="font-size:10px;color:{{n.sub}}">{{n.en}}</span></div>
+        </div>
+      
+</a></sc-if>
+<sc-if value="{{n.isBtn}}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:10px;padding:{{n.pad}};margin-left:{{n.ml}};border-radius:8px;background:{{n.bg}};color:{{n.fg}}">
+          <svg viewBox="0 0 24 24" width="{{n.is}}" height="{{n.is}}" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+          <div style="display:flex;flex-direction:column;line-height:1.15;flex:1;min-width:0"><span style="font-size:{{n.fs}};font-weight:600">{{n.th}}</span><span style="font-size:10px;color:{{n.sub}}">{{n.en}}</span></div>
+        </div>
+      
+</sc-if>
+</sc-for>
+    </div>
+    <div style="margin-top:auto;background:rgba(255,255,255,0.08);border-radius:8px;padding:9px 11px;display:flex;flex-direction:column;line-height:1.2">
+      <span style="font-size:10px;color:#9FB4D1">ผู้ใช้งาน</span>
+      <span style="font-size:13px;font-weight:600;color:#fff">Station Manager · OR13, OR14</span>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+    <div style="height:54px;flex:0 0 54px;background:#fff;border-bottom:1px solid #E1E7EF;display:flex;align-items:center;padding:0 20px;gap:16px">
+      <div style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:#5B6B7F"><span>แจ้งซ่อม</span><span>/</span><span style="color:#142B4F;font-weight:700">แจ้งป้ายชำรุด</span></div>
+      <div style="flex:1"></div>
+      <div style="display:flex;align-items:center;gap:9px">
+        <div style="width:32px;height:32px;border-radius:16px;background:#1B6B43;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">ว</div>
+        <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:12.5px;font-weight:600;color:#142B4F">วรรณา สถานีสุข (ตัวอย่าง)</span><span style="font-size:10px;color:#5B6B7F">Station Manager · เจ้าของพื้นที่</span></div>
+      </div>
+    </div>
+
+    <div style="flex:1;min-height:0;padding:20px;box-sizing:border-box;display:flex;flex-direction:column;gap:14px">
+      <div style="flex:0 0 40px;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:baseline;gap:12px"><span style="font-size:22px;font-weight:700;color:#142B4F">แจ้งป้ายชำรุด</span><span style="font-size:12.5px;color:#5B6B7F">Repair Report · เลือกป้ายจากพื้นที่ของคุณ แล้วระบุอาการ จำนวน และตำแหน่ง · ข้อมูลเป็นตัวอย่าง</span></div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:12px;color:#5B6B7F">สถานีที่รับผิดชอบ</span>
+          <sc-for list="{{stChips}}" as="c" hint-placeholder-count="3">
+            <button onClick="{{c.pick}}" style="height:32px;padding:0 14px;border-radius:16px;border:1px solid {{c.bd}};background:{{c.bg}};color:{{c.fg}};font-family:inherit;font-size:12px;font-weight:600">{{c.label}}</button>
+          </sc-for>
+          <span style="height:32px;padding:0 13px;border-radius:16px;background:#E8ECF1;color:#8A95A5;font-size:12px;font-weight:600;display:flex;align-items:center">สถานีอื่น · ไม่มีสิทธิ์</span>
+        </div>
+      </div>
+
+      <sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}">
+        <div style="flex:0 0 38px;display:flex;align-items:center;gap:10px;background:#E1F4EA;color:#1B6B43;border-radius:8px;padding:0 14px;font-size:12.5px;font-weight:600">
+          <svg viewBox="0 0 24 24" width="16" height="16" style="fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>{{toast}}
+        </div>
+      </sc-if>
+
+      <div style="flex:1;min-height:0;display:flex;gap:14px">
+        <!-- SIGN LIST (Signage DB, own area) -->
+        <div style="flex:1;min-width:0;background:#fff;border:1px solid #E1E7EF;border-radius:10px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden">
+          <div style="flex:0 0 46px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:10px">
+            <div style="display:flex;align-items:baseline;gap:9px"><span style="font-size:14px;font-weight:700;color:#142B4F">ป้ายในพื้นที่ของฉัน</span><span style="font-size:11px;color:#5B6B7F">จาก Signage Database · {{signCount}} รายการ</span></div>
+            <label style="display:flex;align-items:center;gap:7px;width:230px;height:30px;box-sizing:border-box;border:1px solid #D5DDE8;border-radius:7px;padding:0 10px;background:#F5F7FA;color:#5B6B7F">
+              <svg viewBox="0 0 24 24" width="14" height="14" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 14px" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-4-4"></path></svg>
+              <input aria-label="ค้นหาป้าย" value="{{q}}" onChange="{{onQ}}" placeholder="รหัสป้าย หรือประเภท" style="border:0;background:transparent;outline:0;font-family:inherit;font-size:12px;width:100%;color:#263445;padding:0">
+            </label>
+          </div>
+          <div style="flex:0 0 36px;display:flex;align-items:center;gap:6px;padding:0 16px">
+            <span style="font-size:11.5px;color:#5B6B7F">ชั้น</span>
+            <sc-for list="{{floorChips}}" as="c" hint-placeholder-count="5">
+              <button onClick="{{c.pick}}" style="height:26px;padding:0 11px;border-radius:13px;border:1px solid {{c.bd}};background:{{c.bg}};color:{{c.fg}};font-family:inherit;font-size:11px;font-weight:600">{{c.label}}</button>
+            </sc-for>
+          </div>
+          <div style="flex:0 0 30px;display:grid;grid-template-columns:70px 150px minmax(0,1.2fr) 112px minmax(0,1.3fr) 40px;gap:10px;align-items:center;padding:0 16px;background:#F0F3F8;font-size:11px;font-weight:700;color:#5B6B7F">
+            <span>หน้าป้าย</span><span>รหัสป้าย</span><span>ประเภท / รหัสแบบ</span><span>ชั้น</span><span>ตำแหน่งในสถานี</span><span>จำนวน</span>
+          </div>
+          <div style="flex:1;min-height:0;display:flex;flex-direction:column">
+            <sc-for list="{{signs}}" as="s" hint-placeholder-count="12">
+              <button onClick="{{s.pick}}" style="flex:1;min-height:0;max-height:64px;border:0;border-top:1px solid #EEF1F5;background:{{s.bg}};text-align:left;font-family:inherit;display:grid;grid-template-columns:70px 150px minmax(0,1.2fr) 112px minmax(0,1.3fr) 40px;gap:10px;align-items:center;padding:0 16px;font-size:12px;color:#263445;box-shadow:inset 3px 0 0 {{s.bar}}">
+                <span style="width:58px;height:34px;border-radius:5px;background:{{s.fbg}};color:{{s.ffg}};font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.1;padding:2px;box-sizing:border-box;overflow:hidden">{{s.face}}</span>
+                <b style="color:#142B4F">{{s.id}}</b>
+                <span style="display:flex;flex-direction:column;line-height:1.2"><span style="font-weight:600">{{s.type}}</span><span style="font-size:10.5px;color:#5B6B7F">{{s.code}}</span></span>
+                <span style="font-size:11.5px">{{s.floor}}</span>
+                <span style="font-size:11.5px;line-height:1.25">{{s.pos}}</span>
+                <span style="font-weight:700;color:#142B4F;text-align:center">{{s.qty}}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- REPORT FORM -->
+        <div style="flex:0 0 470px;background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:14px 18px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px;overflow:auto">
+          <span style="font-size:14px;font-weight:700;color:#142B4F">แบบฟอร์มแจ้งซ่อม</span>
+          <div style="display:flex;align-items:center;gap:12px;background:#F5F7FA;border:1px solid #E1E7EF;border-radius:9px;padding:9px 12px">
+            <span style="width:64px;height:38px;flex:0 0 64px;border-radius:6px;background:{{sel.fbg}};color:{{sel.ffg}};font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.1;padding:2px;box-sizing:border-box">{{sel.face}}</span>
+            <div style="display:flex;flex-direction:column;line-height:1.25;min-width:0"><b style="font-size:13px;color:#142B4F">{{sel.id}} · {{sel.type}}</b><span style="font-size:11px;color:#5B6B7F">{{sel.code}} · {{sel.floor}}</span><span style="font-size:11px;color:#263445">{{sel.pos}}</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <span style="font-size:12px;font-weight:600">ชำรุดอย่างไร <span style="color:#A32019">*</span></span>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <sc-for list="{{damages}}" as="d" hint-placeholder-count="6">
+                <button onClick="{{d.pick}}" style="height:30px;padding:0 12px;border-radius:15px;border:1px solid {{d.bd}};background:{{d.bg}};color:{{d.fg}};font-family:inherit;font-size:12px;font-weight:600">{{d.label}}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px">
+            <div style="display:flex;flex-direction:column;gap:5px;flex:0 0 150px">
+              <span style="font-size:12px;font-weight:600">จำนวนที่ชำรุด <span style="color:#A32019">*</span></span>
+              <div style="display:flex;align-items:center;gap:0;border:1px solid #B8C4D4;border-radius:8px;height:38px;overflow:hidden">
+                <button onClick="{{qtyDown}}" aria-label="ลดจำนวน" style="width:38px;height:38px;border:0;background:#F0F3F8;font-size:18px;color:#142B4F;font-family:inherit">−</button>
+                <span style="flex:1;text-align:center;font-size:15px;font-weight:700;color:#142B4F">{{qty}}</span>
+                <button onClick="{{qtyUp}}" aria-label="เพิ่มจำนวน" style="width:38px;height:38px;border:0;background:#F0F3F8;font-size:18px;color:#142B4F;font-family:inherit">+</button>
+              </div>
+              <span style="font-size:10.5px;color:#5B6B7F">มีในตำแหน่งนี้ {{sel.qty}} ชิ้น</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:5px;flex:1">
+              <span style="font-size:12px;font-weight:600">ความเร่งด่วน</span>
+              <div style="display:flex;gap:6px">
+                <sc-for list="{{urgs}}" as="u" hint-placeholder-count="3">
+                  <button onClick="{{u.pick}}" style="flex:1;height:38px;border-radius:8px;border:1px solid {{u.bd}};background:{{u.bg}};color:{{u.fg}};font-family:inherit;font-size:12px;font-weight:600">{{u.label}}</button>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <span style="font-size:12px;font-weight:600">ชั้น (G / C / P)</span>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <sc-for list="{{floorPick}}" as="c" hint-placeholder-count="4">
+                <button onClick="{{c.pick}}" style="height:28px;padding:0 11px;border-radius:14px;border:1px solid {{c.bd}};background:{{c.bg}};color:{{c.fg}};font-family:inherit;font-size:11.5px;font-weight:600">{{c.label}}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <div style="display:flex;align-items:center;justify-content:space-between"><label for="pos" style="font-size:12px;font-weight:600">ตำแหน่งในพื้นที่สถานี</label><button onClick="{{toggleWalk}}" style="height:24px;padding:0 10px;border-radius:12px;border:1px solid {{walkBd}};background:{{walkBg}};color:{{walkFg}};font-family:inherit;font-size:11px;font-weight:600">อยู่ที่ทางเดินเชื่อม (Walk Way)</button></div>
+            <input id="pos" value="{{pos}}" onChange="{{onPos}}" style="height:36px;box-sizing:border-box;border:1px solid #B8C4D4;border-radius:7px;padding:0 11px;font-family:inherit;font-size:13px;color:#263445">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <label for="note" style="font-size:12px;font-weight:600">รายละเอียดเพิ่มเติม</label>
+            <textarea id="note" value="{{note}}" onChange="{{onNote}}" placeholder="เช่น ไฟกะพริบมาตั้งแต่เมื่อวาน กระจกร้าวมุมขวาล่าง" style="height:40px;box-sizing:border-box;border:1px solid #B8C4D4;border-radius:7px;padding:8px 11px;font-family:inherit;font-size:12.5px;color:#263445;resize:none"></textarea>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <button onClick="{{addPhoto}}" style="height:36px;padding:0 14px;border-radius:8px;border:1px dashed #8A95A5;background:#fff;color:#263445;font-family:inherit;font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px"><svg viewBox="0 0 24 24" width="15" height="15" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4zM12 17a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path></svg>แนบรูปถ่าย</button>
+            <span style="font-size:11px;color:#5B6B7F">{{photoTxt}}</span>
+          </div>
+          <sc-if value="{{errOn}}" hint-placeholder-val="{{ false }}"><div style="color:#A32019;font-size:12.5px;font-weight:600">{{err}}</div></sc-if>
+          <button onClick="{{addItem}}" style="height:36px;border-radius:8px;border:1px solid #F28C28;background:#FFF6E8;color:#8A4B08;font-family:inherit;font-size:13px;font-weight:700">+ เพิ่มป้ายนี้ลงในใบแจ้งซ่อม</button>
+          <div style="background:#F5F7FA;border:1px solid #E1E7EF;border-radius:8px;padding:7px 10px;display:flex;flex-direction:column;gap:4px;max-height:96px;overflow:auto;flex:0 0 auto">
+            <span style="font-size:11.5px;font-weight:700;color:#142B4F">รายการในใบนี้ ({{draftN}})</span>
+            <sc-if value="{{draftOn}}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:3px"><sc-for list="{{draft}}" as="d" hint-placeholder-count="1"><div style="display:flex;align-items:center;gap:8px;font-size:11.5px"><b style="color:#142B4F">{{d.sid}}</b><span style="flex:1;color:#263445">{{d.text}}</span><button onClick="{{d.remove}}" aria-label="ลบรายการ" style="border:0;background:transparent;color:#A32019;font-size:14px;padding:0 4px">×</button></div></sc-for></div></sc-if>
+          </div>
+          <button onClick="{{submit}}" style="margin-top:auto;height:42px;flex:0 0 42px;border-radius:8px;border:1px solid #142B4F;background:#142B4F;color:#fff;font-family:inherit;font-size:13.5px;font-weight:700">{{submitLabel}}</button>
+        </div>
+      </div>
+
+      <!-- MY REQUESTS -->
+      <div style="flex:0 0 250px;background:#fff;border:1px solid #E1E7EF;border-radius:10px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden">
+        <div style="flex:0 0 42px;display:flex;align-items:center;justify-content:space-between;padding:0 16px">
+          <div style="display:flex;align-items:baseline;gap:9px"><span style="font-size:14px;font-weight:700;color:#142B4F">ใบแจ้งซ่อมของฉัน</span><span style="font-size:11px;color:#5B6B7F">เมื่อช่างซ่อมเสร็จ กด "ยืนยันการซ่อม" เพื่อส่งให้ Engineer ปิดงาน</span></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:10.5px;color:#5B6B7F"><span>ขั้นตอน:</span><span>แจ้ง › แจกงาน › รับงาน › ซ่อม › ยืนยัน › ปิดงาน</span></div>
+        </div>
+        <div style="flex:0 0 28px;display:grid;grid-template-columns:76px 150px minmax(0,1.3fr) minmax(0,1fr) 44px minmax(0,1.3fr) 170px 70px 124px;gap:10px;align-items:center;padding:0 16px;background:#F0F3F8;font-size:11px;font-weight:700;color:#5B6B7F">
+          <span>เลขที่</span><span>รหัสป้าย</span><span>ประเภท</span><span>อาการ</span><span>จำนวน</span><span>ตำแหน่ง</span><span>ความคืบหน้า</span><span>วันที่แจ้ง</span><span style="text-align:right">การดำเนินการ</span>
+        </div>
+        <div style="flex:1;min-height:0;display:flex;flex-direction:column">
+          <sc-for list="{{reqs}}" as="r" hint-placeholder-count="5">
+            <div style="flex:1;min-height:0;display:grid;grid-template-columns:76px 150px minmax(0,1.3fr) minmax(0,1fr) 44px minmax(0,1.3fr) 170px 70px 124px;gap:10px;align-items:center;padding:0 16px;border-top:1px solid #EEF1F5;font-size:12px">
+              <b style="color:#142B4F">{{r.no}}</b>
+              <span>{{r.sid}}</span>
+              <span style="font-weight:600">{{r.type}}</span>
+              <span>{{r.dmg}}</span>
+              <span style="text-align:center;font-weight:700;color:#142B4F">{{r.qty}}</span>
+              <span style="font-size:11.5px;line-height:1.25">{{r.pos}}</span>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <div style="display:flex;gap:2px"><sc-for list="{{r.steps}}" as="s" hint-placeholder-count="6"><span style="flex:1;height:6px;border-radius:3px;background:{{s.bg}}"></span></sc-for></div>
+                <span style="font-size:10.5px;font-weight:600;color:{{r.sfg}}">{{r.stage}}</span>
+              </div>
+              <span style="font-size:11px;color:#5B6B7F">{{r.date}}</span>
+              <div style="display:flex;justify-content:flex-end">
+                <sc-if value="{{r.canConfirm}}" hint-placeholder-val="{{ false }}"><button onClick="{{r.confirm}}" style="height:30px;padding:0 12px;border-radius:7px;border:1px solid #F28C28;background:#F28C28;color:#142B4F;font-family:inherit;font-size:11.5px;font-weight:700">ยืนยันการซ่อม</button></sc-if>
+                <sc-if value="{{r.noAction}}" hint-placeholder-val="{{ true }}"><span style="font-size:11px;color:#8A95A5">—</span></sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.SIGNS = [
+      ['01P_OR13_DS-2E-300', 'OR13', 'ป้ายชานชาลา', 'DS-2E-300 · 40×300', 'Platform (ชั้นชานชาลา)', 'กลางชานชาลา ใกล้บันไดเลื่อน A', 4, 'plat', 'ชานชาลา → ปลายทาง'],
+      ['20C_OR13_DS-2E-120', 'OR13', 'ป้ายทางออก', 'DS-2E-120 · 40×120', 'Concourse (ชั้นออกบัตรโดยสาร)', 'เหนือประตูทางออก 1', 2, 'exit', 'ทางออก 1'],
+      ['02C_OR13_PI-2B1A', 'OR13', 'แผนผังสถานี', 'PI-2B1A · 120×160', 'Concourse (ชั้นออกบัตรโดยสาร)', 'ข้างเคาน์เตอร์จำหน่ายตั๋ว', 1, 'map', 'แผนผัง + ทางออก'],
+      ['02P_OR13_PI-5B', 'OR13', 'ป้ายลิฟต์', 'PI-5B · 20×100', 'Platform (ชั้นชานชาลา)', 'หน้าลิฟต์ ฝั่งหัวขบวน', 2, 'info', 'ลิฟต์'],
+      ['03C_OR13_PI-9', 'OR13', 'จุดช่วยเหลือฉุกเฉิน', 'PI-9 · 30×21', 'Concourse (ชั้นออกบัตรโดยสาร)', 'ผนังใกล้ประตู AFC', 3, 'safe', 'จุดช่วยเหลือ'],
+      ['03P_OR13_PI-23', 'OR13', 'สติกเกอร์ PSD', 'PI-23 · 50×200', 'Platform (ชั้นชานชาลา)', 'ประตูกั้นชานชาลา (PSD)', 12, 'stk', 'PSD'],
+      ['01P_OR14_DS-2E-300', 'OR14', 'ป้ายชานชาลา', 'DS-2E-300 · 40×300', 'Platform (ชั้นชานชาลา)', 'กลางชานชาลา ใกล้บันไดเลื่อน B', 4, 'plat', 'ชานชาลา → ปลายทาง'],
+      ['01G_OR14_DS-2E-120', 'OR14', 'ป้ายทางออก', 'DS-2E-120 · 40×120', 'Ground Level (ทางเข้า-ออก)', 'เหนือทางออก 2 ฝั่งตะวันออก', 2, 'exit', 'ทางออก 2'],
+      ['02G_OR14_LI-5E', 'OR14', 'ชื่อสถานีทางเข้า', 'LI-5E · 80×244', 'Ground Level (ทางเข้า-ออก)', 'หน้าทางเข้า ฝั่งตะวันออก', 1, 'name', 'OR14 ชื่อสถานี'],
+      ['01C_OR14_PI-2B1A', 'OR14', 'แผนผังสถานี', 'PI-2B1A · 120×160', 'Concourse (ชั้นออกบัตรโดยสาร)', 'ผนังด้านซ้ายประตู AFC', 1, 'map', 'แผนผัง + ทางออก'],
+      ['03C_OR14_SW-9', 'OR14', 'ป้ายห้องเจ้าหน้าที่', 'SW-9 · 8.5×30', 'Concourse (ชั้นออกบัตรโดยสาร)', 'ทางเดินเชื่อม (Walk Way) · ประตูห้องเจ้าหน้าที่', 3, 'info', 'Staff Only'],
+      ['02C_OR14_SW-3', 'OR14', 'สติกเกอร์ราวบันไดเลื่อน', 'SW-3 · 53×260', 'Concourse (ชั้นออกบัตรโดยสาร)', 'บันไดเลื่อนขึ้นสู่ชานชาลา', 4, 'stk', 'จับราวบันไดเลื่อน']
+    ].map((a) => ({ id: a[0], st: a[1], type: a[2], code: a[3], floor: a[4], pos: a[5], qty: a[6], kind: a[7], face: a[8] }));
+    this.FACE = {
+      plat: ['#142B4F', '#FFFFFF'], exit: ['#1B6B43', '#FFFFFF'], map: ['#E3F0FB', '#1B5C9E'], info: ['#2878C7', '#FFFFFF'],
+      safe: ['#A32019', '#FFFFFF'], stk: ['#FDEBD3', '#6B3803'], name: ['#F28C28', '#142B4F']
+    };
+    this.STAGES = ['แจ้งแล้ว', 'Engineer แจกงานแล้ว', 'Chief Technician รับงาน', 'Technician กำลังซ่อม', 'ซ่อมเสร็จ · รอคุณยืนยัน', 'รอ Engineer ปิดงาน', 'ปิดงานแล้ว'];
+    this.state = {
+      st: 'all', floor: 'all', q: '', sel: '20C_OR13_DS-2E-120', items: [], walk: false,
+      dmg: '', qty: 1, urg: 'ปกติ', fl: 'Concourse (ชั้นออกบัตรโดยสาร)', pos: 'เหนือประตูทางออก 1', note: '',
+      reqs: [
+        { no: 'RQ-0412', stage: 4, date: '11 พ.ย. 69', items: [{ sid: '03C_OR13_PI-9', type: 'จุดช่วยเหลือฉุกเฉิน', dmg: 'ไฟไม่ติด', qty: 1, pos: 'Concourse · ผนังใกล้ประตู AFC' }] },
+        { no: 'RQ-0415', stage: 2, date: '12 พ.ย. 69', items: [{ sid: '01G_OR14_DS-2E-120', type: 'ป้ายทางออก', dmg: 'หน้าป้ายแตก/ร้าว', qty: 1, pos: 'Ground · ทางออก 2' }, { sid: '02G_OR14_LI-5E', type: 'ชื่อสถานีทางเข้า', dmg: 'ไฟไม่ติด', qty: 1, pos: 'Ground · หน้าทางเข้า' }] },
+        { no: 'RQ-0418', stage: 1, date: '12 พ.ย. 69', items: [{ sid: '03P_OR13_PI-23', type: 'สติกเกอร์ PSD', dmg: 'สติกเกอร์ลอก/ซีด', qty: 3, pos: 'Platform · ประตูกั้นชานชาลา' }] },
+        { no: 'RQ-0398', stage: 6, date: '05 พ.ย. 69', items: [{ sid: '01P_OR14_DS-2E-300', type: 'ป้ายชานชาลา', dmg: 'ป้ายหลุด/เอียง', qty: 1, pos: 'Platform · ใกล้บันไดเลื่อน B' }] }
+      ],
+      err: '', toast: '', nextNo: 419, photos: 0
+    };
+  }
+  renderVals() {
+    const LNAV = (arr) => {
+      const HR = { 'Dashboard': 'Dashboard.dc.html', 'Projects': 'ProjectEdit.dc.html', 'Production & Install': 'Progress.dc.html', 'Job Management': 'Jobs.dc.html', 'Warranty': 'Warranty.dc.html', 'Documents': 'Docs.dc.html', 'Maintenance': 'OwnerRepair.dc.html', 'Repair': 'OwnerRepair.dc.html', 'Repair Requests': 'OwnerRepair.dc.html', 'Maintenance Log': 'MaintReport.dc.html', 'Reports': 'MaintReport.dc.html', 'Summary Report': 'MaintReport.dc.html', 'Requests': 'OwnerRepair.dc.html', 'My Requests': 'OwnerRepair.dc.html', 'Report': 'OwnerRepair.dc.html' };
+      return arr.map((n) => {
+        const href = String(n.en).indexOf('Signage') === 0 ? 'SignDB.dc.html' : (HR[n.en] || '');
+        const active = !!n.bg && n.bg !== 'transparent';
+        const link = !!href && !active;
+        return { ...n, href: href || '#', isLink: link, isBtn: !link };
+      });
+    };
+    const S = this.state;
+    const set = (p) => this.setState(p);
+    const FLOORS = ['Ground Level (ทางเข้า-ออก)', 'Concourse (ชั้นออกบัตรโดยสาร)', 'Platform (ชั้นชานชาลา)'];
+    const DMG = ['หน้าป้ายแตก/ร้าว', 'ไฟไม่ติด', 'สติกเกอร์ลอก/ซีด', 'ป้ายหลุด/เอียง', 'สูญหาย', 'อื่นๆ'];
+    const chip = (label, on, fn) => ({
+      label, bg: on ? '#142B4F' : '#FFFFFF', fg: on ? '#FFFFFF' : '#263445', bd: on ? '#142B4F' : '#B8C4D4', pick: fn
+    });
+    const stChips = [['all', 'ทั้งหมด'], ['OR13', 'OR13'], ['OR14', 'OR14']].map((c) => chip(c[1], S.st === c[0], () => set({ st: c[0] })));
+    const floorChips = [['all', 'ทั้งหมด']].concat(FLOORS.map((f) => [f, f])).map((c) => chip(c[1], S.floor === c[0], () => set({ floor: c[0] })));
+    const q = S.q.trim().toLowerCase();
+    const list = this.SIGNS.filter((s) => (S.st === 'all' || s.st === S.st) && (S.floor === 'all' || s.floor === S.floor) && (!q || s.id.toLowerCase().includes(q) || s.type.includes(S.q.trim()) || s.code.toLowerCase().includes(q)));
+    const fc = (k) => this.FACE[k];
+    const signs = list.map((s) => ({
+      id: s.id, type: s.type, code: s.code, floor: s.floor, pos: s.pos, qty: String(s.qty), face: s.face,
+      fbg: fc(s.kind)[0], ffg: fc(s.kind)[1],
+      bg: S.sel === s.id ? '#EEF5FC' : '#FFFFFF', bar: S.sel === s.id ? '#2878C7' : 'transparent',
+      pick: () => set({ sel: s.id, qty: 1, dmg: '', fl: s.floor, pos: s.pos, walk: s.pos.indexOf('Walk Way') >= 0, err: '' })
+    }));
+    const cur = this.SIGNS.find((s) => s.id === S.sel) || this.SIGNS[0];
+    const sel = { id: cur.id, type: cur.type, code: cur.code, floor: cur.floor, pos: cur.pos, qty: String(cur.qty), face: cur.face, fbg: fc(cur.kind)[0], ffg: fc(cur.kind)[1] };
+    const damages = DMG.map((d) => chip(d, S.dmg === d, () => set({ dmg: d, err: '' })));
+    const urgs = ['ปกติ', 'เร่งด่วน', 'ความปลอดภัย'].map((u) => {
+      const on = S.urg === u;
+      const c = u === 'ความปลอดภัย' ? ['#A32019', '#FBE4E2', '#A32019'] : (u === 'เร่งด่วน' ? ['#F28C28', '#FDEBD3', '#6B3803'] : ['#2878C7', '#E3F0FB', '#1B5C9E']);
+      return { label: u, bd: on ? c[0] : '#B8C4D4', bg: on ? c[1] : '#FFFFFF', fg: on ? c[2] : '#263445', pick: () => set({ urg: u }) };
+    });
+    const floorPick = FLOORS.map((f) => chip(f, S.fl === f, () => set({ fl: f })));
+    const flOf = (x) => x;
+    const stageColor = (n) => (n === 4 ? '#A8590A' : (n === 6 ? '#1B6B43' : '#1B5C9E'));
+    const reqs = S.reqs.map((r) => {
+      const f = r.items[0], n = r.items.length;
+      return {
+        no: r.no, sid: f.sid + (n > 1 ? '  +' + (n - 1) : ''), type: f.type + (n > 1 ? ' และอีก ' + (n - 1) + ' รายการ' : ''), dmg: n > 1 ? f.dmg + ' ฯลฯ' : f.dmg,
+        qty: String(r.items.reduce((t, x) => t + x.qty, 0)), pos: f.pos, date: r.date,
+        stage: this.STAGES[r.stage], sfg: stageColor(r.stage),
+        steps: [0, 1, 2, 3, 4, 5].map((i) => ({ bg: r.stage > i ? (r.stage === 6 ? '#2E9E6B' : '#2878C7') : (r.stage === 4 && i === 4 ? '#F28C28' : '#E6EBF2') })),
+        canConfirm: r.stage === 4, noAction: r.stage !== 4,
+        confirm: () => set({ reqs: S.reqs.map((x) => (x.no === r.no ? { ...x, stage: 5 } : x)), toast: 'ยืนยันการซ่อม ' + r.no + ' แล้ว · ส่งให้ Engineer ปิดงาน' })
+      };
+    });
+    const flShort = (f) => f.split(' ')[0];
+    const posFull = () => flShort(S.fl) + ' · ' + (S.walk ? 'ทางเดินเชื่อม (Walk Way) · ' : '') + S.pos;
+    const addItem = () => {
+      if (!S.dmg) { set({ err: 'กรุณาเลือกอาการชำรุดของป้ายนี้' }); return; }
+      if (S.items.some((x) => x.sid === cur.id)) { set({ err: 'ป้ายนี้อยู่ในใบแจ้งซ่อมแล้ว — เลือกป้ายอื่นเพื่อเพิ่มรายการต่อ' }); return; }
+      set({ items: S.items.concat([{ sid: cur.id, type: cur.type, dmg: S.dmg, qty: S.qty, pos: posFull() }]), dmg: '', qty: 1, note: '', photos: 0, err: '', toast: '' });
+    };
+    const draft = S.items.map((x, i) => ({ sid: x.sid, text: x.type + ' · ' + x.dmg + ' × ' + x.qty, pos: x.pos, remove: () => set({ items: S.items.filter((_, j) => j !== i) }) }));
+    const submit = () => {
+      if (!S.items.length) { set({ err: 'กรุณาเพิ่มอย่างน้อย 1 รายการลงในใบแจ้งซ่อม (เลือกป้าย › อาการ › เพิ่มรายการ)' }); return; }
+      const no = 'RQ-0' + S.nextNo;
+      set({
+        reqs: [{ no, stage: 0, date: '13 พ.ย. 69', items: S.items }].concat(S.reqs),
+        nextNo: S.nextNo + 1, items: [], dmg: '', qty: 1, note: '', err: '', toast: 'ส่งใบแจ้งซ่อม ' + no + ' (' + S.items.length + ' รายการ) แล้ว · Engineer จะแจกงานให้ช่างในพื้นที่'
+      });
+    };
+    const P = {
+      db: 'M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6',
+      fix: 'M14.7 6.3a4 4 0 0 0-5 5L3 18l3 3 6.7-6.7a4 4 0 0 0 5-5l-2.5 2.5-2.2-.5-.5-2.2z',
+      doc: 'M6 3h8l5 5v13H6zM14 3v5h5M9 13h6M9 17h6',
+      plus: 'M12 5v14M5 12h14'
+    };
+    const mk = (th, en, d, o) => Object.assign({ th, en, d, pad: '8px 10px', ml: '0px', is: '17', fs: '13px', bg: 'transparent', fg: '#C9D6E8', sub: '#9FB4D1' }, o || {});
+    const kid = (th, en, d, on) => mk(th, en, d, { pad: '7px 10px', ml: '14px', is: '15', fs: '12px', bg: on ? '#2878C7' : 'transparent', fg: on ? '#FFFFFF' : '#C9D6E8', sub: on ? '#E3F0FB' : '#9FB4D1' });
+    const nav = [
+      mk('ฐานข้อมูลป้าย', 'Signage (พื้นที่ของฉัน)', P.db),
+      mk('แจ้งซ่อม', 'Repair', P.fix, { bg: 'rgba(255,255,255,0.10)', fg: '#FFFFFF' }),
+      kid('แจ้งป้ายชำรุด', 'Report', P.plus, true),
+      kid('ใบแจ้งซ่อมของฉัน', 'My Requests', P.doc, false)
+    ];
+    return {
+      nav: LNAV(nav), stChips, floorChips, signs, signCount: String(list.length), q: S.q, onQ: (e) => set({ q: e.target.value }),
+      sel, damages, urgs, floorPick, qty: String(S.qty), pos: S.pos, note: S.note,
+      qtyDown: () => set({ qty: Math.max(1, S.qty - 1) }), qtyUp: () => set({ qty: Math.min(cur.qty, S.qty + 1) }),
+      onPos: (e) => set({ pos: e.target.value }), onNote: (e) => set({ note: e.target.value }),
+      photoTxt: S.photos ? 'แนบแล้ว ' + S.photos + ' / 4 รูป · กดอีกครั้งเพื่อเพิ่ม' : 'แนบได้สูงสุด 4 รูป', addPhoto: () => set(S.photos >= 4 ? { photos: 0 } : { photos: S.photos + 1 }),
+      errOn: !!S.err, err: S.err, toastOn: !!S.toast, toast: S.toast, submit, reqs, addItem, draft, draftOn: S.items.length > 0, draftN: String(S.items.length), submitLabel: 'ส่งใบแจ้งซ่อม' + (S.items.length ? ' (' + S.items.length + ' รายการ)' : ''),
+      walkBg: S.walk ? '#142B4F' : '#FFFFFF', walkFg: S.walk ? '#FFFFFF' : '#263445', walkBd: S.walk ? '#142B4F' : '#B8C4D4', toggleWalk: () => set({ walk: !S.walk })
+    };
+  }
+}
+</script>
+</body>
+</html>

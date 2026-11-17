@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>ORL-SignTrack UI Board</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+input::placeholder{color:#5B6B7F}
+</style>
+</helmet>
+<div style="width:2560px;height:1440px;box-sizing:border-box;background:#E6ECF4;font-family:'Sarabun','Noto Sans Thai',system-ui,sans-serif;color:#263445;padding:32px 60px 24px;display:flex;flex-direction:column;gap:14px;line-height:1.3">
+
+  <!-- BOARD HEADER -->
+  <div style="height:80px;flex:0 0 80px;display:flex;align-items:center;justify-content:space-between;gap:32px">
+    <div style="display:flex;align-items:center;gap:16px">
+      <div style="width:58px;height:58px;border-radius:14px;background:#F28C28;display:flex;align-items:center;justify-content:center">
+        <svg viewBox="0 0 24 24" width="34" height="34" style="fill:none;stroke:#142B4F;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M4 7h11l5 5-5 5H4zM8 12h6"></path></svg>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <div style="font-size:34px;font-weight:700;color:#142B4F;line-height:1.1">ORL-SignTrack <span style="font-weight:500;color:#2878C7">· UI Prototype Board</span></div>
+        <div style="font-size:15px;color:#5B6B7F">ระบบบริหารจัดการวงจรชีวิตป้ายและกราฟิก MRT สายสีส้ม (ORL-GRS) — Project · Design · Production · Installation · Inspection · Maintenance</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;background:#FDEBD3;color:#6B3803;border-radius:10px;padding:8px 16px;font-size:13px;max-width:560px">
+      <svg viewBox="0 0 24 24" width="20" height="20" style="fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:0 0 20px" aria-hidden="true"><path d="M12 3l10 18H2zM12 10v5M12 18h.01"></path></svg>
+      <span><b>Conceptual prototype</b> — ตัวเลข รหัสงาน และรหัสป้ายทั้งหมดเป็นข้อมูลตัวอย่างเพื่อการนำเสนอ ไม่ใช่ข้อมูลจริงของโครงการ</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px">
+      <sc-for list="{{swatches}}" as="s" hint-placeholder-count="6">
+        <div style="display:flex;align-items:center;gap:7px">
+          <div style="width:30px;height:30px;border-radius:8px;border:1px solid #C5D0DF;background:{{s.hex}}"></div>
+          <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:11px;font-weight:600;color:#263445">{{s.name}}</span><span style="font-size:10.5px;color:#5B6B7F">{{s.hex}}</span></div>
+        </div>
+      </sc-for>
+      <div style="display:flex;flex-direction:column;line-height:1.1;padding-left:6px"><span style="font-size:26px;font-weight:700;color:#142B4F">Aa ก</span><span style="font-size:10.5px;color:#5B6B7F">Sarabun</span></div>
+    </div>
+  </div>
+
+  <!-- 2x2 SCREEN GRID -->
+  <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));column-gap:40px;row-gap:24px;justify-items:center">
+
+    <!-- ============ SCREEN 01 : DASHBOARD ============ -->
+    <div style="display:flex;flex-direction:column;gap:6px;width:1200px">
+      <div style="height:22px;display:flex;align-items:center;gap:10px">
+        <span style="background:#142B4F;color:#fff;font-size:12px;font-weight:700;padding:2px 9px;border-radius:6px">SCREEN 01</span>
+        <span style="font-size:16px;font-weight:700;color:#142B4F">Dashboard · ภาพรวมโครงการ</span>
+        <span style="font-size:12.5px;color:#5B6B7F">สำหรับผู้บริหารและผู้จัดการโครงการ</span>
+      </div>
+      <div style="width:1200px;height:570px;display:flex;background:#F5F7FA;border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(20,43,79,0.18);border:1px solid #C9D3E1;box-sizing:border-box">
+        <!-- sidebar -->
+        <div style="width:176px;flex:0 0 176px;background:#142B4F;display:flex;flex-direction:column;padding:14px 10px;box-sizing:border-box;gap:14px">
+          <div style="display:flex;align-items:center;gap:8px;padding:0 4px">
+            <div style="width:30px;height:30px;flex:0 0 30px;border-radius:8px;background:#F28C28;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="18" height="18" style="fill:none;stroke:#142B4F;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M4 7h11l5 5-5 5H4zM8 12h6"></path></svg></div>
+            <div style="display:flex;flex-direction:column;line-height:1.15"><span style="color:#fff;font-weight:700;font-size:14px">ORL-SignTrack</span><span style="color:#9FB4D1;font-size:9.5px">MRT Orange Line · GRS</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <sc-for list="{{nav1}}" as="n" hint-placeholder-count="8">
+<sc-if value="{{n.isLink}}" hint-placeholder-val="{{ false }}"><a href="{{n.href}}" style="display:block;text-decoration:none;color:inherit">
+              <div style="display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:7px;background:{{n.bg}};color:{{n.fg}}">
+                <svg viewBox="0 0 24 24" width="16" height="16" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 16px" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+                <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:12px;font-weight:600">{{n.th}}</span><span style="font-size:9.5px;color:{{n.sub}}">{{n.en}}</span></div>
+              </div>
+            
+</a></sc-if>
+<sc-if value="{{n.isBtn}}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:7px;background:{{n.bg}};color:{{n.fg}}">
+                <svg viewBox="0 0 24 24" width="16" height="16" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 16px" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+                <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:12px;font-weight:600">{{n.th}}</span><span style="font-size:9.5px;color:{{n.sub}}">{{n.en}}</span></div>
+              </div>
+            
+</sc-if>
+</sc-for>
+          </div>
+          <div style="margin-top:auto;background:rgba(255,255,255,0.08);border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;line-height:1.2">
+            <span style="font-size:9.5px;color:#9FB4D1">ผู้ใช้งาน</span>
+            <span style="font-size:12px;font-weight:600;color:#fff">ผู้บริหาร · Executive</span>
+          </div>
+        </div>
+        <!-- main -->
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+          <div style="height:48px;flex:0 0 48px;background:#fff;border-bottom:1px solid #E1E7EF;display:flex;align-items:center;padding:0 16px;gap:14px">
+            <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#5B6B7F"><span>หน้าหลัก</span><span>/</span><span style="color:#142B4F;font-weight:700">ภาพรวม</span></div>
+            <div style="flex:1"></div>
+            <label style="display:flex;align-items:center;gap:7px;width:250px;height:30px;box-sizing:border-box;border:1px solid #D5DDE8;border-radius:15px;padding:0 11px;background:#F5F7FA;color:#5B6B7F">
+              <svg viewBox="0 0 24 24" width="14" height="14" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 14px" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-4-4"></path></svg>
+              <input aria-label="ค้นหา" placeholder="ค้นหางาน ป้าย เอกสาร..." style="border:0;background:transparent;outline:0;font-family:inherit;font-size:11.5px;width:100%;color:#263445;padding:0">
+            </label>
+            <details style="position:relative;display:flex;"><summary aria-label="การแจ้งเตือน 3 รายการ" style="position:relative;width:32px;height:32px;border:1px solid #D5DDE8;background:#fff;border-radius:16px;color:#263445;display:flex;align-items:center;justify-content:center;padding:0;display:flex;align-items:center;justify-content:center;list-style:none;cursor:pointer;box-sizing:border-box">
+              <svg viewBox="0 0 24 24" width="15" height="15" style="fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4zM10 21h4"></path></svg>
+              <span style="position:absolute;top:-4px;right:-4px;min-width:15px;height:15px;border-radius:8px;background:#F28C28;color:#142B4F;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center">3</span>
+            </summary><div style="position:absolute;right:0;top:38px;width:300px;background:#fff;border:1px solid #D5DDE8;border-radius:10px;box-shadow:0 10px 30px rgba(20,43,79,0.18);padding:6px;z-index:30;display:flex;flex-direction:column;gap:2px;text-align:left"><span style="padding:6px 8px;font-size:12px;font-weight:700;color:#142B4F">การแจ้งเตือน (3)</span><a href="Progress.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>OR22 ติดตั้งล่าช้ากว่า Forecast</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 05 ความคืบหน้า</span></a><a href="OwnerRepair.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>ใบแจ้งซ่อม RQ-0412 รอเจ้าของพื้นที่ยืนยัน</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 08 แจ้งซ่อม</span></a><a href="Admin.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>ผู้ใช้ใหม่รอเปิดสิทธิ์ 1 ราย</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 06 ผู้ใช้และสิทธิ์</span></a></div></details>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:30px;height:30px;border-radius:15px;background:#142B4F;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">EX</div>
+              <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:11.5px;font-weight:600;color:#142B4F">ผู้ใช้ตัวอย่าง</span><span style="font-size:9.5px;color:#5B6B7F">Executive</span></div>
+            </div>
+          </div>
+          <div style="flex:1;min-height:0;padding:14px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;overflow:hidden">
+            <!-- title row -->
+            <div style="height:34px;flex:0 0 34px;display:flex;align-items:center;justify-content:space-between">
+              <div style="display:flex;align-items:center;gap:10px">
+                <span style="font-size:18px;font-weight:700;color:#142B4F">ภาพรวมโครงการ</span>
+                <span style="font-size:11.5px;color:#5B6B7F">Project Overview</span>
+                <span style="background:#E3F0FB;color:#1B5C9E;font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:10px">Orange Line · ORL</span>
+                <span style="background:#E1F4EA;color:#1B6B43;font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:10px">Active</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <span style="font-size:10.5px;color:#5B6B7F">อัปเดตล่าสุด 11 พ.ย. 69 · 14:17</span>
+                <details style="position:relative;display:flex;"><summary style="height:28px;padding:0 12px;border-radius:7px;border:1px solid #142B4F;background:#fff;color:#142B4F;font-family:inherit;font-size:11.5px;font-weight:600;display:flex;align-items:center;justify-content:center;list-style:none;cursor:pointer;box-sizing:border-box">ส่งออกรายงาน</summary><div style="position:absolute;right:0;top:calc(100%% + 4px);min-width:250px;background:#fff;border:1px solid #D5DDE8;border-radius:10px;box-shadow:0 10px 30px rgba(20,43,79,0.18);padding:5px;z-index:30;display:flex;flex-direction:column;gap:1px;text-align:left"><a href="Progress.dc.html" style="padding:7px 9px;border-radius:7px;font-size:11.5px;color:#263445;text-decoration:none;line-height:1.3;font-weight:600"><b>รายงานความคืบหน้า (PDF / Excel)</b><br><span style="color:#5B6B7F;font-size:10.5px;font-weight:400">Screen 05 · หน้าต่างส่งออกรูปแบบ Sheet1</span></a><a href="MaintReport.dc.html" style="padding:7px 9px;border-radius:7px;font-size:11.5px;color:#263445;text-decoration:none;line-height:1.3;font-weight:600"><b>รายงานงานแจ้งซ่อม</b><br><span style="color:#5B6B7F;font-size:10.5px;font-weight:400">Screen 09 · สรุปรายวัน/สัปดาห์/เดือน/ปี</span></a></div></details>
+              </div>
+            </div>
+            <!-- KPI row -->
+            <div style="display:flex;gap:10px;flex:0 0 82px">
+              <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+                <div style="flex:1;min-width:0;background:#fff;border:1px solid #E1E7EF;border-radius:8px;padding:10px 12px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
+                  <div style="display:flex;align-items:flex-start;justify-content:space-between">
+                    <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:12px;font-weight:600;color:#263445">{{k.th}}</span><span style="font-size:9.5px;color:#5B6B7F">{{k.en}}</span></div>
+                    <div style="width:24px;height:24px;border-radius:7px;background:{{k.chip}};color:{{k.chipFg}};display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="14" height="14" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="{{k.d}}"></path></svg></div>
+                  </div>
+                  <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:28px;font-weight:700;line-height:1;color:{{k.color}}">{{k.val}}</span><span style="font-size:10.5px;color:#5B6B7F">{{k.note}}</span></div>
+                </div>
+              </sc-for>
+              <div style="flex:1;min-width:0;background:#fff;border:1px solid #E1E7EF;border-radius:8px;padding:10px 12px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
+                <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:12px;font-weight:600;color:#263445">ความคืบหน้ารวม</span><span style="font-size:9.5px;color:#5B6B7F">Overall Project Progress</span></div>
+                <div style="display:flex;align-items:center;gap:10px"><span style="font-size:28px;font-weight:700;line-height:1;color:#142B4F">68%</span>
+                  <div style="flex:1;height:8px;border-radius:4px;background:#E6EBF2;overflow:hidden"><div style="width:68%;height:100%;background:#F28C28;border-radius:4px"></div></div>
+                </div>
+              </div>
+            </div>
+            <!-- lower row -->
+            <div style="flex:1;min-height:0;display:flex;gap:10px">
+              <!-- job status chart -->
+              <div style="flex:0 0 300px;background:#fff;border:1px solid #E1E7EF;border-radius:8px;padding:12px 14px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:13px;font-weight:700;color:#142B4F">สถานะงาน</span><span style="font-size:10.5px;color:#5B6B7F">Job Status Chart</span></div>
+                <div style="display:flex;justify-content:center;padding:2px 0">
+                  <div style="position:relative;width:128px;height:128px;border-radius:64px;background:conic-gradient(#8A9AAE 0 15.32%, #2878C7 15.32% 50%, #F28C28 50% 63.71%, #2E9E6B 63.71% 95.16%, #C0392B 95.16% 100%)">
+                    <div style="position:absolute;left:24px;top:24px;width:80px;height:80px;border-radius:40px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.05"><span style="font-size:24px;font-weight:700;color:#142B4F">248</span><span style="font-size:10px;color:#5B6B7F">งานทั้งหมด</span></div>
+                  </div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:5px">
+                  <sc-for list="{{statusLegend}}" as="l" hint-placeholder-count="5">
+                    <div style="display:flex;align-items:center;gap:8px;font-size:11px">
+                      <span style="width:10px;height:10px;border-radius:3px;background:{{l.color}};flex:0 0 10px"></span>
+                      <span style="flex:1;color:#263445">{{l.th}}</span>
+                      <span style="font-weight:700;color:#142B4F;width:28px;text-align:right">{{l.n}}</span>
+                      <span style="color:#5B6B7F;width:36px;text-align:right">{{l.pct}}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <!-- recent activities -->
+              <div style="flex:1;min-width:0;background:#fff;border:1px solid #E1E7EF;border-radius:8px;padding:12px 14px;box-sizing:border-box;display:flex;flex-direction:column;gap:6px">
+                <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:13px;font-weight:700;color:#142B4F">กิจกรรมล่าสุด</span><span style="font-size:10.5px;color:#5B6B7F">Recent Activities</span></div>
+                <div style="display:flex;flex-direction:column;flex:1">
+                  <sc-for list="{{activities}}" as="a" hint-placeholder-count="5">
+                    <div style="display:flex;gap:9px;flex:1;min-height:0">
+                      <div style="display:flex;flex-direction:column;align-items:center;width:10px;flex:0 0 10px"><span style="width:9px;height:9px;border-radius:5px;background:{{a.color}};margin-top:4px"></span><span style="flex:1;width:1px;background:{{a.line}}"></span></div>
+                      <div style="display:flex;flex-direction:column;line-height:1.25;padding-bottom:4px"><span style="font-size:11.5px;color:#263445">{{a.text}}</span><span style="font-size:10px;color:#5B6B7F">{{a.time}}</span></div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <!-- tasks requiring attention -->
+              <div style="flex:1;min-width:0;background:#fff;border:1px solid #E1E7EF;border-radius:8px;padding:12px 14px;box-sizing:border-box;display:flex;flex-direction:column;gap:6px">
+                <div style="display:flex;align-items:baseline;justify-content:space-between"><div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:13px;font-weight:700;color:#142B4F">งานที่ต้องติดตาม</span><span style="font-size:10.5px;color:#5B6B7F">Tasks Requiring Attention</span></div><span style="font-size:10.5px;font-weight:600;color:#1B5C9E">ดูทั้งหมด</span></div>
+                <div style="display:flex;flex-direction:column;flex:1;gap:0">
+                  <sc-for list="{{attention}}" as="t" hint-placeholder-count="5">
+                    <div style="display:flex;align-items:center;gap:8px;flex:1;min-height:0;border-top:1px solid #EEF1F5">
+                      <div style="display:flex;flex-direction:column;line-height:1.25;flex:1;min-width:0"><span style="font-size:11.5px;font-weight:600;color:#142B4F">{{t.id}} <span style="font-weight:500;color:#5B6B7F">· {{t.st}}</span></span><span style="font-size:10.5px;color:#263445">{{t.text}}</span></div>
+                      <span style="padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;white-space:nowrap;background:{{t.bg}};color:{{t.fg}}">{{t.badge}}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ SCREEN 02 : PROJECT OVERVIEW ============ -->
+    <div style="display:flex;flex-direction:column;gap:6px;width:1200px">
+      <div style="height:22px;display:flex;align-items:center;gap:10px">
+        <span style="background:#142B4F;color:#fff;font-size:12px;font-weight:700;padding:2px 9px;border-radius:6px">SCREEN 02</span>
+        <span style="font-size:16px;font-weight:700;color:#142B4F">Project Overview · ภาพรวมโครงการ Orange Line</span>
+        <span style="font-size:12.5px;color:#5B6B7F">สำหรับผู้จัดการโครงการ</span>
+      </div>
+      <div style="width:1200px;height:570px;display:flex;background:#F5F7FA;border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(20,43,79,0.18);border:1px solid #C9D3E1;box-sizing:border-box">
+        <div style="width:176px;flex:0 0 176px;background:#142B4F;display:flex;flex-direction:column;padding:14px 10px;box-sizing:border-box;gap:14px">
+          <div style="display:flex;align-items:center;gap:8px;padding:0 4px">
+            <div style="width:30px;height:30px;flex:0 0 30px;border-radius:8px;background:#F28C28;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="18" height="18" style="fill:none;stroke:#142B4F;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M4 7h11l5 5-5 5H4zM8 12h6"></path></svg></div>
+            <div style="display:flex;flex-direction:column;line-height:1.15"><span style="color:#fff;font-weight:700;font-size:14px">ORL-SignTrack</span><span style="color:#9FB4D1;font-size:9.5px">MRT Orange Line · GRS</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <sc-for list="{{nav2}}" as="n" hint-placeholder-count="8">
+<sc-if value="{{n.isLink}}" hint-placeholder-val="{{ false }}"><a href="{{n.href}}" style="display:block;text-decoration:none;color:inherit">
+              <div style="display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:7px;background:{{n.bg}};color:{{n.fg}}">
+                <svg viewBox="0 0 24 24" width="16" height="16" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 16px" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+                <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:12px;font-weight:600">{{n.th}}</span><span style="font-size:9.5px;color:{{n.sub}}">{{n.en}}</span></div>
+              </div>
+            
+</a></sc-if>
+<sc-if value="{{n.isBtn}}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:7px;background:{{n.bg}};color:{{n.fg}}">
+                <svg viewBox="0 0 24 24" width="16" height="16" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 16px" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+                <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:12px;font-weight:600">{{n.th}}</span><span style="font-size:9.5px;color:{{n.sub}}">{{n.en}}</span></div>
+              </div>
+            
+</sc-if>
+</sc-for>
+          </div>
+          <div style="margin-top:auto;background:rgba(255,255,255,0.08);border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;line-height:1.2">
+            <span style="font-size:9.5px;color:#9FB4D1">ผู้ใช้งาน</span>
+            <span style="font-size:12px;font-weight:600;color:#fff">ผู้จัดการโครงการ · PM</span>
+          </div>
+        </div>
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+          <div style="height:48px;flex:0 0 48px;background:#fff;border-bottom:1px solid #E1E7EF;display:flex;align-items:center;padding:0 16px;gap:14px">
+            <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#5B6B7F"><span>โครงการ</span><span>/</span><span style="color:#142B4F;font-weight:700">Orange Line (ORL)</span></div>
+            <div style="flex:1"></div>
+            <label style="display:flex;align-items:center;gap:7px;width:250px;height:30px;box-sizing:border-box;border:1px solid #D5DDE8;border-radius:15px;padding:0 11px;background:#F5F7FA;color:#5B6B7F">
+              <svg viewBox="0 0 24 24" width="14" height="14" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 14px" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-4-4"></path></svg>
+              <input aria-label="ค้นหา" placeholder="ค้นหางาน ป้าย เอกสาร..." style="border:0;background:transparent;outline:0;font-family:inherit;font-size:11.5px;width:100%;color:#263445;padding:0">
+            </label>
+            <details style="position:relative;display:flex;"><summary aria-label="การแจ้งเตือน 3 รายการ" style="position:relative;width:32px;height:32px;border:1px solid #D5DDE8;background:#fff;border-radius:16px;color:#263445;display:flex;align-items:center;justify-content:center;padding:0;display:flex;align-items:center;justify-content:center;list-style:none;cursor:pointer;box-sizing:border-box">
+              <svg viewBox="0 0 24 24" width="15" height="15" style="fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4zM10 21h4"></path></svg>
+              <span style="position:absolute;top:-4px;right:-4px;min-width:15px;height:15px;border-radius:8px;background:#F28C28;color:#142B4F;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center">3</span>
+            </summary><div style="position:absolute;right:0;top:38px;width:300px;background:#fff;border:1px solid #D5DDE8;border-radius:10px;box-shadow:0 10px 30px rgba(20,43,79,0.18);padding:6px;z-index:30;display:flex;flex-direction:column;gap:2px;text-align:left"><span style="padding:6px 8px;font-size:12px;font-weight:700;color:#142B4F">การแจ้งเตือน (3)</span><a href="Progress.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>OR22 ติดตั้งล่าช้ากว่า Forecast</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 05 ความคืบหน้า</span></a><a href="OwnerRepair.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>ใบแจ้งซ่อม RQ-0412 รอเจ้าของพื้นที่ยืนยัน</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 08 แจ้งซ่อม</span></a><a href="Admin.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>ผู้ใช้ใหม่รอเปิดสิทธิ์ 1 ราย</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 06 ผู้ใช้และสิทธิ์</span></a></div></details>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:30px;height:30px;border-radius:15px;background:#142B4F;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">PM</div>
+              <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:11.5px;font-weight:600;color:#142B4F">ผู้ใช้ตัวอย่าง</span><span style="font-size:9.5px;color:#5B6B7F">Project Manager</span></div>
+            </div>
+          </div>
+          <div style="flex:1;min-height:0;padding:14px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;overflow:hidden">
+            <!-- project header -->
+            <div style="flex:0 0 62px;background:#fff;border:1px solid #E1E7EF;border-radius:8px;padding:0 16px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between">
+              <div style="display:flex;align-items:center;gap:12px">
+                <div style="width:40px;height:40px;border-radius:10px;background:#F28C28;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="22" height="22" style="fill:none;stroke:#142B4F;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M5 4h14v12H5zM5 11h14M8 20l2-4M16 20l-2-4M9 8h.01M15 8h.01"></path></svg></div>
+                <div style="display:flex;flex-direction:column;gap:3px">
+                  <div style="display:flex;align-items:center;gap:8px"><span style="font-size:20px;font-weight:700;color:#142B4F;line-height:1">Orange Line</span><span style="background:#142B4F;color:#fff;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px">ORL</span><span style="background:#E1F4EA;color:#1B6B43;font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:10px">Active · ดำเนินการอยู่</span></div>
+                  <span style="font-size:11px;color:#5B6B7F">MRT Orange Line · Graphic &amp; Signage (ORL-GRS) · OR13–OR29</span>
+                </div>
+              </div>
+              <div style="display:flex;gap:8px">
+                <details style="position:relative;display:flex;"><summary style="height:30px;padding:0 13px;border-radius:7px;border:1px solid #142B4F;background:#fff;color:#142B4F;font-family:inherit;font-size:11.5px;font-weight:600;display:flex;align-items:center;justify-content:center;list-style:none;cursor:pointer;box-sizing:border-box">ส่งออกรายงาน</summary><div style="position:absolute;right:0;top:calc(100%% + 4px);min-width:250px;background:#fff;border:1px solid #D5DDE8;border-radius:10px;box-shadow:0 10px 30px rgba(20,43,79,0.18);padding:5px;z-index:30;display:flex;flex-direction:column;gap:1px;text-align:left"><a href="Progress.dc.html" style="padding:7px 9px;border-radius:7px;font-size:11.5px;color:#263445;text-decoration:none;line-height:1.3;font-weight:600"><b>รายงานความคืบหน้า (PDF / Excel)</b><br><span style="color:#5B6B7F;font-size:10.5px;font-weight:400">Screen 05 · หน้าต่างส่งออกรูปแบบ Sheet1</span></a><a href="MaintReport.dc.html" style="padding:7px 9px;border-radius:7px;font-size:11.5px;color:#263445;text-decoration:none;line-height:1.3;font-weight:600"><b>รายงานงานแจ้งซ่อม</b><br><span style="color:#5B6B7F;font-size:10.5px;font-weight:400">Screen 09 · สรุปรายวัน/สัปดาห์/เดือน/ปี</span></a></div></details>
+                <details style="position:relative;display:flex;"><summary style="height:30px;padding:0 13px;border-radius:7px;border:1px solid #142B4F;background:#142B4F;color:#fff;font-family:inherit;font-size:11.5px;font-weight:600;display:flex;align-items:center;justify-content:center;list-style:none;cursor:pointer;box-sizing:border-box">แก้ไขโครงการ</summary><div style="position:absolute;right:0;top:calc(100%% + 4px);min-width:250px;background:#fff;border:1px solid #D5DDE8;border-radius:10px;box-shadow:0 10px 30px rgba(20,43,79,0.18);padding:5px;z-index:30;display:flex;flex-direction:column;gap:1px;text-align:left"><a href="Admin.dc.html" style="padding:7px 9px;border-radius:7px;font-size:11.5px;color:#263445;text-decoration:none;line-height:1.3;font-weight:600"><b>ผู้ใช้และสิทธิ์ของโครงการ</b><br><span style="color:#5B6B7F;font-size:10.5px;font-weight:400">Screen 06</span></a><a href="CreateUser.dc.html" style="padding:7px 9px;border-radius:7px;font-size:11.5px;color:#263445;text-decoration:none;line-height:1.3;font-weight:600"><b>เพิ่มผู้ใช้ใหม่</b><br><span style="color:#5B6B7F;font-size:10.5px;font-weight:400">Screen 07</span></a><div style="padding:7px 9px;border-radius:7px;font-size:11.5px;color:#8A95A5;text-decoration:none;line-height:1.3;font-weight:600"><b>แก้ไขรายละเอียดโครงการ</b><br><span style="color:#5B6B7F;font-size:10.5px;font-weight:400">ยังไม่ได้ออกแบบ · เสนอเป็นขั้นต่อไป</span></div></div></details>
+              </div>
+            </div>
+            <!-- tabs -->
+            <div style="flex:0 0 34px;display:flex;gap:4px;border-bottom:1px solid #D5DDE8">
+              <sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+                <div style="padding:0 14px;display:flex;align-items:center;gap:6px;font-size:12px;border-bottom:3px solid {{t.bar}};color:{{t.fg}};font-weight:{{t.w}}"><span>{{t.th}}</span><span style="font-size:10px;font-weight:400;color:#5B6B7F">{{t.en}}</span></div>
+              </sc-for>
+            </div>
+            <!-- body -->
+            <div style="flex:1;min-height:0;display:flex;gap:10px">
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:10px">
+                <div style="flex:0 0 66px;display:flex;gap:10px">
+                  <div style="flex:1;background:#fff;border:1px solid #E1E7EF;border-radius:8px;padding:9px 12px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between"><span style="font-size:11.5px;font-weight:600">สถานีทั้งหมด <span style="font-size:9.5px;font-weight:400;color:#5B6B7F">Total Stations</span></span><span style="font-size:24px;font-weight:700;color:#142B4F;line-height:1">17 <span style="font-size:11px;font-weight:500;color:#5B6B7F">OR13–OR29</span></span></div>
+                  <div style="flex:1;background:#fff;border:1px solid #E1E7EF;border-radius:8px;padding:9px 12px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between"><span style="font-size:11.5px;font-weight:600">งานป้ายทั้งหมด <span style="font-size:9.5px;font-weight:400;color:#5B6B7F">Total Signage Jobs</span></span><span style="font-size:24px;font-weight:700;color:#142B4F;line-height:1">248 <span style="font-size:11px;font-weight:500;color:#5B6B7F">เสร็จสิ้น 78</span></span></div>
+                  <div style="flex:1.2;background:#fff;border:1px solid #E1E7EF;border-radius:8px;padding:9px 12px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between"><span style="font-size:11.5px;font-weight:600">ความคืบหน้าโครงการ <span style="font-size:9.5px;font-weight:400;color:#5B6B7F">Project Progress</span></span>
+                    <div style="display:flex;align-items:center;gap:8px"><span style="font-size:24px;font-weight:700;color:#142B4F;line-height:1">68%</span><div style="flex:1;height:8px;border-radius:4px;background:#E6EBF2;overflow:hidden"><div style="width:68%;height:100%;background:#F28C28"></div></div></div>
+                  </div>
+                </div>
+                <div style="flex:0 0 112px;background:#fff;border:1px solid #E1E7EF;border-radius:8px;padding:10px 14px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px">
+                  <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:13px;font-weight:700;color:#142B4F">ข้อมูลโครงการ</span><span style="font-size:10.5px;color:#5B6B7F">Project Summary</span></div>
+                  <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:8px 14px">
+                    <sc-for list="{{summary}}" as="f" hint-placeholder-count="6">
+                      <div style="display:flex;flex-direction:column;line-height:1.2"><span style="font-size:10px;color:#5B6B7F">{{f.k}}</span><span style="font-size:11.5px;font-weight:600;color:#263445">{{f.v}}</span></div>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="flex:1;min-height:0;background:#fff;border:1px solid #E1E7EF;border-radius:8px;padding:10px 14px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between"><div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:13px;font-weight:700;color:#142B4F">ไทม์ไลน์โครงการ</span><span style="font-size:10.5px;color:#5B6B7F">Project Timeline</span></div>
+                    <span style="font-size:10px;color:#5B6B7F"><span style="display:inline-block;width:2px;height:9px;background:#F28C28;margin-right:4px"></span>วันนี้ 11 พ.ย. 69</span></div>
+                  <div style="display:flex;align-items:center;height:14px"><div style="width:168px;flex:0 0 168px"></div>
+                    <div style="flex:1;position:relative;height:14px;font-size:9.5px;color:#5B6B7F"><span style="position:absolute;left:0">มี.ค. 69</span><span style="position:absolute;left:37.5%">ก.ย. 69</span><span style="position:absolute;left:75%">มี.ค. 70</span><span style="position:absolute;right:0">มิ.ย. 70</span></div></div>
+                  <sc-for list="{{phases}}" as="p" hint-placeholder-count="5">
+                    <div style="display:flex;align-items:center;flex:1;min-height:0;border-top:1px solid #EEF1F5">
+                      <div style="width:168px;flex:0 0 168px;display:flex;justify-content:space-between;font-size:10.5px;padding-right:10px;box-sizing:border-box"><span style="color:#263445">{{p.name}}</span><span style="font-weight:700;color:#142B4F">{{p.pct}}</span></div>
+                      <div style="flex:1;position:relative;height:100%">
+                        <div style="position:absolute;top:50%;margin-top:-7px;height:14px;border-radius:4px;background:#E6EBF2;overflow:hidden;left:{{p.left}};width:{{p.w}}"><div style="height:100%;border-radius:4px;background:{{p.fill}};width:{{p.pct}}"></div></div>
+                        <div style="position:absolute;left:53%;top:0;bottom:0;width:2px;background:#F28C28"></div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <!-- station list -->
+              <div style="flex:0 0 322px;background:#fff;border:1px solid #E1E7EF;border-radius:8px;padding:10px 14px;box-sizing:border-box;display:flex;flex-direction:column">
+                <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:4px"><div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:13px;font-weight:700;color:#142B4F">รายชื่อสถานี</span><span style="font-size:10.5px;color:#5B6B7F">Station List</span></div>
+                  <div style="display:flex;align-items:center;gap:7px;font-size:9px;color:#5B6B7F"><span style="width:8px;height:8px;border-radius:2px;background:#2E9E6B"></span>≥80<span style="width:8px;height:8px;border-radius:2px;background:#2878C7"></span>60–79<span style="width:8px;height:8px;border-radius:2px;background:#F28C28"></span>&lt;60</div></div>
+                <div style="height:20px;flex:0 0 20px;display:flex;align-items:center;gap:8px;font-size:9.5px;font-weight:700;color:#5B6B7F;background:#F0F3F8;border-radius:4px;padding:0 6px"><span style="width:40px">สถานี</span><span style="width:30px;text-align:right">งาน</span><span style="flex:1">ความคืบหน้า</span></div>
+                <div style="display:flex;flex-direction:column;flex:1;min-height:0">
+                  <sc-for list="{{stations}}" as="s" hint-placeholder-count="17">
+                    <div style="display:flex;align-items:center;gap:8px;flex:1;min-height:0;padding:0 6px;font-size:10.5px;border-bottom:1px solid #F0F3F8">
+                      <span style="width:40px;font-weight:700;color:#142B4F">{{s.code}}</span>
+                      <span style="width:30px;text-align:right;color:#263445">{{s.jobs}}</span>
+                      <div style="flex:1;height:6px;border-radius:3px;background:#E6EBF2;overflow:hidden"><div style="height:100%;background:{{s.fill}};width:{{s.w}}"></div></div>
+                      <span style="width:30px;text-align:right;font-weight:600;color:#263445">{{s.pct}}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ SCREEN 03 : JOB MANAGEMENT ============ -->
+    <div style="display:flex;flex-direction:column;gap:6px;width:1200px">
+      <div style="height:22px;display:flex;align-items:center;gap:10px">
+        <span style="background:#142B4F;color:#fff;font-size:12px;font-weight:700;padding:2px 9px;border-radius:6px">SCREEN 03</span>
+        <span style="font-size:16px;font-weight:700;color:#142B4F">Job Management · จัดการงาน (Kanban)</span>
+        <span style="font-size:12.5px;color:#5B6B7F">สำหรับผู้จัดการโครงการ · ช่างเทคนิคใช้มุมมองมือถือ</span>
+      </div>
+      <div style="width:1200px;height:570px;display:flex;background:#F5F7FA;border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(20,43,79,0.18);border:1px solid #C9D3E1;box-sizing:border-box">
+        <div style="width:176px;flex:0 0 176px;background:#142B4F;display:flex;flex-direction:column;padding:14px 10px;box-sizing:border-box;gap:14px">
+          <div style="display:flex;align-items:center;gap:8px;padding:0 4px">
+            <div style="width:30px;height:30px;flex:0 0 30px;border-radius:8px;background:#F28C28;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="18" height="18" style="fill:none;stroke:#142B4F;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M4 7h11l5 5-5 5H4zM8 12h6"></path></svg></div>
+            <div style="display:flex;flex-direction:column;line-height:1.15"><span style="color:#fff;font-weight:700;font-size:14px">ORL-SignTrack</span><span style="color:#9FB4D1;font-size:9.5px">MRT Orange Line · GRS</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <sc-for list="{{nav3}}" as="n" hint-placeholder-count="8">
+<sc-if value="{{n.isLink}}" hint-placeholder-val="{{ false }}"><a href="{{n.href}}" style="display:block;text-decoration:none;color:inherit">
+              <div style="display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:7px;background:{{n.bg}};color:{{n.fg}}">
+                <svg viewBox="0 0 24 24" width="16" height="16" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 16px" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+                <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:12px;font-weight:600">{{n.th}}</span><span style="font-size:9.5px;color:{{n.sub}}">{{n.en}}</span></div>
+              </div>
+            
+</a></sc-if>
+<sc-if value="{{n.isBtn}}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:7px;background:{{n.bg}};color:{{n.fg}}">
+                <svg viewBox="0 0 24 24" width="16" height="16" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 16px" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+                <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:12px;font-weight:600">{{n.th}}</span><span style="font-size:9.5px;color:{{n.sub}}">{{n.en}}</span></div>
+              </div>
+            
+</sc-if>
+</sc-for>
+          </div>
+          <div style="margin-top:auto;background:rgba(255,255,255,0.08);border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;line-height:1.2">
+            <span style="font-size:9.5px;color:#9FB4D1">ผู้ใช้งาน</span>
+            <span style="font-size:12px;font-weight:600;color:#fff">ผู้จัดการโครงการ · PM</span>
+          </div>
+        </div>
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+          <div style="height:48px;flex:0 0 48px;background:#fff;border-bottom:1px solid #E1E7EF;display:flex;align-items:center;padding:0 16px;gap:14px">
+            <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#5B6B7F"><span>จัดการงาน</span><span>/</span><span>Orange Line</span><span>/</span><span style="color:#142B4F;font-weight:700">Kanban</span></div>
+            <div style="flex:1"></div>
+            <label style="display:flex;align-items:center;gap:7px;width:250px;height:30px;box-sizing:border-box;border:1px solid #D5DDE8;border-radius:15px;padding:0 11px;background:#F5F7FA;color:#5B6B7F">
+              <svg viewBox="0 0 24 24" width="14" height="14" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 14px" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-4-4"></path></svg>
+              <input aria-label="ค้นหา" placeholder="ค้นหางาน ป้าย เอกสาร..." style="border:0;background:transparent;outline:0;font-family:inherit;font-size:11.5px;width:100%;color:#263445;padding:0">
+            </label>
+            <details style="position:relative;display:flex;"><summary aria-label="การแจ้งเตือน 3 รายการ" style="position:relative;width:32px;height:32px;border:1px solid #D5DDE8;background:#fff;border-radius:16px;color:#263445;display:flex;align-items:center;justify-content:center;padding:0;display:flex;align-items:center;justify-content:center;list-style:none;cursor:pointer;box-sizing:border-box">
+              <svg viewBox="0 0 24 24" width="15" height="15" style="fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4zM10 21h4"></path></svg>
+              <span style="position:absolute;top:-4px;right:-4px;min-width:15px;height:15px;border-radius:8px;background:#F28C28;color:#142B4F;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center">3</span>
+            </summary><div style="position:absolute;right:0;top:38px;width:300px;background:#fff;border:1px solid #D5DDE8;border-radius:10px;box-shadow:0 10px 30px rgba(20,43,79,0.18);padding:6px;z-index:30;display:flex;flex-direction:column;gap:2px;text-align:left"><span style="padding:6px 8px;font-size:12px;font-weight:700;color:#142B4F">การแจ้งเตือน (3)</span><a href="Progress.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>OR22 ติดตั้งล่าช้ากว่า Forecast</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 05 ความคืบหน้า</span></a><a href="OwnerRepair.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>ใบแจ้งซ่อม RQ-0412 รอเจ้าของพื้นที่ยืนยัน</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 08 แจ้งซ่อม</span></a><a href="Admin.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>ผู้ใช้ใหม่รอเปิดสิทธิ์ 1 ราย</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 06 ผู้ใช้และสิทธิ์</span></a></div></details>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:30px;height:30px;border-radius:15px;background:#142B4F;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">PM</div>
+              <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:11.5px;font-weight:600;color:#142B4F">ผู้ใช้ตัวอย่าง</span><span style="font-size:9.5px;color:#5B6B7F">Project Manager</span></div>
+            </div>
+          </div>
+          <div style="flex:1;min-height:0;padding:14px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;overflow:hidden">
+            <div style="height:34px;flex:0 0 34px;display:flex;align-items:center;justify-content:space-between">
+              <div style="display:flex;align-items:baseline;gap:10px"><span style="font-size:18px;font-weight:700;color:#142B4F">จัดการงาน</span><span style="font-size:11.5px;color:#5B6B7F">Job Management · 248 งาน</span></div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="display:flex;border:1px solid #D5DDE8;border-radius:7px;overflow:hidden;background:#fff">
+                  <span style="padding:5px 12px;font-size:11.5px;color:#5B6B7F">ตาราง</span>
+                  <span style="padding:5px 12px;font-size:11.5px;font-weight:600;background:#142B4F;color:#fff">Kanban</span>
+                </div>
+                <details style="position:relative;display:flex;"><summary style="height:30px;padding:0 13px;border-radius:7px;border:1px solid #142B4F;background:#142B4F;color:#fff;font-family:inherit;font-size:11.5px;font-weight:600;display:flex;align-items:center;justify-content:center;list-style:none;cursor:pointer;box-sizing:border-box">+ สร้างงานใหม่</summary><div style="position:absolute;right:0;top:calc(100%% + 4px);min-width:250px;background:#fff;border:1px solid #D5DDE8;border-radius:10px;box-shadow:0 10px 30px rgba(20,43,79,0.18);padding:5px;z-index:30;display:flex;flex-direction:column;gap:1px;text-align:left"><a href="Progress.dc.html" style="padding:7px 9px;border-radius:7px;font-size:11.5px;color:#263445;text-decoration:none;line-height:1.3;font-weight:600"><b>อัปเดตความคืบหน้างาน</b><br><span style="color:#5B6B7F;font-size:10.5px;font-weight:400">Screen 05 · อัปเดตรายแถว</span></a><div style="padding:7px 9px;border-radius:7px;font-size:11.5px;color:#8A95A5;text-decoration:none;line-height:1.3;font-weight:600"><b>สร้างงาน (Job) ใหม่</b><br><span style="color:#5B6B7F;font-size:10.5px;font-weight:400">ยังไม่ได้ออกแบบ · เสนอเป็นขั้นต่อไป</span></div></div></details>
+              </div>
+            </div>
+            <div style="height:40px;flex:0 0 40px;background:#fff;border:1px solid #E1E7EF;border-radius:8px;padding:0 10px;box-sizing:border-box;display:flex;align-items:center;gap:8px">
+              <label style="display:flex;align-items:center;gap:7px;flex:1.3;height:26px;box-sizing:border-box;border:1px solid #D5DDE8;border-radius:6px;padding:0 9px;background:#F5F7FA;color:#5B6B7F">
+                <svg viewBox="0 0 24 24" width="13" height="13" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 13px" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-4-4"></path></svg>
+                <input aria-label="ค้นหางาน" placeholder="ค้นหารหัสงาน เช่น JOB-0156" style="border:0;background:transparent;outline:0;font-family:inherit;font-size:11px;width:100%;color:#263445;padding:0">
+              </label>
+              <sc-for list="{{jobFilters}}" as="f" hint-placeholder-count="3">
+                <details style="position:relative;flex:1;display:flex"><summary style="height:26px;display:flex;align-items:center;justify-content:space-between;padding:0 9px;border:1px solid #D5DDE8;border-radius:6px;background:#fff;color:#263445;font-family:inherit;font-size:11px;list-style:none;cursor:pointer;width:100%;box-sizing:border-box"><span><span style="color:#5B6B7F">{{f.k}}:</span> <b style="font-weight:600">{{f.v}}</b></span><svg viewBox="0 0 24 24" width="11" height="11" style="fill:none;stroke:#5B6B7F;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary><div style="position:absolute;left:0;top:calc(100%% + 4px);min-width:250px;background:#fff;border:1px solid #D5DDE8;border-radius:10px;box-shadow:0 10px 30px rgba(20,43,79,0.18);padding:5px;z-index:30;display:flex;flex-direction:column;gap:1px;text-align:left"><a href="SignDB.dc.html" style="padding:7px 9px;border-radius:7px;font-size:11.5px;color:#263445;text-decoration:none;line-height:1.3;font-weight:600"><b>ตัวกรอง {{f.k}} ใช้งานได้จริงที่ Screen 10</b><br><span style="color:#5B6B7F;font-size:10.5px;font-weight:400">ฐานข้อมูลป้าย · เลือกสถานี ชั้น กลุ่มป้าย สถานะ</span></a></div></details>
+              </sc-for>
+              <span style="font-size:11px;font-weight:600;color:#1B5C9E;padding:0 4px;white-space:nowrap">ล้างตัวกรอง</span>
+            </div>
+            <div style="flex:1;min-height:0;display:flex;gap:10px">
+              <sc-for list="{{columns}}" as="c" hint-placeholder-count="5">
+                <div style="flex:1;min-width:0;background:#E9EEF5;border-radius:8px;padding:8px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px;overflow:hidden">
+                  <div style="display:flex;align-items:center;gap:6px;height:18px;flex:0 0 18px">
+                    <span style="width:9px;height:9px;border-radius:5px;background:{{c.color}}"></span>
+                    <span style="font-size:11.5px;font-weight:700;color:#142B4F">{{c.th}}</span>
+                    <span style="flex:1"></span>
+                    <span style="background:#fff;color:#263445;font-size:10px;font-weight:700;padding:1px 7px;border-radius:9px">{{c.count}}</span>
+                  </div>
+                  <sc-for list="{{c.cards}}" as="j" hint-placeholder-count="3">
+                    <div style="background:#fff;border:1px solid #DDE4EE;border-radius:7px;padding:8px 9px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px;flex:0 0 auto">
+                      <div style="display:flex;align-items:center;justify-content:space-between;gap:4px"><span style="font-size:11px;font-weight:700;color:#142B4F">{{j.id}}</span><span style="padding:1px 7px;border-radius:9px;font-size:9px;font-weight:600;white-space:nowrap;background:{{j.bg}};color:{{j.fg}}">{{j.status}}</span></div>
+                      <span style="font-size:11.5px;font-weight:600;color:#263445">{{j.type}}</span>
+                      <div style="display:flex;align-items:center;gap:6px;font-size:10.5px;color:#263445"><span style="background:#E3F0FB;color:#1B5C9E;font-weight:700;padding:0 6px;border-radius:4px">{{j.station}}</span><span style="color:#5B6B7F">{{j.team}}</span></div>
+                      <div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:5px;border-radius:3px;background:#E6EBF2;overflow:hidden"><div style="height:100%;background:{{c.color}};width:{{j.pct}}"></div></div><span style="font-size:10px;font-weight:700;color:#142B4F;width:28px;text-align:right">{{j.pct}}</span></div>
+                      <span style="font-size:10px;color:#5B6B7F">ครบกำหนด {{j.due}}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ SCREEN 04 : SIGNAGE DATABASE ============ -->
+    <div style="display:flex;flex-direction:column;gap:6px;width:1200px">
+      <div style="height:22px;display:flex;align-items:center;gap:10px">
+        <span style="background:#142B4F;color:#fff;font-size:12px;font-weight:700;padding:2px 9px;border-radius:6px">SCREEN 04</span>
+        <span style="font-size:16px;font-weight:700;color:#142B4F">Signage Database · ฐานข้อมูลป้าย</span>
+        <span style="font-size:12.5px;color:#5B6B7F">ติดตามป้ายแต่ละชิ้นตลอดวงจรชีวิต: ติดตั้ง · ซ่อมบำรุง · เอกสาร</span>
+      </div>
+      <div style="width:1200px;height:570px;display:flex;background:#F5F7FA;border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(20,43,79,0.18);border:1px solid #C9D3E1;box-sizing:border-box">
+        <div style="width:176px;flex:0 0 176px;background:#142B4F;display:flex;flex-direction:column;padding:14px 10px;box-sizing:border-box;gap:14px">
+          <div style="display:flex;align-items:center;gap:8px;padding:0 4px">
+            <div style="width:30px;height:30px;flex:0 0 30px;border-radius:8px;background:#F28C28;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="18" height="18" style="fill:none;stroke:#142B4F;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M4 7h11l5 5-5 5H4zM8 12h6"></path></svg></div>
+            <div style="display:flex;flex-direction:column;line-height:1.15"><span style="color:#fff;font-weight:700;font-size:14px">ORL-SignTrack</span><span style="color:#9FB4D1;font-size:9.5px">MRT Orange Line · GRS</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <sc-for list="{{nav4}}" as="n" hint-placeholder-count="8">
+<sc-if value="{{n.isLink}}" hint-placeholder-val="{{ false }}"><a href="{{n.href}}" style="display:block;text-decoration:none;color:inherit">
+              <div style="display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:7px;background:{{n.bg}};color:{{n.fg}}">
+                <svg viewBox="0 0 24 24" width="16" height="16" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 16px" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+                <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:12px;font-weight:600">{{n.th}}</span><span style="font-size:9.5px;color:{{n.sub}}">{{n.en}}</span></div>
+              </div>
+            
+</a></sc-if>
+<sc-if value="{{n.isBtn}}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:7px;background:{{n.bg}};color:{{n.fg}}">
+                <svg viewBox="0 0 24 24" width="16" height="16" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 16px" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+                <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:12px;font-weight:600">{{n.th}}</span><span style="font-size:9.5px;color:{{n.sub}}">{{n.en}}</span></div>
+              </div>
+            
+</sc-if>
+</sc-for>
+          </div>
+          <div style="margin-top:auto;background:rgba(255,255,255,0.08);border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;line-height:1.2">
+            <span style="font-size:9.5px;color:#9FB4D1">ผู้ใช้งาน</span>
+            <span style="font-size:12px;font-weight:600;color:#fff">ผู้จัดการโครงการ · PM</span>
+          </div>
+        </div>
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+          <div style="height:48px;flex:0 0 48px;background:#fff;border-bottom:1px solid #E1E7EF;display:flex;align-items:center;padding:0 16px;gap:14px">
+            <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:#5B6B7F"><span>ฐานข้อมูลป้าย</span><span>/</span><span>Orange Line</span><span>/</span><span style="color:#142B4F;font-weight:700">OR13-SG-0001</span></div>
+            <div style="flex:1"></div>
+            <label style="display:flex;align-items:center;gap:7px;width:250px;height:30px;box-sizing:border-box;border:1px solid #D5DDE8;border-radius:15px;padding:0 11px;background:#F5F7FA;color:#5B6B7F">
+              <svg viewBox="0 0 24 24" width="14" height="14" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 14px" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-4-4"></path></svg>
+              <input aria-label="ค้นหา" placeholder="ค้นหางาน ป้าย เอกสาร..." style="border:0;background:transparent;outline:0;font-family:inherit;font-size:11.5px;width:100%;color:#263445;padding:0">
+            </label>
+            <details style="position:relative;display:flex;"><summary aria-label="การแจ้งเตือน 3 รายการ" style="position:relative;width:32px;height:32px;border:1px solid #D5DDE8;background:#fff;border-radius:16px;color:#263445;display:flex;align-items:center;justify-content:center;padding:0;display:flex;align-items:center;justify-content:center;list-style:none;cursor:pointer;box-sizing:border-box">
+              <svg viewBox="0 0 24 24" width="15" height="15" style="fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4zM10 21h4"></path></svg>
+              <span style="position:absolute;top:-4px;right:-4px;min-width:15px;height:15px;border-radius:8px;background:#F28C28;color:#142B4F;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center">3</span>
+            </summary><div style="position:absolute;right:0;top:38px;width:300px;background:#fff;border:1px solid #D5DDE8;border-radius:10px;box-shadow:0 10px 30px rgba(20,43,79,0.18);padding:6px;z-index:30;display:flex;flex-direction:column;gap:2px;text-align:left"><span style="padding:6px 8px;font-size:12px;font-weight:700;color:#142B4F">การแจ้งเตือน (3)</span><a href="Progress.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>OR22 ติดตั้งล่าช้ากว่า Forecast</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 05 ความคืบหน้า</span></a><a href="OwnerRepair.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>ใบแจ้งซ่อม RQ-0412 รอเจ้าของพื้นที่ยืนยัน</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 08 แจ้งซ่อม</span></a><a href="Admin.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>ผู้ใช้ใหม่รอเปิดสิทธิ์ 1 ราย</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 06 ผู้ใช้และสิทธิ์</span></a></div></details>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:30px;height:30px;border-radius:15px;background:#142B4F;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">PM</div>
+              <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:11.5px;font-weight:600;color:#142B4F">ผู้ใช้ตัวอย่าง</span><span style="font-size:9.5px;color:#5B6B7F">Project Manager</span></div>
+            </div>
+          </div>
+          <div style="flex:1;min-height:0;padding:14px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;overflow:hidden">
+            <div style="height:34px;flex:0 0 34px;display:flex;align-items:center;justify-content:space-between">
+              <div style="display:flex;align-items:baseline;gap:10px"><span style="font-size:18px;font-weight:700;color:#142B4F">ฐานข้อมูลป้าย</span><span style="font-size:11.5px;color:#5B6B7F">Signage Database · ป้ายทั้งหมดในระบบ (ตัวอย่าง)</span></div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <details style="position:relative;display:flex;"><summary style="height:30px;padding:0 12px;border-radius:7px;border:1px solid #142B4F;background:#fff;color:#142B4F;font-family:inherit;font-size:11.5px;font-weight:600;display:flex;align-items:center;justify-content:center;list-style:none;cursor:pointer;box-sizing:border-box">พิมพ์ QR Code</summary><div style="position:absolute;right:0;top:calc(100%% + 4px);min-width:250px;background:#fff;border:1px solid #D5DDE8;border-radius:10px;box-shadow:0 10px 30px rgba(20,43,79,0.18);padding:5px;z-index:30;display:flex;flex-direction:column;gap:1px;text-align:left"><a href="SignDB.dc.html" style="padding:7px 9px;border-radius:7px;font-size:11.5px;color:#263445;text-decoration:none;line-height:1.3;font-weight:600"><b>พิมพ์ QR ตามตัวกรอง</b><br><span style="color:#5B6B7F;font-size:10.5px;font-weight:400">Screen 10 · เลือกป้ายจากทะเบียน</span></a><div style="padding:7px 9px;border-radius:7px;font-size:11.5px;color:#8A95A5;text-decoration:none;line-height:1.3;font-weight:600"><b>รูปแบบสติกเกอร์ QR</b><br><span style="color:#5B6B7F;font-size:10.5px;font-weight:400">ยังไม่ได้ออกแบบ · เสนอเป็นขั้นต่อไป</span></div></div></details>
+                <details style="position:relative;display:flex;"><summary style="height:30px;padding:0 13px;border-radius:7px;border:1px solid #142B4F;background:#142B4F;color:#fff;font-family:inherit;font-size:11.5px;font-weight:600;display:flex;align-items:center;justify-content:center;list-style:none;cursor:pointer;box-sizing:border-box">+ เพิ่มป้าย</summary><div style="position:absolute;right:0;top:calc(100%% + 4px);min-width:250px;background:#fff;border:1px solid #D5DDE8;border-radius:10px;box-shadow:0 10px 30px rgba(20,43,79,0.18);padding:5px;z-index:30;display:flex;flex-direction:column;gap:1px;text-align:left"><a href="Progress.dc.html" style="padding:7px 9px;border-radius:7px;font-size:11.5px;color:#263445;text-decoration:none;line-height:1.3;font-weight:600"><b>เพิ่มประเภทป้ายใหม่ (VO)</b><br><span style="color:#5B6B7F;font-size:10.5px;font-weight:400">Screen 05 · แท็บ ประเภทป้าย / VO</span></a><a href="SignDB.dc.html" style="padding:7px 9px;border-radius:7px;font-size:11.5px;color:#263445;text-decoration:none;line-height:1.3;font-weight:600"><b>ดูทะเบียนป้าย</b><br><span style="color:#5B6B7F;font-size:10.5px;font-weight:400">Screen 10</span></a></div></details>
+              </div>
+            </div>
+            <div style="height:40px;flex:0 0 40px;background:#fff;border:1px solid #E1E7EF;border-radius:8px;padding:0 10px;box-sizing:border-box;display:flex;align-items:center;gap:8px">
+              <label style="display:flex;align-items:center;gap:7px;flex:1.3;height:26px;box-sizing:border-box;border:1px solid #D5DDE8;border-radius:6px;padding:0 9px;background:#F5F7FA;color:#5B6B7F">
+                <svg viewBox="0 0 24 24" width="13" height="13" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 13px" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-4-4"></path></svg>
+                <input aria-label="ค้นหาป้าย" placeholder="ค้นหารหัสป้าย เช่น OR13-SG-0001" style="border:0;background:transparent;outline:0;font-family:inherit;font-size:11px;width:100%;color:#263445;padding:0">
+              </label>
+              <sc-for list="{{signFilters}}" as="f" hint-placeholder-count="4">
+                <details style="position:relative;flex:1;display:flex"><summary style="height:26px;display:flex;align-items:center;justify-content:space-between;padding:0 9px;border:1px solid #D5DDE8;border-radius:6px;background:#fff;color:#263445;font-family:inherit;font-size:11px;list-style:none;cursor:pointer;width:100%;box-sizing:border-box"><span><span style="color:#5B6B7F">{{f.k}}:</span> <b style="font-weight:600">{{f.v}}</b></span><svg viewBox="0 0 24 24" width="11" height="11" style="fill:none;stroke:#5B6B7F;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary><div style="position:absolute;left:0;top:calc(100%% + 4px);min-width:250px;background:#fff;border:1px solid #D5DDE8;border-radius:10px;box-shadow:0 10px 30px rgba(20,43,79,0.18);padding:5px;z-index:30;display:flex;flex-direction:column;gap:1px;text-align:left"><a href="SignDB.dc.html" style="padding:7px 9px;border-radius:7px;font-size:11.5px;color:#263445;text-decoration:none;line-height:1.3;font-weight:600"><b>ตัวกรอง {{f.k}} ใช้งานได้จริงที่ Screen 10</b><br><span style="color:#5B6B7F;font-size:10.5px;font-weight:400">ฐานข้อมูลป้าย · เลือกสถานี ชั้น กลุ่มป้าย สถานะ</span></a></div></details>
+              </sc-for>
+            </div>
+            <div style="flex:1;min-height:0;display:flex;gap:10px">
+              <!-- table -->
+              <div style="flex:1;min-width:0;background:#fff;border:1px solid #E1E7EF;border-radius:8px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden">
+                <div style="height:28px;flex:0 0 28px;background:#F0F3F8;display:flex;align-items:center;padding:0 12px;font-size:9.5px;font-weight:700;color:#5B6B7F">
+                  <span style="flex:0 0 98px">Asset ID</span><span style="flex:0 0 46px">สถานี</span><span style="flex:0 0 100px">ประเภทป้าย</span><span style="flex:0 0 98px">พื้นที่ติดตั้ง</span><span style="flex:0 0 72px">วันที่ติดตั้ง</span><span style="flex:0 0 82px">การรับประกัน</span><span style="flex:0 0 92px">สถานะ</span><span style="flex:1;text-align:center">QR</span>
+                </div>
+                <div style="flex:1;min-height:0;display:flex;flex-direction:column">
+                  <sc-for list="{{assets}}" as="a" hint-placeholder-count="10">
+                    <div style="flex:1;min-height:0;display:flex;align-items:center;padding:0 12px;font-size:10.5px;border-top:1px solid #EEF1F5;background:{{a.rowBg}}">
+                      <span style="flex:0 0 98px;font-weight:700;color:#142B4F">{{a.id}}</span>
+                      <span style="flex:0 0 46px">{{a.station}}</span>
+                      <span style="flex:0 0 100px">{{a.type}}</span>
+                      <span style="flex:0 0 98px">{{a.area}}</span>
+                      <span style="flex:0 0 72px;color:#263445">{{a.date}}</span>
+                      <span style="flex:0 0 82px"><span style="padding:1px 7px;border-radius:9px;font-size:9.5px;font-weight:600;white-space:nowrap;background:{{a.wbg}};color:{{a.wfg}}">{{a.warranty}}</span></span>
+                      <span style="flex:0 0 92px"><span style="padding:1px 7px;border-radius:9px;font-size:9.5px;font-weight:600;white-space:nowrap;background:{{a.sbg}};color:{{a.sfg}}">{{a.status}}</span></span>
+                      <span style="flex:1;display:flex;justify-content:center"><svg viewBox="0 0 9 9" width="20" height="20" style="shape-rendering:crispEdges" aria-label="QR Code"><rect x="0" y="0" width="9" height="9" fill="#FFFFFF"></rect><path fill="#142B4F" d="M0 0h3v3H0zM6 0h3v3H6zM0 6h3v3H0zM4 0h1v1H4zM3 1h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM3 4h1v1H3zM6 4h1v1H6zM8 4h1v1H8zM4 5h1v1H4zM6 6h1v1H6zM8 6h1v1H8zM5 7h1v1H5zM7 7h1v1H7zM4 8h1v1H4zM8 8h1v1H8z"></path><path fill="#FFFFFF" d="M1 1h1v1H1zM7 1h1v1H7zM1 7h1v1H1z"></path></svg></span>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="height:26px;flex:0 0 26px;border-top:1px solid #EEF1F5;display:flex;align-items:center;justify-content:space-between;padding:0 12px;font-size:10px;color:#5B6B7F"><span>แสดง 1–10 จาก 1,284 รายการ (ตัวอย่าง)</span><span>‹ 1 2 3 … 129 ›</span></div>
+              </div>
+              <!-- detail panel -->
+              <div style="flex:0 0 292px;background:#fff;border:1px solid #E1E7EF;border-radius:8px;padding:12px 14px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px;overflow:hidden">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
+                  <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+                    <div style="display:flex;align-items:center;gap:7px"><span style="font-size:15px;font-weight:700;color:#142B4F">OR13-SG-0001</span><span style="padding:1px 7px;border-radius:9px;font-size:9.5px;font-weight:600;background:#E1F4EA;color:#1B6B43">ใช้งานปกติ</span></div>
+                    <span style="font-size:11px;color:#263445">ป้ายชานชาลา · สถานี OR13 · ชานชาลา ชั้น 3</span>
+                    <span style="font-size:10.5px;color:#5B6B7F">ติดตั้ง 12 ส.ค. 69 · ประกันถึง 12 ส.ค. 71</span>
+                  </div>
+                  <svg viewBox="0 0 9 9" width="54" height="54" style="shape-rendering:crispEdges;flex:0 0 54px;border:1px solid #D5DDE8;border-radius:6px;padding:3px;box-sizing:border-box;background:#fff" aria-label="QR Code ของ OR13-SG-0001"><path fill="#142B4F" d="M0 0h3v3H0zM6 0h3v3H6zM0 6h3v3H0zM4 0h1v1H4zM3 1h1v1H3zM4 3h1v1H4zM5 3h1v1H5zM3 4h1v1H3zM6 4h1v1H6zM8 4h1v1H8zM4 5h1v1H4zM6 6h1v1H6zM8 6h1v1H8zM5 7h1v1H5zM7 7h1v1H7zM4 8h1v1H4zM8 8h1v1H8z"></path><path fill="#FFFFFF" d="M1 1h1v1H1zM7 1h1v1H7zM1 7h1v1H1z"></path></svg>
+                </div>
+                <div style="border-top:1px solid #EEF1F5;padding-top:7px;display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:11.5px;font-weight:700;color:#142B4F">ประวัติการติดตั้ง <span style="font-size:10px;font-weight:400;color:#5B6B7F">Installation History</span></span>
+                  <sc-for list="{{history}}" as="h" hint-placeholder-count="3">
+                    <div style="display:flex;gap:8px;min-height:26px">
+                      <div style="display:flex;flex-direction:column;align-items:center;width:10px;flex:0 0 10px"><span style="width:8px;height:8px;border-radius:4px;background:{{h.color}};margin-top:4px"></span><span style="flex:1;width:1px;background:{{h.line}}"></span></div>
+                      <div style="display:flex;flex-direction:column;line-height:1.2"><span style="font-size:10.5px;color:#263445"><b style="font-weight:600">{{h.title}}</b> · {{h.who}}</span><span style="font-size:9.5px;color:#5B6B7F">{{h.date}}</span></div>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="border-top:1px solid #EEF1F5;padding-top:7px;display:flex;flex-direction:column;gap:3px">
+                  <span style="font-size:11.5px;font-weight:700;color:#142B4F">ประวัติซ่อมบำรุง <span style="font-size:10px;font-weight:400;color:#5B6B7F">Maintenance</span></span>
+                  <div style="display:flex;gap:8px;align-items:flex-start;background:#F5F7FA;border-radius:6px;padding:5px 8px"><span style="width:8px;height:8px;border-radius:4px;background:#2878C7;margin-top:4px;flex:0 0 8px"></span><div style="display:flex;flex-direction:column;line-height:1.2"><span style="font-size:10.5px;color:#263445"><b style="font-weight:600">ตรวจสภาพประจำไตรมาส</b> · ปกติ</span><span style="font-size:9.5px;color:#5B6B7F">05 พ.ย. 69 · ยังไม่มีการแจ้งซ่อม</span></div></div>
+                </div>
+                <div style="border-top:1px solid #EEF1F5;padding-top:7px;display:flex;flex-direction:column;gap:4px">
+                  <span style="font-size:11.5px;font-weight:700;color:#142B4F">เอกสารที่เกี่ยวข้อง <span style="font-size:10px;font-weight:400;color:#5B6B7F">Documents</span></span>
+                  <sc-for list="{{docs}}" as="d" hint-placeholder-count="3">
+                    <div style="display:flex;align-items:center;gap:7px;font-size:10.5px;color:#263445"><span style="background:#E3F0FB;color:#1B5C9E;font-size:9px;font-weight:700;padding:1px 6px;border-radius:4px;min-width:26px;text-align:center">{{d.ext}}</span><span>{{d.name}}</span></div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ROLES FOOTER -->
+  <div style="flex:0 0 56px;display:flex;align-items:center;gap:12px">
+    <div style="flex:0 0 150px;display:flex;flex-direction:column;line-height:1.2"><span style="font-size:14px;font-weight:700;color:#142B4F">บทบาทผู้ใช้งาน</span><span style="font-size:11.5px;color:#5B6B7F">Role-based access · Desktop-first, mobile-friendly</span></div>
+    <sc-for list="{{roles}}" as="r" hint-placeholder-count="5">
+      <div style="flex:1;min-width:0;height:56px;background:#fff;border:1px solid #D5DDE8;border-radius:10px;padding:0 14px;box-sizing:border-box;display:flex;align-items:center;gap:11px">
+        <div style="width:32px;height:32px;flex:0 0 32px;border-radius:9px;background:#142B4F;color:#fff;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="17" height="17" style="fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="{{r.d}}"></path></svg></div>
+        <div style="display:flex;flex-direction:column;line-height:1.2;min-width:0"><span style="font-size:12.5px;font-weight:700;color:#142B4F">{{r.th}} <span style="font-size:10.5px;font-weight:500;color:#5B6B7F">{{r.en}}</span></span><span style="font-size:11px;color:#263445">{{r.access}}</span></div>
+      </div>
+    </sc-for>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":2560,"height":1440}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const LNAV = (arr) => {
+      const HR = { 'Dashboard': 'Dashboard.dc.html', 'Projects': 'ProjectEdit.dc.html', 'Production & Install': 'Progress.dc.html', 'Job Management': 'Jobs.dc.html', 'Warranty': 'Warranty.dc.html', 'Documents': 'Docs.dc.html', 'Maintenance': 'OwnerRepair.dc.html', 'Repair': 'OwnerRepair.dc.html', 'Repair Requests': 'OwnerRepair.dc.html', 'Maintenance Log': 'MaintReport.dc.html', 'Reports': 'MaintReport.dc.html', 'Summary Report': 'MaintReport.dc.html', 'Requests': 'OwnerRepair.dc.html', 'My Requests': 'OwnerRepair.dc.html', 'Report': 'OwnerRepair.dc.html' };
+      return arr.map((n) => {
+        const href = String(n.en).indexOf('Signage') === 0 ? 'SignDB.dc.html' : (HR[n.en] || '');
+        const active = !!n.bg && n.bg !== 'transparent';
+        const link = !!href && !active;
+        return { ...n, href: href || '#', isLink: link, isBtn: !link };
+      });
+    };
+    const ST = {
+      pending: { th: 'รอดำเนินการ', bg: '#E8ECF1', fg: '#3E4C5E', color: '#8A9AAE' },
+      prog: { th: 'กำลังดำเนินการ', bg: '#E3F0FB', fg: '#1B5C9E', color: '#2878C7' },
+      insp: { th: 'รอตรวจรับ', bg: '#FDEBD3', fg: '#6B3803', color: '#F28C28' },
+      done: { th: 'เสร็จสิ้น', bg: '#E1F4EA', fg: '#1B6B43', color: '#2E9E6B' },
+      late: { th: 'ล่าช้า', bg: '#FBE4E2', fg: '#A32019', color: '#C0392B' }
+    };
+
+    // ---------- navigation ----------
+    const icons = [
+      'M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z',
+      'M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z',
+      'M9 4h6v3H9zM7 5H5v15h14V5h-2M9 13l2 2 4-4',
+      'M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6',
+      'M6 3h8l5 5v13H6zM14 3v5h5M9 13h6M9 17h6',
+      'M14.7 6.3a4 4 0 0 0-5 5L3 18l3 3 6.7-6.7a4 4 0 0 0 5-5l-2.5 2.5-2.2-.5-.5-2.2z',
+      'M5 20V10M12 20V4M19 20v-7M3 20h18',
+      'M4 7h10M18 7h2M4 17h2M10 17h10M14 5v4M8 15v4'
+    ];
+    const items = [
+      ['ภาพรวม', 'Dashboard'], ['โครงการ', 'Projects'], ['จัดการงาน', 'Job Management'], ['ฐานข้อมูลป้าย', 'Signage Database'],
+      ['เอกสาร', 'Documents'], ['แจ้งซ่อม', 'Maintenance'], ['รายงาน', 'Reports'], ['ตั้งค่าระบบ', 'Settings']
+    ];
+    const nav = (a) => items.map((it, i) => ({
+      th: it[0], en: it[1], d: icons[i],
+      bg: i === a ? '#2878C7' : 'transparent',
+      fg: i === a ? '#FFFFFF' : '#C9D6E8',
+      sub: i === a ? '#E3F0FB' : '#9FB4D1'
+    }));
+
+    // ---------- board header ----------
+    const swatches = [
+      { name: 'Primary Navy', hex: '#142B4F' }, { name: 'Secondary Blue', hex: '#2878C7' }, { name: 'Accent Orange', hex: '#F28C28' },
+      { name: 'Background', hex: '#F5F7FA' }, { name: 'Surface', hex: '#FFFFFF' }, { name: 'Text', hex: '#263445' }
+    ];
+
+    // ---------- screen 1 ----------
+    const kpis = [
+      { th: 'โครงการทั้งหมด', en: 'Total Projects', val: '1', note: 'Orange Line', color: '#142B4F', chip: '#E3F0FB', chipFg: '#1B5C9E', d: icons[1] },
+      { th: 'งานทั้งหมด', en: 'Total Jobs', val: '248', note: 'ใน 17 สถานี', color: '#142B4F', chip: '#E3F0FB', chipFg: '#1B5C9E', d: icons[2] },
+      { th: 'กำลังดำเนินการ', en: 'Jobs in Progress', val: '86', note: '35% ของงานทั้งหมด', color: '#1B5C9E', chip: '#E3F0FB', chipFg: '#1B5C9E', d: 'M12 6v6l4 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z' },
+      { th: 'งานล่าช้า', en: 'Overdue Jobs', val: '12', note: 'ต้องติดตามด่วน', color: '#A32019', chip: '#FBE4E2', chipFg: '#A32019', d: 'M12 3l10 18H2zM12 10v5M12 18h.01' }
+    ];
+    const statusLegend = [
+      { color: ST.pending.color, th: 'รอดำเนินการ', n: '38', pct: '15.3%' },
+      { color: ST.prog.color, th: 'กำลังดำเนินการ', n: '86', pct: '34.7%' },
+      { color: ST.insp.color, th: 'รอตรวจรับ', n: '34', pct: '13.7%' },
+      { color: ST.done.color, th: 'เสร็จสิ้น', n: '78', pct: '31.5%' },
+      { color: ST.late.color, th: 'ล่าช้า', n: '12', pct: '4.8%' }
+    ];
+    const acts = [
+      { text: 'ช่างเทคนิค (ทีม B) อัปเดตงานติดตั้ง OR15 เป็น 80%', time: '10 นาทีที่แล้ว', color: '#2878C7' },
+      { text: 'ผู้ตรวจรับอนุมัติ JOB-0142 (OR18 ป้ายทางออก)', time: '1 ชั่วโมงที่แล้ว', color: '#2E9E6B' },
+      { text: 'ทีมออกแบบอัปโหลดแบบป้ายบอกทิศทาง Rev.C', time: '3 ชั่วโมงที่แล้ว', color: '#2878C7' },
+      { text: 'เจ้าของโครงการแจ้งซ่อม OR21-SG-0007', time: 'เมื่อวาน 16:40', color: '#F28C28' },
+      { text: 'ผลิตป้ายล็อตที่ 4 เสร็จสิ้น ส่งมอบคลังแล้ว', time: 'เมื่อวาน 09:15', color: '#8A9AAE' }
+    ];
+    const activities = acts.map((a, i) => ({ ...a, line: i === acts.length - 1 ? 'transparent' : '#D5DDE8' }));
+    const badgeOf = (k, label) => ({ bg: ST[k].bg, fg: ST[k].fg, badge: label || ST[k].th });
+    const attention = [
+      { id: 'JOB-0087', st: 'OR19', text: 'ป้ายชานชาลา เลยกำหนด 6 วัน', ...badgeOf('late') },
+      { id: 'JOB-0131', st: 'OR27', text: 'ป้ายห้องน้ำ วัสดุล่าช้า เลยกำหนด 10 วัน', ...badgeOf('late') },
+      { id: 'JOB-0149', st: 'OR16', text: 'ป้ายแผนผังสถานี รอตรวจรับ 3 วัน', ...badgeOf('insp') },
+      { id: 'DOC-REV-031', st: 'OR16', text: 'แบบป้ายบอกทิศทาง Rev.C รอผู้อนุมัติ', ...badgeOf('prog', 'รอเอกสาร') },
+      { id: 'MNT-0019', st: 'OR21', text: 'OR21-SG-0007 แจ้งซ่อมจากเจ้าของโครงการ', ...badgeOf('insp', 'แจ้งซ่อม') }
+    ];
+
+    // ---------- screen 2 ----------
+    const tabDefs = [['ภาพรวม', 'Overview'], ['งาน', 'Jobs'], ['เอกสาร', 'Documents'], ['ความคืบหน้า', 'Progress'], ['รายงาน', 'Reports']];
+    const tabs = tabDefs.map((t, i) => ({
+      th: t[0], en: t[1],
+      bar: i === 0 ? '#F28C28' : 'transparent',
+      fg: i === 0 ? '#142B4F' : '#5B6B7F',
+      w: i === 0 ? '700' : '500'
+    }));
+    const summary = [
+      { k: 'รหัสโครงการ', v: 'ORL · Orange Line' },
+      { k: 'ขอบเขตงาน', v: 'ป้ายและกราฟิก 17 สถานี' },
+      { k: 'ระยะเวลา', v: 'มี.ค. 69 – มิ.ย. 70' },
+      { k: 'ผู้รับผิดชอบ', v: 'ทีมบริหารโครงการ (ตัวอย่าง)' },
+      { k: 'ระยะปัจจุบัน', v: 'ติดตั้งและตรวจรับ' },
+      { k: 'ประเภทป้าย', v: '6 ประเภทหลัก' }
+    ];
+    const phases = [
+      { name: 'ออกแบบและอนุมัติแบบ', pct: '100%', left: '0%', w: '31.25%', fill: '#142B4F' },
+      { name: 'ผลิตป้าย', pct: '82%', left: '12.5%', w: '50%', fill: '#2878C7' },
+      { name: 'ติดตั้ง', pct: '61%', left: '25%', w: '56.25%', fill: '#F28C28' },
+      { name: 'ตรวจรับ', pct: '40%', left: '37.5%', w: '56.25%', fill: '#2878C7' },
+      { name: 'ส่งมอบและเอกสาร', pct: '10%', left: '81.25%', w: '18.75%', fill: '#2878C7' }
+    ];
+    const J = [16, 14, 15, 12, 14, 16, 13, 15, 14, 17, 15, 14, 13, 16, 15, 14, 15];
+    const P = [92, 88, 85, 80, 78, 76, 74, 72, 70, 68, 64, 60, 58, 52, 48, 45, 40];
+    const stations = J.map((j, i) => ({
+      code: 'OR' + (13 + i), jobs: String(j), pct: P[i] + '%', w: P[i] + '%',
+      fill: P[i] >= 80 ? '#2E9E6B' : P[i] >= 60 ? '#2878C7' : '#F28C28'
+    }));
+
+    // ---------- screen 3 ----------
+    const jobFilters = [
+      { k: 'สถานี', v: 'ทุกสถานี' }, { k: 'ประเภทป้าย', v: 'ทั้งหมด' }, { k: 'สถานะ', v: 'ทั้งหมด' }
+    ];
+    const card = (id, st, type, team, pct, due, station) => ({
+      id, type, team, station, due, pct: pct + '%',
+      status: ST[st].th, bg: ST[st].bg, fg: ST[st].fg
+    });
+    const columns = [
+      { st: 'pending', count: '38', cards: [
+        card('JOB-0201', 'pending', 'ป้ายห้องน้ำ', 'ทีมติดตั้ง D', 0, '28 พ.ย. 69', 'OR26'),
+        card('JOB-0203', 'pending', 'ป้ายทางออก', 'ทีมติดตั้ง C', 5, '02 ธ.ค. 69', 'OR29'),
+        card('JOB-0207', 'pending', 'ป้ายเตือนความปลอดภัย', 'ทีมติดตั้ง A', 0, '05 ธ.ค. 69', 'OR25')
+      ] },
+      { st: 'prog', count: '86', cards: [
+        card('JOB-0156', 'prog', 'ป้ายชานชาลา', 'ทีมติดตั้ง A', 55, '21 พ.ย. 69', 'OR21'),
+        card('JOB-0162', 'prog', 'ป้ายแผนผังสถานี', 'ทีมติดตั้ง B', 40, '24 พ.ย. 69', 'OR22'),
+        card('JOB-0170', 'prog', 'ป้ายบอกทิศทาง', 'ทีมติดตั้ง C', 75, '18 พ.ย. 69', 'OR20')
+      ] },
+      { st: 'insp', count: '34', cards: [
+        card('JOB-0142', 'insp', 'ป้ายทางออก', 'ทีมติดตั้ง B', 100, '15 พ.ย. 69', 'OR18'),
+        card('JOB-0138', 'insp', 'ป้ายบอกทิศทาง', 'ทีมติดตั้ง A', 100, '14 พ.ย. 69', 'OR17'),
+        card('JOB-0149', 'insp', 'ป้ายแผนผังสถานี', 'ทีมติดตั้ง C', 100, '16 พ.ย. 69', 'OR16')
+      ] },
+      { st: 'done', count: '78', cards: [
+        card('JOB-0098', 'done', 'ป้ายชานชาลา', 'ทีมติดตั้ง A', 100, '02 พ.ย. 69', 'OR13'),
+        card('JOB-0104', 'done', 'ป้ายทางออก', 'ทีมติดตั้ง B', 100, '05 พ.ย. 69', 'OR14'),
+        card('JOB-0110', 'done', 'ป้ายบอกทิศทาง', 'ทีมติดตั้ง C', 100, '08 พ.ย. 69', 'OR15')
+      ] },
+      { st: 'late', count: '12', cards: [
+        card('JOB-0087', 'late', 'ป้ายชานชาลา', 'ทีมติดตั้ง D', 62, '05 พ.ย. 69', 'OR19'),
+        card('JOB-0131', 'late', 'ป้ายห้องน้ำ', 'ทีมติดตั้ง C', 30, '01 พ.ย. 69', 'OR27'),
+        card('JOB-0119', 'late', 'ป้ายทางออก', 'ทีมติดตั้ง A', 80, '08 พ.ย. 69', 'OR24')
+      ] }
+    ].map((c) => ({ th: ST[c.st].th, color: ST[c.st].color, count: c.count, cards: c.cards }));
+
+    // ---------- screen 4 ----------
+    const signFilters = [
+      { k: 'สถานี', v: 'ทุกสถานี' }, { k: 'ประเภทป้าย', v: 'ทั้งหมด' }, { k: 'พื้นที่ติดตั้ง', v: 'ทั้งหมด' }, { k: 'สถานะ', v: 'ทั้งหมด' }
+    ];
+    const W = {
+      ok: { bg: '#E1F4EA', fg: '#1B6B43' },
+      none: { bg: '#E8ECF1', fg: '#3E4C5E' }
+    };
+    const S = {
+      ok: { bg: '#E1F4EA', fg: '#1B6B43', th: 'ใช้งานปกติ' },
+      repair: { bg: '#FDEBD3', fg: '#6B3803', th: 'รอซ่อม' },
+      maint: { bg: '#E3F0FB', fg: '#1B5C9E', th: 'ซ่อมบำรุง' },
+      insp: { bg: '#FDEBD3', fg: '#6B3803', th: 'รอตรวจรับ' },
+      inst: { bg: '#E3F0FB', fg: '#1B5C9E', th: 'กำลังติดตั้ง' }
+    };
+    const row = (id, station, type, area, date, w, s, sel) => ({
+      id, station, type, area, date,
+      warranty: w === 'ok' ? 'ในประกัน' : 'ยังไม่เริ่ม',
+      wbg: W[w].bg, wfg: W[w].fg,
+      status: S[s].th, sbg: S[s].bg, sfg: S[s].fg,
+      rowBg: sel ? '#E9F2FB' : '#FFFFFF'
+    });
+    const assets = [
+      row('OR13-SG-0001', 'OR13', 'ป้ายชานชาลา', 'ชานชาลา ชั้น 3', '12 ส.ค. 69', 'ok', 'ok', true),
+      row('OR13-SG-0002', 'OR13', 'ป้ายทางออก', 'ทางออก 1', '14 ส.ค. 69', 'ok', 'ok'),
+      row('OR14-SG-0001', 'OR14', 'ป้ายบอกทิศทาง', 'โถงจำหน่ายตั๋ว', '03 ก.ย. 69', 'ok', 'repair'),
+      row('OR14-SG-0002', 'OR14', 'ป้ายแผนผังสถานี', 'โถงจำหน่ายตั๋ว', '03 ก.ย. 69', 'ok', 'ok'),
+      row('OR15-SG-0001', 'OR15', 'ป้ายชานชาลา', 'ชานชาลา ชั้น 3', '21 ก.ย. 69', 'ok', 'maint'),
+      row('OR16-SG-0001', 'OR16', 'ป้ายทางออก', 'ทางออก 2', '05 ต.ค. 69', 'ok', 'insp'),
+      row('OR17-SG-0001', 'OR17', 'ป้ายห้องน้ำ', 'ทางเดินเชื่อม', '—', 'none', 'inst'),
+      row('OR18-SG-0001', 'OR18', 'ป้ายเตือนความปลอดภัย', 'ชานชาลา ชั้น 3', '28 ต.ค. 69', 'ok', 'ok'),
+      row('OR19-SG-0001', 'OR19', 'ป้ายชานชาลา', 'ชานชาลา ชั้น 3', '30 ต.ค. 69', 'ok', 'insp'),
+      row('OR20-SG-0001', 'OR20', 'ป้ายแผนผังสถานี', 'โถงจำหน่ายตั๋ว', '06 พ.ย. 69', 'ok', 'ok')
+    ];
+    const hist = [
+      { title: 'ผลิตป้ายเสร็จ', who: 'โรงงานผลิต', date: '24 ก.ค. 69', color: '#8A9AAE' },
+      { title: 'ติดตั้งเสร็จ', who: 'ทีมติดตั้ง A', date: '12 ส.ค. 69', color: '#2878C7' },
+      { title: 'ตรวจรับผ่าน', who: 'คณะตรวจรับ', date: '14 ส.ค. 69', color: '#2E9E6B' }
+    ];
+    const history = hist.map((h, i) => ({ ...h, line: i === hist.length - 1 ? 'transparent' : '#D5DDE8' }));
+    const docs = [
+      { ext: 'PDF', name: 'แบบผลิตป้าย Rev.C (DWG-ORL-PL-001)' },
+      { ext: 'PDF', name: 'ใบตรวจรับงาน INS-0013' },
+      { ext: 'PDF', name: 'ใบรับประกัน WTY-0013' }
+    ];
+
+    // ---------- roles ----------
+    const roles = [
+      { th: 'ผู้บริหาร', en: 'Executive', access: 'แดชบอร์ดและรายงาน', d: icons[6] },
+      { th: 'ผู้จัดการโครงการ', en: 'Project Manager', access: 'โครงการและจัดการงาน', d: icons[1] },
+      { th: 'ทีมออกแบบ', en: 'Design Team', access: 'ไฟล์แบบและการแก้ไขเอกสาร', d: 'M4 20l4-1 11-11-3-3L5 16zM14 7l3 3' },
+      { th: 'ช่างเทคนิค', en: 'Technician', access: 'อัปเดตงานและซ่อมบำรุงบนมือถือ', d: icons[5] },
+      { th: 'เจ้าของโครงการ', en: 'Owner', access: 'ดูสถานะที่อนุมัติ และแจ้งซ่อม', d: 'M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z' }
+    ];
+
+    return {
+      swatches, nav1: LNAV(nav(0)), nav2: LNAV(nav(1)), nav3: LNAV(nav(2)), nav4: LNAV(nav(3)),
+      kpis, statusLegend, activities, attention,
+      tabs, summary, phases, stations,
+      jobFilters, columns,
+      signFilters, assets, history, docs, roles
+    };
+  }
+}
+</script>
+</body>
+</html>

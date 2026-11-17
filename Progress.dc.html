@@ -1,0 +1,1066 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>Screen 05 Production and Installation Progress</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+input::placeholder,textarea::placeholder{color:#5B6B7F}
+button{cursor:pointer}
+summary{list-style:none;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+</style>
+</helmet>
+<div style="position:relative;overflow:hidden;width:1440px;height:1260px;box-sizing:border-box;display:flex;background:#F5F7FA;font-family:'Sarabun','Noto Sans Thai',system-ui,sans-serif;color:#263445;line-height:1.3">
+
+  <!-- SIDEBAR -->
+  <div style="width:208px;flex:0 0 208px;background:#142B4F;display:flex;flex-direction:column;padding:16px 12px;box-sizing:border-box;gap:16px">
+    <div style="display:flex;align-items:center;gap:9px;padding:0 4px">
+      <div style="width:34px;height:34px;flex:0 0 34px;border-radius:9px;background:#F28C28;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="20" height="20" style="fill:none;stroke:#142B4F;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M4 7h11l5 5-5 5H4zM8 12h6"></path></svg></div>
+      <div style="display:flex;flex-direction:column;line-height:1.15"><span style="color:#fff;font-weight:700;font-size:15px">ORL-SignTrack</span><span style="color:#9FB4D1;font-size:10px">MRT Orange Line · GRS</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <sc-for list="{{nav}}" as="n" hint-placeholder-count="12">
+<sc-if value="{{n.isLink}}" hint-placeholder-val="{{ false }}"><a href="{{n.href}}" style="display:block;text-decoration:none;color:inherit">
+        <div style="display:flex;align-items:center;gap:10px;padding:{{n.pad}};margin-left:{{n.ml}};border-radius:8px;background:{{n.bg}};color:{{n.fg}}">
+          <svg viewBox="0 0 24 24" width="{{n.is}}" height="{{n.is}}" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+          <div style="display:flex;flex-direction:column;line-height:1.15;flex:1;min-width:0"><span style="font-size:{{n.fs}};font-weight:600">{{n.th}}</span><span style="font-size:10px;color:{{n.sub}}">{{n.en}}</span></div>
+          <svg viewBox="0 0 24 24" width="13" height="13" style="fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:{{n.chev}}" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+        </div>
+      
+</a></sc-if>
+<sc-if value="{{n.isBtn}}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:10px;padding:{{n.pad}};margin-left:{{n.ml}};border-radius:8px;background:{{n.bg}};color:{{n.fg}}">
+          <svg viewBox="0 0 24 24" width="{{n.is}}" height="{{n.is}}" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+          <div style="display:flex;flex-direction:column;line-height:1.15;flex:1;min-width:0"><span style="font-size:{{n.fs}};font-weight:600">{{n.th}}</span><span style="font-size:10px;color:{{n.sub}}">{{n.en}}</span></div>
+          <svg viewBox="0 0 24 24" width="13" height="13" style="fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:{{n.chev}}" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+        </div>
+      
+</sc-if>
+</sc-for>
+    </div>
+    <div style="margin-top:auto;background:rgba(255,255,255,0.08);border-radius:8px;padding:9px 11px;display:flex;flex-direction:column;line-height:1.2">
+      <span style="font-size:10px;color:#9FB4D1">ผู้ใช้งาน</span>
+      <span style="font-size:13px;font-weight:600;color:#fff">ผู้จัดการโครงการ · PM</span>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+    <div style="height:54px;flex:0 0 54px;background:#fff;border-bottom:1px solid #E1E7EF;display:flex;align-items:center;padding:0 20px;gap:16px">
+      <div style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:#5B6B7F"><span>โครงการ</span><span>/</span><span>Orange Line</span><span>/</span><span style="color:#142B4F;font-weight:700">ความคืบหน้าผลิตและติดตั้ง</span></div>
+      <div style="flex:1"></div>
+      <label style="display:flex;align-items:center;gap:8px;width:280px;height:34px;box-sizing:border-box;border:1px solid #D5DDE8;border-radius:17px;padding:0 13px;background:#F5F7FA;color:#5B6B7F">
+        <svg viewBox="0 0 24 24" width="15" height="15" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 15px" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-4-4"></path></svg>
+        <input aria-label="ค้นหา" placeholder="ค้นหาสถานี ประเภทป้าย..." style="border:0;background:transparent;outline:0;font-family:inherit;font-size:12.5px;width:100%;color:#263445;padding:0">
+      </label>
+      <details style="position:relative;display:flex;"><summary aria-label="การแจ้งเตือน 3 รายการ" style="position:relative;width:34px;height:34px;border:1px solid #D5DDE8;background:#fff;border-radius:17px;color:#263445;display:flex;align-items:center;justify-content:center;padding:0;display:flex;align-items:center;justify-content:center;list-style:none;cursor:pointer;box-sizing:border-box">
+        <svg viewBox="0 0 24 24" width="16" height="16" style="fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4zM10 21h4"></path></svg>
+        <span style="position:absolute;top:-4px;right:-4px;min-width:16px;height:16px;border-radius:8px;background:#F28C28;color:#142B4F;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center">3</span>
+      </summary><div style="position:absolute;right:0;top:38px;width:300px;background:#fff;border:1px solid #D5DDE8;border-radius:10px;box-shadow:0 10px 30px rgba(20,43,79,0.18);padding:6px;z-index:30;display:flex;flex-direction:column;gap:2px;text-align:left"><span style="padding:6px 8px;font-size:12px;font-weight:700;color:#142B4F">การแจ้งเตือน (3)</span><a href="Progress.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>OR22 ติดตั้งล่าช้ากว่า Forecast</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 05 ความคืบหน้า</span></a><a href="OwnerRepair.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>ใบแจ้งซ่อม RQ-0412 รอเจ้าของพื้นที่ยืนยัน</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 08 แจ้งซ่อม</span></a><a href="Admin.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>ผู้ใช้ใหม่รอเปิดสิทธิ์ 1 ราย</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 06 ผู้ใช้และสิทธิ์</span></a></div></details>
+      <div style="display:flex;align-items:center;gap:9px">
+        <div style="width:32px;height:32px;border-radius:16px;background:#142B4F;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">PM</div>
+        <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:12.5px;font-weight:600;color:#142B4F">ผู้ใช้ตัวอย่าง</span><span style="font-size:10px;color:#5B6B7F">Project Manager</span></div>
+      </div>
+    </div>
+
+    <div style="flex:1;min-height:0;padding:18px 20px 16px;box-sizing:border-box;display:flex;flex-direction:column;gap:14px">
+
+      <!-- title row -->
+      <div style="flex:0 0 40px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+        <div style="display:flex;align-items:baseline;gap:12px">
+          <span style="font-size:22px;font-weight:700;color:#142B4F">ความคืบหน้างานผลิตและติดตั้ง</span>
+          <span style="font-size:12.5px;color:#5B6B7F">Production &amp; Installation Progress · Orange Line</span>
+          <span style="background:#E1F4EA;color:#1B6B43;font-size:11px;font-weight:600;padding:2px 10px;border-radius:10px">Active</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="font-size:11.5px;color:#5B6B7F">ข้อมูล ณ 12 พ.ย. 69</span>
+          <div style="display:flex;border:1px solid #D5DDE8;border-radius:8px;overflow:hidden;background:#fff">
+            <sc-for list="{{zones}}" as="z" hint-placeholder-count="3">
+              <button onClick="{{z.pick}}" style="border:0;padding:7px 14px;font-family:inherit;font-size:12.5px;font-weight:{{z.w}};background:{{z.bg}};color:{{z.fg}}">{{z.label}}</button>
+            </sc-for>
+          </div>
+          <button onClick="{{openImport}}" style="height:34px;padding:0 15px;border-radius:8px;border:1px solid #1E8E5A;background:#fff;color:#1B6B43;font-family:inherit;font-size:12.5px;font-weight:600">นำเข้า Excel</button>
+          <button onClick="{{openExport}}" style="height:34px;padding:0 15px;border-radius:8px;border:1px solid #142B4F;background:#fff;color:#142B4F;font-family:inherit;font-size:12.5px;font-weight:600">ส่งออกรายงาน</button>
+          <button onClick="{{openTypes}}" style="height:34px;padding:0 14px;border-radius:8px;border:1px solid #C77A1C;background:#FFF8EC;color:#8A4B08;font-family:inherit;font-size:12.5px;font-weight:600">+ ประเภทป้าย (VO)</button>
+          <button onClick="{{openDrawer}}" style="height:34px;padding:0 16px;border-radius:8px;border:1px solid #F28C28;background:#F28C28;color:#142B4F;font-family:inherit;font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:7px">
+            <svg viewBox="0 0 24 24" width="15" height="15" style="fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3"></path></svg>อัปเดตข้อมูล
+          </button>
+        </div>
+      </div>
+
+      <sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}">
+        <div style="flex:0 0 36px;display:flex;align-items:center;gap:10px;background:#E1F4EA;color:#1B6B43;border-radius:8px;padding:0 14px;font-size:12.5px;font-weight:600">
+          <svg viewBox="0 0 24 24" width="16" height="16" style="fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>{{toast}}
+        </div>
+      </sc-if>
+
+      <!-- KPI row -->
+      <div style="flex:0 0 96px;display:grid;grid-template-columns:repeat(5, minmax(0, 1fr));gap:12px">
+        <div style="background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:12px 15px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
+          <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:13px;font-weight:600">ความคืบหน้ารวม</span><span style="font-size:10.5px;color:#5B6B7F">Overall (ผลิต 50% + ติดตั้ง 50%)</span></div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-size:30px;font-weight:700;line-height:1;color:#142B4F">{{k.overall}}</span>
+            <div style="flex:1;height:9px;border-radius:5px;background:#E6EBF2;overflow:hidden"><div style="height:100%;border-radius:5px;background:#142B4F;width:{{k.overallW}}"></div></div></div>
+        </div>
+        <div style="background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:12px 15px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
+          <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:13px;font-weight:600">งานผลิต</span><span style="font-size:10.5px;color:#5B6B7F">Manufacturing · {{k.mDone}} / {{k.mPlan}} ชิ้น</span></div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-size:30px;font-weight:700;line-height:1;color:#1B5C9E">{{k.mfg}}</span>
+            <div style="flex:1;height:9px;border-radius:5px;background:#E6EBF2;overflow:hidden"><div style="height:100%;border-radius:5px;background:#2878C7;width:{{k.mfgW}}"></div></div></div>
+        </div>
+        <div style="background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:12px 15px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
+          <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:13px;font-weight:600">งานติดตั้ง</span><span style="font-size:10.5px;color:#5B6B7F">Installation · {{k.iDone}} / {{k.iPlan}} ชิ้น</span></div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-size:30px;font-weight:700;line-height:1;color:#A8590A">{{k.ins}}</span>
+            <div style="flex:1;height:9px;border-radius:5px;background:#E6EBF2;overflow:hidden"><div style="height:100%;border-radius:5px;background:#F28C28;width:{{k.insW}}"></div></div></div>
+        </div>
+        <div style="background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:12px 15px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
+          <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:13px;font-weight:600">ผลิตแล้ว รอติดตั้ง</span><span style="font-size:10.5px;color:#5B6B7F">Produced, not yet installed</span></div>
+          <div style="display:flex;align-items:baseline;gap:7px"><span style="font-size:30px;font-weight:700;line-height:1;color:#142B4F">{{k.wait}}</span><span style="font-size:12px;color:#5B6B7F">ชิ้น</span></div>
+        </div>
+        <div style="background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:12px 15px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
+          <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:13px;font-weight:600">กิจกรรมล่าช้า</span><span style="font-size:10.5px;color:#5B6B7F">Late activities (ผลิต + ติดตั้ง)</span></div>
+          <div style="display:flex;align-items:baseline;gap:7px"><span style="font-size:30px;font-weight:700;line-height:1;color:#A32019">{{k.late}}</span><span style="font-size:12px;color:#5B6B7F">จาก {{k.lateOf}} รายการ</span></div>
+        </div>
+      </div>
+
+      <!-- chart + category -->
+      <div style="flex:0 0 290px;display:flex;gap:12px">
+        <div style="flex:1;min-width:0;background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:14px 16px;box-sizing:border-box;display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span style="font-size:14px;font-weight:700;color:#142B4F">ผลิต เทียบ ติดตั้ง รายสถานี %</span>
+            <div style="display:flex;align-items:center;gap:12px;font-size:11.5px;color:#263445">
+              <span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:3px;background:#2878C7"></span>ผลิต</span>
+              <span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:3px;background:#F28C28"></span>ติดตั้ง</span>
+            </div>
+          </div>
+          <div style="flex:1;min-height:0;display:flex;align-items:flex-end;gap:6px;border-bottom:1px solid #D5DDE8;padding-top:4px">
+            <sc-for list="{{bars}}" as="b" hint-placeholder-count="17">
+              <div style="flex:1;min-width:0;display:flex;align-items:flex-end;justify-content:center;gap:3px;height:100%">
+                <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:2px;height:100%"><span style="font-size:10px;color:#1B5C9E;font-weight:600">{{b.m}}</span><div style="width:15px;border-radius:3px 3px 0 0;background:#2878C7;height:{{b.mh}}"></div></div>
+                <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:2px;height:100%"><span style="font-size:10px;color:#A8590A;font-weight:600">{{b.i}}</span><div style="width:15px;border-radius:3px 3px 0 0;background:#F28C28;height:{{b.ih}}"></div></div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;gap:6px;height:16px">
+            <sc-for list="{{bars}}" as="b" hint-placeholder-count="17">
+              <div style="flex:1;min-width:0;text-align:center;font-size:11px;font-weight:600;color:#142B4F">{{b.st}}</div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="flex:0 0 400px;background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:14px 16px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:baseline;gap:9px"><span style="font-size:14px;font-weight:700;color:#142B4F">แยกตามประเภทป้าย</span><span style="font-size:11px;color:#5B6B7F">ทุกสถานี · % จากจำนวนชิ้น</span></div>
+          <div style="display:flex;flex-direction:column;flex:1;gap:0">
+            <sc-for list="{{cats}}" as="c" hint-placeholder-count="7">
+              <div style="flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:3px;border-top:1px solid #EEF1F5">
+                <div style="display:flex;justify-content:space-between;font-size:11.5px"><span style="font-weight:600;color:#142B4F">{{c.th}} <span style="font-weight:400;color:#5B6B7F">{{c.en}}</span></span><span style="color:#5B6B7F;font-size:10.5px">ผลิต {{c.md}}/{{c.mq}} · ติดตั้ง {{c.id}}/{{c.iq}}</span></div>
+                <div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:7px;border-radius:4px;background:#E6EBF2;overflow:hidden"><div style="height:100%;background:#2878C7;width:{{c.mp}}"></div></div><span style="width:40px;text-align:right;font-size:11px;font-weight:700;color:#1B5C9E">{{c.mp}}</span></div>
+                <div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:7px;border-radius:4px;background:#E6EBF2;overflow:hidden"><div style="height:100%;background:#F28C28;width:{{c.ip}}"></div></div><span style="width:40px;text-align:right;font-size:11px;font-weight:700;color:#A8590A">{{c.ip}}</span></div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <!-- station table -->
+      <div style="flex:1;min-height:0;background:#fff;border:1px solid #E1E7EF;border-radius:10px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden">
+        <div style="flex:0 0 40px;display:flex;align-items:center;justify-content:space-between;padding:0 16px">
+          <div style="display:flex;align-items:baseline;gap:9px"><span style="font-size:14px;font-weight:700;color:#142B4F">ตารางความคืบหน้ารายสถานี</span><span style="font-size:11px;color:#5B6B7F">เส้นดำบนแถบ = % ตามแผน · ตัวเลขข้างแถบ = ช้ากว่าแผน (จุดเปอร์เซ็นต์)</span></div>
+          <span style="font-size:11px;color:#5B6B7F">{{rowCount}} สถานี</span>
+        </div>
+        <div style="flex:0 0 30px;display:grid;grid-template-columns:54px minmax(0,1.25fr) 96px 92px minmax(0,1.25fr) 96px 92px 84px 96px 112px minmax(0,1fr);align-items:center;gap:10px;padding:0 16px;background:#F0F3F8;font-size:11px;font-weight:700;color:#5B6B7F">
+          <span>สถานี</span><span>ผลิต (% จริง / แผน)</span><span>ชิ้นงานผลิต</span><span>สถานะผลิต</span><span>ติดตั้ง (% จริง / แผน)</span><span>ชิ้นงานติดตั้ง</span><span>สถานะติดตั้ง</span><span>รอติดตั้ง</span><span>Forecast เสร็จ</span><span>ตรวจรับ</span><span>หมายเหตุ</span>
+        </div>
+        <div style="flex:1;min-height:0;display:flex;flex-direction:column">
+          <sc-for list="{{rows}}" as="r" hint-placeholder-count="17">
+            <div style="flex:1;min-height:0;display:grid;grid-template-columns:54px minmax(0,1.25fr) 96px 92px minmax(0,1.25fr) 96px 92px 84px 96px 112px minmax(0,1fr);align-items:center;gap:10px;padding:0 16px;border-top:1px solid #EEF1F5;font-size:12px;background:{{r.bg}}">
+              <b style="color:#142B4F">{{r.st}}</b>
+              <div style="display:flex;align-items:center;gap:8px"><div style="position:relative;flex:1;height:9px;border-radius:5px;background:#E6EBF2"><div style="height:100%;border-radius:5px;background:#2878C7;width:{{r.mW}}"></div><div style="position:absolute;top:-3px;width:2px;height:15px;background:#142B4F;left:{{r.mP}}"></div></div><span style="width:42px;text-align:right;font-weight:700;color:#1B5C9E">{{r.ma}}</span><span style="width:34px;font-size:10.5px;color:#A32019">{{r.mgap}}</span></div>
+              <span style="color:#263445">{{r.mq}}</span>
+              <span><span style="padding:2px 9px;border-radius:10px;font-size:10.5px;font-weight:600;white-space:nowrap;background:{{r.msBg}};color:{{r.msFg}}">{{r.msTh}}</span></span>
+              <div style="display:flex;align-items:center;gap:8px"><div style="position:relative;flex:1;height:9px;border-radius:5px;background:#E6EBF2"><div style="height:100%;border-radius:5px;background:#F28C28;width:{{r.iW}}"></div><div style="position:absolute;top:-3px;width:2px;height:15px;background:#142B4F;left:{{r.iP}}"></div></div><span style="width:42px;text-align:right;font-weight:700;color:#A8590A">{{r.ia}}</span><span style="width:34px;font-size:10.5px;color:#A32019">{{r.igap}}</span></div>
+              <span style="color:#263445">{{r.iq}}</span>
+              <span><span style="padding:2px 9px;border-radius:10px;font-size:10.5px;font-weight:600;white-space:nowrap;background:{{r.isBg}};color:{{r.isFg}}">{{r.isTh}}</span></span>
+              <span style="font-weight:600;color:#142B4F">{{r.wait}}</span>
+              <span style="color:{{r.infColor}};font-weight:{{r.infW}}">{{r.inf}}</span>
+              <span><button onClick="{{r.openInsp}}" style="border:0;padding:3px 9px;border-radius:10px;font-family:inherit;font-size:10.5px;font-weight:700;white-space:nowrap;background:{{r.vBg}};color:{{r.vFg}}">{{r.vTh}}</button></span>
+              <span style="font-size:11px;color:#5B6B7F;line-height:1.2">{{r.rem}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- notes -->
+      <div style="flex:0 0 40px;display:flex;align-items:center;background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:0 14px;font-size:11px;color:#5B6B7F;box-sizing:border-box"><span>{{noteTxt}}</span></div>
+
+    </div>
+  </div>
+
+
+  <!-- DRAWER -->
+  <sc-if value="{{drawerOn}}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;right:0;top:54px;bottom:0;width:900px;background:#fff;border-left:1px solid #C9D3E1;box-shadow:-12px 0 30px rgba(20,43,79,0.16);box-sizing:border-box;padding:16px 20px;display:flex;flex-direction:column;gap:10px;overflow:hidden">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+        <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:18px;font-weight:700;color:#142B4F">จัดการความคืบหน้า · {{stLabel}}</span><span style="font-size:11.5px;color:#5B6B7F">อัปเดตรายแถวตามไฟล์ Excel · ตรวจรับรายสถานี · สร้างประเภทป้ายใหม่ (VO)</span></div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:11px;color:#5B6B7F">ดูในบทบาท (ตัวอย่าง)</span>
+          <div style="display:flex;border:1px solid #D5DDE8;border-radius:8px;overflow:hidden">
+            <sc-for list="{{roles}}" as="ro" hint-placeholder-count="3">
+              <button onClick="{{ro.pick}}" style="border:0;padding:6px 11px;font-family:inherit;font-size:11.5px;font-weight:{{ro.w}};background:{{ro.bg}};color:{{ro.fg}}">{{ro.label}}</button>
+            </sc-for>
+          </div>
+          <button onClick="{{closeDrawer}}" aria-label="ปิด" style="width:30px;height:30px;border:1px solid #D5DDE8;background:#fff;border-radius:15px;color:#263445;padding:0;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="14" height="14" style="fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+        </div>
+      </div>
+      <div style="display:flex;gap:4px;border-bottom:1px solid #E1E7EF">
+        <sc-for list="{{tabs}}" as="t" hint-placeholder-count="3">
+          <button onClick="{{t.pick}}" style="border:0;background:transparent;padding:8px 16px;font-family:inherit;font-size:13px;font-weight:{{t.w}};color:{{t.fg}};border-bottom:3px solid {{t.bd}};margin-bottom:-1px">{{t.label}}</button>
+        </sc-for>
+      </div>
+      <div style="background:#E3F0FB;color:#1B5C9E;border-radius:8px;padding:7px 11px;font-size:11.5px;line-height:1.35">{{roleNote}}</div>
+      <sc-if value="{{errOn}}" hint-placeholder-val="{{ false }}"><div style="color:#A32019;font-size:12px;font-weight:600">{{err}}</div></sc-if>
+
+      <!-- TAB: overview -->
+      <sc-if value="{{tabOv}}" hint-placeholder-val="{{ true }}">
+        <div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <span style="font-size:12px;font-weight:700;color:#142B4F">สถานี</span>
+            <div style="display:grid;grid-template-columns:repeat(17, minmax(0, 1fr));gap:4px">
+              <sc-for list="{{fStations}}" as="s" hint-placeholder-count="17">
+                <button onClick="{{s.pick}}" style="height:28px;border-radius:6px;border:1px solid {{s.bd}};background:{{s.bg}};color:{{s.fg}};font-family:inherit;font-size:11px;font-weight:600;padding:0">{{s.st}}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:8px">
+            <sc-for list="{{ovCards}}" as="c" hint-placeholder-count="4">
+              <div style="border:1px solid #E1E7EF;border-radius:9px;padding:8px 12px;display:flex;flex-direction:column;gap:2px;background:{{c.bg}}">
+                <span style="font-size:11px;color:#5B6B7F">{{c.label}}</span>
+                <span style="font-size:20px;font-weight:700;line-height:1.1;color:{{c.fg}}">{{c.val}}</span>
+                <span style="font-size:10.5px;color:#5B6B7F">{{c.sub}}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="border:1px solid #E1E7EF;border-radius:8px;overflow:hidden">
+            <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 96px minmax(0,1fr) 96px 120px;gap:10px;align-items:center;padding:6px 12px;background:#F0F3F8;font-size:10.5px;font-weight:700;color:#5B6B7F"><span>กลุ่มป้าย</span><span>ผลิตแล้ว</span><span>ยังไม่ผลิต</span><span>ติดตั้งแล้ว</span><span>ยังไม่ติดตั้ง</span><span>ตรวจรับ</span></div>
+            <sc-for list="{{ovGroups}}" as="g" hint-placeholder-count="7">
+              <div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 96px minmax(0,1fr) 96px 120px;gap:10px;align-items:center;padding:5px 12px;border-top:1px solid #EEF1F5;font-size:11.5px">
+                <b style="color:#142B4F">{{g.th}}</b>
+                <div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:7px;border-radius:4px;background:#E6EBF2;overflow:hidden"><div style="height:100%;background:#2878C7;width:{{g.mW}}"></div></div><span style="width:62px;font-size:10.5px;color:#1B5C9E;font-weight:600">{{g.mTxt}}</span></div>
+                <span style="font-weight:700;color:{{g.mLeftFg}}">{{g.mLeft}}</span>
+                <div style="display:flex;align-items:center;gap:6px"><div style="flex:1;height:7px;border-radius:4px;background:#E6EBF2;overflow:hidden"><div style="height:100%;background:#F28C28;width:{{g.iW}}"></div></div><span style="width:62px;font-size:10.5px;color:#A8590A;font-weight:600">{{g.iTxt}}</span></div>
+                <span style="font-weight:700;color:{{g.iLeftFg}}">{{g.iLeft}}</span>
+                <span><span style="padding:2px 9px;border-radius:10px;font-size:10.5px;font-weight:700;background:{{g.vBg}};color:{{g.vFg}}">{{g.vTh}}</span></span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px">
+            <div style="min-height:0;border:1px solid #E1E7EF;border-radius:8px;display:flex;flex-direction:column;overflow:hidden">
+              <div style="flex:0 0 30px;display:flex;align-items:center;padding:0 12px;background:#E3F0FB;font-size:12px;font-weight:700;color:#1B5C9E">ยังไม่ผลิต · {{ovMN}}</div>
+              <div style="flex:1;min-height:0;overflow:auto"><sc-for list="{{ovM}}" as="x" hint-placeholder-count="6">
+                <button onClick="{{x.go}}" style="width:100%;border:0;border-top:1px solid #EEF1F5;background:#fff;text-align:left;font-family:inherit;padding:5px 12px;display:flex;align-items:center;gap:8px;font-size:11.5px">
+                  <span style="flex:0 0 auto;background:#EEF1F5;color:#5B6B7F;font-size:10px;font-weight:700;padding:1px 7px;border-radius:9px">{{x.g}}</span>
+                  <span style="flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.2"><span style="font-weight:600;color:#142B4F;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{x.t}}</span><span style="font-size:10.5px;color:#5B6B7F">{{x.code}} · {{x.size}}</span></span>
+                  <span style="font-weight:700;color:#1B5C9E">ค้าง {{x.left}}</span>
+                </button></sc-for></div>
+            </div>
+            <div style="min-height:0;border:1px solid #E1E7EF;border-radius:8px;display:flex;flex-direction:column;overflow:hidden">
+              <div style="flex:0 0 30px;display:flex;align-items:center;padding:0 12px;background:#FDE9D0;font-size:12px;font-weight:700;color:#8A4B08">ยังไม่ติดตั้ง · {{ovIN}}</div>
+              <div style="flex:1;min-height:0;overflow:auto"><sc-for list="{{ovI}}" as="x" hint-placeholder-count="6">
+                <button onClick="{{x.go}}" style="width:100%;border:0;border-top:1px solid #EEF1F5;background:#fff;text-align:left;font-family:inherit;padding:5px 12px;display:flex;align-items:center;gap:8px;font-size:11.5px">
+                  <span style="flex:0 0 auto;background:#EEF1F5;color:#5B6B7F;font-size:10px;font-weight:700;padding:1px 7px;border-radius:9px">{{x.g}}</span>
+                  <span style="flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.2"><span style="font-weight:600;color:#142B4F;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{x.t}}</span><span style="font-size:10.5px;color:#5B6B7F">{{x.code}} · {{x.size}}</span></span>
+                  <span style="font-weight:700;color:#A8590A">ค้าง {{x.left}}</span>
+                </button></sc-for></div>
+            </div>
+          </div>
+          <span style="font-size:11px;color:#5B6B7F">เรียงจากค้างมากไปน้อย · กดรายการเพื่อไปแก้ในแท็บ "อัปเดตรายแถว"</span>
+        </div>
+      </sc-if>
+
+      <!-- TAB: rows -->
+      <sc-if value="{{tabRows}}" hint-placeholder-val="{{ true }}">
+        <div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <span style="font-size:12px;font-weight:700;color:#142B4F">1. สถานี</span>
+            <div style="display:grid;grid-template-columns:repeat(17, minmax(0, 1fr));gap:4px">
+              <sc-for list="{{fStations}}" as="s" hint-placeholder-count="17">
+                <button onClick="{{s.pick}}" style="height:28px;border-radius:6px;border:1px solid {{s.bd}};background:{{s.bg}};color:{{s.fg}};font-family:inherit;font-size:11px;font-weight:600;padding:0">{{s.st}}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <span style="font-size:12px;font-weight:700;color:#142B4F">2. กลุ่มป้าย</span>
+            <div style="display:flex;flex-wrap:wrap;gap:5px">
+              <sc-for list="{{gChips}}" as="g" hint-placeholder-count="7">
+                <button onClick="{{g.pick}}" style="height:28px;padding:0 11px;border-radius:14px;border:1px solid {{g.bd}};background:{{g.bg}};color:{{g.fg}};font-family:inherit;font-size:11.5px;font-weight:600">{{g.label}}</button>
+              </sc-for>
+            </div>
+          </div>
+          <sc-if value="{{pendOn}}" hint-placeholder-val="{{ false }}">
+            <div style="background:#FFF6E8;border:1px solid #F5D9A8;border-radius:8px;padding:7px 11px;display:flex;flex-direction:column;gap:5px">
+              <span style="font-size:12px;font-weight:700;color:#8A4B08">รอ PM อนุมัติ ({{pendN}})</span>
+              <sc-for list="{{pend}}" as="p" hint-placeholder-count="1">
+                <div style="display:flex;align-items:center;gap:10px;font-size:11.5px"><span style="flex:1;color:#263445">{{p.text}}</span><button onClick="{{p.approve}}" style="height:26px;padding:0 12px;border-radius:6px;border:1px solid {{p.bd}};background:{{p.bg}};color:{{p.fg}};font-family:inherit;font-size:11.5px;font-weight:700">อนุมัติ</button></div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <div style="flex:1;min-height:0;border:1px solid #E1E7EF;border-radius:8px;display:flex;flex-direction:column;overflow:hidden">
+            <div style="flex:0 0 30px;display:grid;grid-template-columns:minmax(0,1.7fr) 108px 62px 56px 62px 84px 62px 92px;gap:8px;align-items:center;padding:0 10px;background:#F0F3F8;font-size:10.5px;font-weight:700;color:#5B6B7F">
+              <span>Type of Installation</span><span>Code pattern</span><span>Size (cm)</span><span>แผน (ชิ้น)</span><span>ผลิตแล้ว</span><span>สถานะผลิต</span><span>ติดตั้งแล้ว</span><span>สถานะติดตั้ง</span>
+            </div>
+            <div style="flex:1;min-height:0;overflow:auto">
+              <sc-for list="{{rowsView}}" as="r" hint-placeholder-count="10">
+                <div style="display:grid;grid-template-columns:minmax(0,1.7fr) 108px 62px 56px 62px 84px 62px 92px;gap:8px;align-items:center;padding:5px 10px;border-top:1px solid #EEF1F5;background:{{r.bg}};font-size:11.5px">
+                  <div style="display:flex;align-items:center;gap:6px;min-width:0"><input aria-label="Type of Installation" value="{{r.t}}" onChange="{{r.onT}}" style="flex:1;min-width:0;height:28px;box-sizing:border-box;border:1px solid #D5DDE8;border-radius:6px;padding:0 7px;font-family:inherit;font-size:11.5px;color:#263445"><sc-if value="{{r.vo}}" hint-placeholder-val="{{ false }}"><span style="flex:0 0 auto;background:#FFF1DB;color:#8A4B08;font-size:10px;font-weight:700;padding:1px 7px;border-radius:9px">VO · {{r.idr}}</span></sc-if></div>
+                  <input aria-label="Code" value="{{r.code}}" onChange="{{r.onC}}" style="height:28px;box-sizing:border-box;border:1px solid #D5DDE8;border-radius:6px;padding:0 7px;font-family:inherit;font-size:11.5px;color:#263445;min-width:0">
+                  <span style="color:#5B6B7F">{{r.size}}</span>
+                  <sc-if value="{{r.vo}}" hint-placeholder-val="{{ false }}"><input aria-label="แผน" type="number" min="0" value="{{r.q}}" onChange="{{r.onQ}}" style="height:28px;box-sizing:border-box;border:1px solid #D5DDE8;border-radius:6px;padding:0 5px;font-family:inherit;font-size:11.5px;width:100%"></sc-if>
+                  <sc-if value="{{r.notVo}}" hint-placeholder-val="{{ true }}"><span style="font-weight:600;color:#142B4F">{{r.q}}</span></sc-if>
+                  <input aria-label="ผลิตแล้ว" type="number" min="0" value="{{r.p}}" onChange="{{r.onP}}" style="height:28px;box-sizing:border-box;border:1px solid #B8C4D4;border-radius:6px;padding:0 6px;font-family:inherit;font-size:12px;width:100%">
+                  <button onClick="{{r.togP}}" style="height:26px;border-radius:13px;border:0;background:{{r.pBg}};color:{{r.pFg}};font-family:inherit;font-size:10.5px;font-weight:700;padding:0 6px">{{r.pTh}}</button>
+                  <input aria-label="ติดตั้งแล้ว" type="number" min="0" value="{{r.i}}" onChange="{{r.onI}}" style="height:28px;box-sizing:border-box;border:1px solid #B8C4D4;border-radius:6px;padding:0 6px;font-family:inherit;font-size:12px;width:100%">
+                  <button onClick="{{r.togI}}" style="height:26px;border-radius:13px;border:0;background:{{r.iBg}};color:{{r.iFg}};font-family:inherit;font-size:10.5px;font-weight:700;padding:0 6px">{{r.iTh}}</button>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span style="font-size:11.5px;color:#5B6B7F">เพิ่มแถวจากประเภทที่สร้างไว้ (VO):</span>
+            <sc-for list="{{typeChips}}" as="tc" hint-placeholder-count="1">
+              <button onClick="{{tc.pick}}" style="height:26px;padding:0 10px;border-radius:13px;border:1px dashed #C77A1C;background:#FFF8EC;color:#8A4B08;font-family:inherit;font-size:11.5px;font-weight:600">+ {{tc.label}}</button>
+            </sc-for>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <span style="flex:1;font-size:11.5px;color:#5B6B7F">{{rowsHint}}</span>
+            <button onClick="{{closeDrawer}}" style="width:110px;height:38px;border-radius:8px;border:1px solid #142B4F;background:#fff;color:#142B4F;font-family:inherit;font-size:13px;font-weight:600">ปิด</button>
+            <button onClick="{{save}}" style="width:240px;height:38px;border-radius:8px;border:1px solid #142B4F;background:#142B4F;color:#fff;font-family:inherit;font-size:13px;font-weight:700">{{saveLabel}}</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- TAB: inspection -->
+      <sc-if value="{{tabInsp}}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <span style="font-size:12px;font-weight:700;color:#142B4F">สถานี</span>
+            <div style="display:grid;grid-template-columns:repeat(17, minmax(0, 1fr));gap:4px">
+              <sc-for list="{{fStations}}" as="s" hint-placeholder-count="17">
+                <button onClick="{{s.pick}}" style="height:28px;border-radius:6px;border:1px solid {{s.bd}};background:{{s.bg}};color:{{s.fg}};font-family:inherit;font-size:11px;font-weight:600;padding:0">{{s.st}}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:#F5F7FA;border-radius:8px;padding:9px 12px">
+            <div style="display:flex;flex-direction:column;line-height:1.2"><span style="font-size:11px;color:#5B6B7F">สรุปการตรวจรับสถานี {{stLabel}}</span><span style="font-size:15px;font-weight:700;color:#142B4F">{{sum.text}}</span></div>
+            <span style="padding:3px 11px;border-radius:11px;font-size:11.5px;font-weight:700;background:{{sum.bg}};color:{{sum.fg}}">{{sum.badge}}</span>
+            <span style="flex:1;font-size:11.5px;color:#5B6B7F;text-align:right">{{sum.note}}</span>
+          </div>
+          <div style="flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:0">
+            <sc-for list="{{iflat}}" as="x" hint-placeholder-count="8">
+              <div style="display:flex;flex-direction:column">
+                <sc-if value="{{x.head}}" hint-placeholder-val="{{ true }}">
+                  <div style="margin-top:8px;border:1px solid #E1E7EF;border-radius:8px 8px 0 0;background:#fff;padding:9px 12px;display:flex;flex-direction:column;gap:7px">
+                    <div style="display:flex;align-items:center;gap:10px">
+                      <span style="font-size:13px;font-weight:700;color:#142B4F">{{x.th}}</span><span style="font-size:11px;color:#5B6B7F">{{x.en}} · {{x.qty}} ชิ้น</span>
+                      <span style="flex:1"></span>
+                      <span style="padding:2px 10px;border-radius:10px;font-size:11px;font-weight:700;background:{{x.bg}};color:{{x.fg}}">{{x.stTh}}</span>
+                    </div>
+                    <div style="display:flex;gap:5px;align-items:center"><span style="font-size:11px;color:#5B6B7F;width:96px">PM ตั้งสถานะ</span>
+                      <sc-for list="{{x.opts}}" as="o" hint-placeholder-count="4">
+                        <button onClick="{{o.pick}}" style="height:26px;padding:0 11px;border-radius:13px;border:1px solid {{o.bd}};background:{{o.bg}};color:{{o.fg}};font-family:inherit;font-size:11px;font-weight:600;opacity:{{o.op}}">{{o.label}}</button>
+                      </sc-for>
+                    </div>
+                    <div style="display:flex;gap:8px;align-items:center"><span style="font-size:11px;color:#5B6B7F;width:88px">Comment</span>
+                      <input aria-label="Comment" value="{{x.cm}}" onChange="{{x.onCm}}" placeholder="บันทึกผลการตรวจ..." style="flex:1;height:30px;box-sizing:border-box;border:1px solid #B8C4D4;border-radius:6px;padding:0 9px;font-family:inherit;font-size:12px;color:#263445"></div>
+                    <div style="display:flex;gap:8px;align-items:center"><span style="font-size:11px;color:#5B6B7F;width:88px">เอกสารตรวจ</span>
+                      <button onClick="{{x.upload}}" style="height:28px;padding:0 12px;border-radius:6px;border:1px dashed #5B6B7F;background:#fff;color:#142B4F;font-family:inherit;font-size:11.5px;font-weight:600;opacity:{{x.upOp}}">แนบเอกสาร (GRS Leader)</button>
+                      <span style="flex:1;font-size:11.5px;color:#263445">{{x.doc}}</span>
+                      <span style="font-size:10.5px;color:#5B6B7F">{{x.meta}}</span></div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{x.pk}}" hint-placeholder-val="{{ false }}">
+                  <div style="border:1px solid #E1E7EF;border-top:0;background:#FFFBF3;padding:5px 12px 5px 28px;display:flex;align-items:center;gap:9px;font-size:12px">
+                    <button onClick="{{x.tog}}" aria-label="สลับสถานะ" style="width:18px;height:18px;border-radius:4px;border:1px solid #8A4B08;background:{{x.chkBg}};color:#fff;padding:0;font-size:11px;line-height:1">{{x.chk}}</button>
+                    <span style="flex:1;color:{{x.fg}};text-decoration:{{x.dec}}">{{x.text}}</span><span style="font-size:10.5px;color:#8A4B08">รายการปรับปรุง</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{x.add}}" hint-placeholder-val="{{ false }}">
+                  <div style="border:1px solid #E1E7EF;border-top:0;border-radius:0 0 8px 8px;background:#FFFBF3;padding:6px 12px 7px 28px;display:flex;gap:8px;align-items:center">
+                    <input aria-label="เพิ่มรายการปรับปรุง" value="{{x.nv}}" onChange="{{x.onNew}}" placeholder="เพิ่มรายการปรับปรุง (punch list) เช่น ป้ายเอียง ชั้นชานชาลา" style="flex:1;height:28px;box-sizing:border-box;border:1px solid #D5C29A;border-radius:6px;padding:0 9px;font-family:inherit;font-size:11.5px;background:#fff">
+                    <button onClick="{{x.addNew}}" style="height:28px;padding:0 12px;border-radius:6px;border:1px solid #8A4B08;background:#8A4B08;color:#fff;font-family:inherit;font-size:11.5px;font-weight:700">เพิ่ม</button>
+                  </div>
+                </sc-if>
+                <sc-if value="{{x.cap}}" hint-placeholder-val="{{ false }}"><div style="height:0;border-bottom:1px solid #E1E7EF;border-radius:0 0 8px 8px"></div></sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- TAB: types -->
+      <sc-if value="{{tabTypes}}" hint-placeholder-val="{{ false }}">
+        <div style="flex:1;min-height:0;display:flex;flex-direction:column;gap:10px;overflow:auto">
+          <div style="border:1px solid #E1E7EF;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:9px">
+            <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px;font-weight:700;color:#142B4F">สร้างประเภทป้ายใหม่</span><span style="background:#FFF1DB;color:#8A4B08;font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:9px">ติดแท็ก VO อัตโนมัติ</span><span style="flex:1"></span><span style="font-size:11px;color:#5B6B7F">ใช้ร่วมกับ ฐานข้อมูลป้าย และ Warranty</span></div>
+            <div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:700;color:#142B4F">กลุ่มป้าย</span>
+              <div style="display:flex;flex-wrap:wrap;gap:5px">
+                <sc-for list="{{tgChips}}" as="g" hint-placeholder-count="7">
+                  <button onClick="{{g.pick}}" style="height:28px;padding:0 11px;border-radius:14px;border:1px solid {{g.bd}};background:{{g.bg}};color:{{g.fg}};font-family:inherit;font-size:11.5px;font-weight:600">{{g.label}}</button>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) 110px;gap:10px">
+              <div style="display:flex;flex-direction:column;gap:4px"><label style="font-size:12px;font-weight:700;color:#142B4F">Type of Installation</label><input value="{{tf.t}}" onChange="{{onTfT}}" placeholder="เช่น Overhead Slim Signs - Special" style="height:34px;box-sizing:border-box;border:1px solid #B8C4D4;border-radius:7px;padding:0 10px;font-family:inherit;font-size:12.5px"></div>
+              <div style="display:flex;flex-direction:column;gap:4px"><label style="font-size:12px;font-weight:700;color:#142B4F">Code pattern</label><input value="{{tf.code}}" onChange="{{onTfC}}" placeholder="เช่น DS-2E-120" style="height:34px;box-sizing:border-box;border:1px solid #B8C4D4;border-radius:7px;padding:0 10px;font-family:inherit;font-size:12.5px"></div>
+              <div style="display:flex;flex-direction:column;gap:4px"><label style="font-size:12px;font-weight:700;color:#142B4F">Size (cm)</label><input value="{{tf.size}}" onChange="{{onTfS}}" placeholder="40X200" style="height:34px;box-sizing:border-box;border:1px solid #B8C4D4;border-radius:7px;padding:0 10px;font-family:inherit;font-size:12.5px"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px"><label style="font-size:12px;font-weight:700;color:#142B4F">คำอธิบาย</label><input value="{{tf.desc}}" onChange="{{onTfD}}" placeholder="รายละเอียด / เหตุผลที่เป็นงาน VO" style="height:34px;box-sizing:border-box;border:1px solid #B8C4D4;border-radius:7px;padding:0 10px;font-family:inherit;font-size:12.5px"></div>
+            <div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:700;color:#142B4F">จำนวน VO ที่สถานี {{stLabel}} แยกตามชั้น (ชิ้น)</span>
+              <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:10px">
+                <sc-for list="{{floorQty}}" as="f" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:center;gap:7px"><span style="width:20px;height:20px;border-radius:5px;background:#142B4F;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">{{f.k}}</span><span style="font-size:11px;color:#5B6B7F;width:96px">{{f.name}}</span><input type="number" min="0" value="{{f.q}}" onChange="{{f.on}}" placeholder="0" style="flex:1;min-width:0;height:32px;box-sizing:border-box;border:1px solid #B8C4D4;border-radius:7px;padding:0 8px;font-family:inherit;font-size:12.5px"></div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="background:#F5F7FA;border-radius:8px;padding:8px 12px;display:flex;flex-direction:column;gap:3px"><span style="font-size:11.5px;font-weight:700;color:#142B4F">รหัสที่จะได้ (เลขรันต่อจากเลขล่าสุดของแต่ละชั้นในสถานี {{stLabel}})</span>
+              <sc-for list="{{codePrev}}" as="c" hint-placeholder-count="1"><span style="font-size:12px;color:#263445"><b>{{c.ids}}</b> <span style="color:#5B6B7F">{{c.note}}</span></span></sc-for>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:700;color:#142B4F">สถานี</span>
+              <div style="display:grid;grid-template-columns:repeat(17, minmax(0, 1fr));gap:4px">
+                <sc-for list="{{fStations}}" as="s" hint-placeholder-count="17"><button onClick="{{s.pick}}" style="height:26px;border-radius:6px;border:1px solid {{s.bd}};background:{{s.bg}};color:{{s.fg}};font-family:inherit;font-size:10.5px;font-weight:600;padding:0">{{s.st}}</button></sc-for>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end"><button onClick="{{createType}}" style="height:36px;padding:0 22px;border-radius:8px;border:1px solid #F28C28;background:#F28C28;color:#142B4F;font-family:inherit;font-size:13px;font-weight:700">บันทึกประเภทป้ายใหม่</button></div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:14px;font-weight:700;color:#142B4F">ประเภทที่สร้างไว้ (เลือกใช้ในการอัปเดตครั้งถัดไป)</span><span style="font-size:11px;color:#5B6B7F">ประเภทตาม Excel เดิม {{baseTypes}} รายการ</span></div>
+          <sc-for list="{{typeList}}" as="y" hint-placeholder-count="2">
+            <div style="border:1px solid #F5D9A8;background:#FFFBF3;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:10px;font-size:12px">
+              <span style="background:#FFF1DB;color:#8A4B08;font-size:10px;font-weight:700;padding:1px 8px;border-radius:9px">VO</span>
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.3"><span style="font-weight:700;color:#142B4F">{{y.t}} · {{y.code}} · {{y.size}}</span><span style="font-size:11px;color:#5B6B7F">{{y.g}} · {{y.desc}} · สร้างโดย {{y.by}} {{y.at}}</span></div>
+              <span style="font-size:11.5px;color:#263445">{{y.use}}</span>
+            </div>
+          </sc-for>
+          <sc-if value="{{noTypes}}" hint-placeholder-val="{{ true }}"><div style="font-size:12px;color:#5B6B7F;border:1px dashed #C9D3E1;border-radius:8px;padding:14px;text-align:center">ยังไม่มีประเภทป้ายใหม่ — กรอกแบบฟอร์มด้านบน หลังบันทึกแล้วจะเลือกใช้ได้ที่แท็บ "อัปเดตรายแถว"</div></sc-if>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+  <!-- IMPORT MODAL -->
+  <sc-if value="{{impOn}}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:0;top:0;right:0;bottom:0;background:rgba(20,43,79,0.5);display:flex;align-items:center;justify-content:center">
+      <div style="width:760px;background:#fff;border-radius:12px;box-shadow:0 20px 60px rgba(20,43,79,0.35);padding:18px 22px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;justify-content:space-between"><div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:18px;font-weight:700;color:#142B4F">นำเข้าความคืบหน้าจาก Excel</span><span style="font-size:11.5px;color:#5B6B7F">โยนไฟล์ Progress_GRS (.xlsx) รูปแบบเดิม ระบบเทียบกับข้อมูลปัจจุบันก่อนนำเข้า</span></div>
+          <button onClick="{{closeImport}}" aria-label="ปิด" style="width:30px;height:30px;border:1px solid #D5DDE8;background:#fff;border-radius:15px;color:#263445;padding:0;font-size:15px">×</button></div>
+        <label style="border:2px dashed #2878C7;background:#EEF5FC;border-radius:12px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer"><span style="font-size:14px;font-weight:700;color:#1B5C9E">ลากไฟล์มาวาง หรือคลิกเพื่อเลือกไฟล์ .xlsx</span><span style="font-size:12px;color:#5B6B7F">{{impFile}}</span><input type="file" multiple accept=".xlsx,.xls" onChange="{{impPick}}" style="display:none"></label>
+        <div style="display:flex;gap:8px;align-items:center"><button onClick="{{impSample}}" style="height:30px;padding:0 14px;border-radius:8px;border:1px solid #142B4F;background:#fff;color:#142B4F;font-family:inherit;font-size:12px;font-weight:600">ใช้ไฟล์ตัวอย่าง (12 พ.ย.)</button><span style="font-size:11.5px;color:#8A4B08">อ่านไฟล์จริงได้ (เลือกทั้งไฟล์ CH และ TNK พร้อมกันได้) · อ่านยอดรวมผลิต/ติดตั้งต่อสถานีจากชีต STA Manu / STA Install</span></div>
+        <span style="font-size:12px;font-weight:600;color:#A8590A;min-height:16px">{{impErr}}</span>
+        <sc-if value="{{impHas}}" hint-placeholder-val="{{ true }}"><div style="border:1px solid #E1E7EF;border-radius:10px;overflow:hidden">
+          <div style="display:grid;grid-template-columns:70px 1fr 1fr 1fr;gap:8px;padding:7px 12px;background:#F0F3F8;font-size:10.5px;font-weight:700;color:#5B6B7F"><span>สถานี</span><span>ผลิต (ชิ้น) เดิม → ใหม่</span><span>ติดตั้ง (ชิ้น) เดิม → ใหม่</span><span>การเปลี่ยนแปลง</span></div>
+          <div style="max-height:250px;overflow:auto"><sc-for list="{{impRows}}" as="r" hint-placeholder-count="6"><div style="display:grid;grid-template-columns:70px 1fr 1fr 1fr;gap:8px;padding:6px 12px;border-top:1px solid #EEF1F5;font-size:12px"><b style="color:#142B4F">{{r.st}}</b><span>{{r.m}}</span><span>{{r.i}}</span><span style="color:#1B6B43;font-weight:700">{{r.d}}</span></div></sc-for></div></div>
+        <div style="display:flex;justify-content:flex-end;gap:10px"><button onClick="{{closeImport}}" style="height:34px;padding:0 16px;border-radius:8px;border:1px solid #142B4F;background:#fff;color:#142B4F;font-family:inherit;font-size:12.5px;font-weight:600">ยกเลิก</button><button onClick="{{impGo}}" style="height:34px;padding:0 16px;border-radius:8px;border:1px solid #F28C28;background:#F28C28;color:#142B4F;font-family:inherit;font-size:12.5px;font-weight:700">{{impBtn}}</button></div></sc-if>
+      </div>
+    </div>
+  </sc-if>
+  <!-- EXPORT MODAL -->
+  <sc-if value="{{expOn}}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:0;top:0;right:0;bottom:0;background:rgba(20,43,79,0.5);display:flex;align-items:center;justify-content:center">
+      <div style="width:1040px;max-height:1120px;background:#fff;border-radius:12px;box-shadow:0 20px 60px rgba(20,43,79,0.35);padding:18px 22px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;justify-content:space-between"><div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:18px;font-weight:700;color:#142B4F">ส่งออกรายงานความคืบหน้า</span><span style="font-size:11.5px;color:#5B6B7F">รูปแบบเดียวกับ Sheet1 ของไฟล์ Progress GRS · GRS Station - Work Progress Tracking</span></div>
+          <button onClick="{{closeExport}}" aria-label="ปิด" style="width:30px;height:30px;border:1px solid #D5DDE8;background:#fff;border-radius:15px;color:#263445;padding:0;font-size:15px">×</button></div>
+        <div style="display:flex;gap:22px;align-items:flex-end">
+          <div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:700;color:#142B4F">รูปแบบไฟล์</span><div style="display:flex;gap:6px"><sc-for list="{{expFmts}}" as="f" hint-placeholder-count="2"><button onClick="{{f.pick}}" style="height:32px;padding:0 16px;border-radius:8px;border:1px solid {{f.bd}};background:{{f.bg}};color:{{f.fg}};font-family:inherit;font-size:12.5px;font-weight:600">{{f.label}}</button></sc-for></div></div>
+          <div style="display:flex;flex-direction:column;gap:5px"><span style="font-size:12px;font-weight:700;color:#142B4F">ช่วงสถานี</span><div style="display:flex;gap:6px"><sc-for list="{{expZones}}" as="f" hint-placeholder-count="3"><button onClick="{{f.pick}}" style="height:32px;padding:0 14px;border-radius:8px;border:1px solid {{f.bd}};background:{{f.bg}};color:{{f.fg}};font-family:inherit;font-size:12.5px;font-weight:600">{{f.label}}</button></sc-for></div></div>
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:11px;color:#5B6B7F">วันที่ข้อมูล</span><span style="font-size:13px;font-weight:600;color:#142B4F">12 พ.ย. 69</span></div>
+          <div style="flex:1"></div>
+          <div style="display:flex;flex-direction:column;gap:2px;align-items:flex-end"><span style="font-size:11px;color:#5B6B7F">ชื่อไฟล์</span><span style="font-size:12.5px;font-weight:600;color:#142B4F">{{expFile}}</span></div>
+        </div>
+        <div style="border:1px solid #D5DDE8;border-radius:8px;overflow:hidden">
+          <div style="background:#142B4F;color:#fff;font-size:12px;font-weight:700;padding:7px 12px">GRS Station - Work Progress Tracking · Update date : 12 พ.ย. 69</div>
+          <div style="display:grid;grid-template-columns:36px 56px repeat(3, minmax(0,1fr)) repeat(3, minmax(0,1fr)) 84px;gap:8px;padding:5px 12px;background:#DCE6F2;font-size:10.5px;font-weight:700;color:#142B4F;text-align:center"><span>No.</span><span>Station</span><span style="grid-column:span 3">Manufacturing</span><span style="grid-column:span 3">Installation</span><span>Station</span></div>
+          <div style="display:grid;grid-template-columns:36px 56px repeat(3, minmax(0,1fr)) repeat(3, minmax(0,1fr)) 84px;gap:8px;padding:4px 12px;background:#F0F3F8;font-size:10.5px;font-weight:700;color:#5B6B7F;text-align:center"><span></span><span></span><span>Start</span><span>Finish</span><span>% Prog. Actual</span><span>Start</span><span>Finish</span><span>% Prog. Actual</span><span>Mfg + Inst</span></div>
+          <div style="display:grid;grid-template-columns:36px 56px repeat(3, minmax(0,1fr)) repeat(3, minmax(0,1fr)) 84px;gap:8px;padding:4px 12px;background:#FFF6E8;font-size:11.5px;font-weight:700;color:#142B4F;text-align:center;border-top:1px solid #EEF1F5"><span></span><span>รวม</span><span></span><span></span><span>{{expTot.m}}</span><span></span><span></span><span>{{expTot.i}}</span><span>{{expTot.a}}</span></div>
+          <sc-for list="{{expRows}}" as="r" hint-placeholder-count="10">
+            <div style="display:grid;grid-template-columns:36px 56px repeat(3, minmax(0,1fr)) repeat(3, minmax(0,1fr)) 84px;gap:8px;padding:3px 12px;border-top:1px solid #EEF1F5;font-size:11.5px;text-align:center;color:#263445"><span>{{r.no}}</span><b style="color:#142B4F">{{r.st}}</b><span>{{r.ms}}</span><span>{{r.mf}}</span><span style="font-weight:700;color:#1B5C9E">{{r.mp}}</span><span>{{r.is}}</span><span>{{r.if}}</span><span style="font-weight:700;color:#A8590A">{{r.ip}}</span><span style="font-weight:700;color:#142B4F">{{r.avg}}</span></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="flex:1;font-size:11.5px;color:#5B6B7F">{{expNote}}</span>
+          <button onClick="{{closeExport}}" style="width:110px;height:38px;border-radius:8px;border:1px solid #142B4F;background:#fff;color:#142B4F;font-family:inherit;font-size:13px;font-weight:600">ยกเลิก</button>
+          <button onClick="{{doExport}}" style="width:200px;height:38px;border-radius:8px;border:1px solid #F28C28;background:#F28C28;color:#142B4F;font-family:inherit;font-size:13px;font-weight:700">{{expBtn}}</button></div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1260}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const RAW = [
+      ['OR13',552,552,100,100,'Completed','2026-10-20',552,536,97.1,100,'Late','2026-10-31','รอ BEM / M&E · 3 ประเภทป้าย'],
+      ['OR14',600,600,100,100,'Completed','2026-10-20',632,465,73.6,100,'Late','2026-10-31','รอ BEM / M&E · 4 ประเภทป้าย'],
+      ['OR15',640,640,100,100,'Completed','2026-10-20',580,173,29.8,100,'Late','2026-11-20','รอ BEM / M&E · 4 ประเภทป้าย'],
+      ['OR16',755,754,99.8,100,'On Schedule','2026-10-31',719,418,58.2,84,'Late','2026-11-20','รอ BEM / M&E · 4 ประเภทป้าย'],
+      ['OR17',742,695,93.7,100,'Late','2026-10-31',742,29,3.9,84,'Late','2026-11-20','รอ BEM / M&E · 4 ประเภทป้าย'],
+      ['OR18',626,570,91,100,'Late','2026-11-10',618,32,5.3,64.7,'Late','2026-11-30','รอ BEM / M&E · 4 ประเภทป้าย'],
+      ['OR19',663,606,91.3,100,'Late','2026-11-10',619,244,39.4,64.7,'Late','2026-11-30','รอ BEM / M&E · 4 ประเภทป้าย'],
+      ['OR20',574,509,88.7,100,'Late','2026-11-20',598,148,24.7,45.1,'Late','2026-12-10','รอ BEM / M&E · 4 ประเภทป้าย'],
+      ['OR21',580,470,81,91.3,'Late','2026-11-30',538,28,5.3,37.7,'Late','2026-12-20','รอ BEM / M&E · 4 ประเภทป้าย'],
+      ['OR22',690,426,61.8,89.5,'Late','2026-12-10',528,17,3.2,18.3,'Late','2026-12-31','รอ BEM / M&E · 4 ประเภทป้าย'],
+      ['OR23',413,368,89.2,100,'Late','2026-09-11',413,157,38,100,'Late','2026-10-17',''],
+      ['OR24',513,410,79.9,100,'Late','2026-10-05',513,221,43.1,100,'Late','2026-10-24','รอ Confirm แบบ · ถอดป้ายไปโรงงานแล้ว'],
+      ['OR25',488,400,82,100,'Late','2026-10-12',488,222,45.5,100,'Late','2026-10-31','รอ Confirm แบบ'],
+      ['OR26',538,313,58.1,100,'Late','2026-10-19',538,222,41.3,74.2,'Late','2026-11-07','รอ Confirm แบบ'],
+      ['OR27',529,428,81,82.6,'Late','2026-10-26',529,218,41.2,41.9,'Late','2026-11-14','รอ Confirm แบบ'],
+      ['OR28',453,150,33,64.7,'Late','2026-11-02',453,122,26.9,20,'On Schedule','2026-11-21','รอ Confirm แบบ'],
+      ['OR29',443,165,37.2,45.1,'Late','2026-11-09',443,140,31.6,5,'On Schedule','2026-11-28','รอ Confirm แบบ']
+    ];
+    const RD = {"cat":[["Lighting Box","Overhead Slim Signs - 2 Side Direction","DS-2E-120","40X120"],["Lighting Box","Overhead Slim Signs - 2 Side Direction","DS-2E-150","40X150"],["Lighting Box","Overhead Slim Signs - 2 Side Direction","DS-2E-300","40X300"],["Lighting Box","Overhead Box Signs - Station Name Entrance -Type 1","LI-2E3-350","50X350"],["Lighting Box","Hang Mount - Station Name Entrance -Type 3","LI-3E-80","130X80"],["Lighting Box","Stand Mount - Station Name Entrance -Type 2","LI-5E","80X244"],["Stand Mount","MRT Network Map-Double Pole","PI-1B","120x130"],["Stand Mount","MRT Locality Map+Exit Information","PI-2B1A","120x160"],["Stand Mount","MRT Locality Map+Exit Survice Hours+Banned Item","PI-2B3A","120x160"],["Stand Mount","Dual PR&Safety Board-Double Pole","PI-15B","120x130"],["Stand Mount","None","PI-16D","120 x 80"],["Wall Mount","MRT Network Map-Wall","PI-1A130","120x130"],["Wall Mount","MRT Locality Map+Exit Per Entrance+Banned Item","PI-2A2A","120x160"],["Wall Mount","Room Name - Staff Only","SW-9","8.5x30"],["Wall Mount","Dual PR&Safety Board-Wall","PI-15A","120x130"],["Wall Mount","Route Map Vertical -Wall","PI-16A","120x50"],["Wall Mount","MRTA Bylaw-Wall","PI-22A","120x130"],["Wall Mount","Ticket Office Name","LI-6","25x100"],["Wall Mount","Lift Direction","PI-5B","20x100"],["Wall Mount","Lift Direcory","PI-5C","35x20"],["Wall Mount","TVM","PI-10","20x100"],["Wall Mount","Service Hours-Wall","PI-3A","120x50"],["Wall Mount","Fare Rate-Wall","PI-4A","120x50"],["Wall Mount","Route Map Vertical -Wall","PI-16C","120x50"],["Surface Mount","Station Direction for TO","OS-9","80x150"],["Surface Mount","Emergency Help Point","PI-9","30x21"],["Surface Mount","Refuge Point","SW-8","30x21"],["Side Mount","Utilities-Lift Icon","PI-5A","30x30"],["Side Mount","Accessibility ramp","PI-6A","30x60"],["Sticker","Inkjet - AFC Ticket Office Window Number","LI-7","20x20"],["Sticker","Inkjet - AFC Gate Stand Here Line","OS-6","6.5x165"],["Sticker","Inkjet - AFC Wheel Chair","PI-17","20x20"],["Sticker","Inkjet - AFC Swing Gate","PI-18","60x90"],["Sticker","Inkjet - AFC Height Scale","PI-19","150x15"],["Sticker","Inkjet - PSD - PSD Not in Use","LI-8","10x80"],["Sticker","Inkjet - PSD - Route Line Diagram Horizontal-PSD","PI-21B","40x85"],["Sticker","Inkjet - PSD - Mind The Gap","SW-2","10x80"],["Sticker","Reflective - PSD - A6-A7 PSD Sticker","OS-7","xxx"],["Sticker","Inkjet - EWD - Track Access Warning","SW-1","60x40"],["Sticker","Inkjet - Escalator Balustrade-Hold the Handrail","SW-3","53x260"],["Sticker","Inkjet - Escalator Hold the Handrail","SW-4","28x6.5"],["Sticker","Inkjet - Escalator Circle","SW-6","60x60"],["Sticker","Inkjet - Escalator Track Location","SW-10","20x60"],["Sticker","Inkjet - Room Name (Non-Public Doors)","LI-9","8.5x30"],["Sticker","SOR Film","OS-5","xxx"],["A6 Pole","A6 Pole","OS-8","2000"],["Lighting Box","Overhead Slim Signs - 1 Side Direction","DS-1E-300","40x300"],["Sticker","Inkjet - PSD - Route Line Diagram Horizontal-PSD","PI-21A","50x220"],["Lighting Box","Overhead Slim Signs - 1 Side Direction","DS-1E-350","40x350"],["Lighting Box","Overhead Slim Signs - 2 Side Direction","DS-2E-350","40X350"],["Lighting Box","Overhead Slim Signs - 1 Side Direction","DS-1E-150","40x150"],["Lighting Box","2 Side Direction","DS-2E-240","40x240"],["Lighting Box","2 Side Direction","OS-2E-120 จัดจ้างเพิ่ม","40x120"],["Lighting Box","2 Side Direction","DS-2E-60  จัดจ้างเพิ่ม","40x60"],["Lighting Box","Station Name Entrance -Type 2","LI-2E3-VARIES","VARIES"],["Lighting Box","Station Name Entrance -Type 3","LI-3E-80","135x80"],["Lighting Box","Station Name Platform -Type 2","LI-5E","80x240"],["Lighting Box","2 Side Information","LI-10","100x220"],["Stand Mount","MRT Network Map-Double Pole","PI-1B160","120x160"],["","MRT Locality Map+Exit Per Entrance+Banned Item","PI-2B2A","120x160"],["Stand Mount","MRT Locality Map+Exit Survice Hours+Banned Item","PI-2B3A-160","120x160"],["Stand Mount","Dual PR&Safety Board-Double Pole","PI-15B160","120x160"],["Stand Mount","Route Map Vertical -Double Pole","PI-16B80","120x80"],["Wall Mount","MRT Network Map-Wall","PI-1A80","120x80"],["Wall Mount","Service Hours-Wall","PI-3C","120x50"],["Wall Mount","Fare Rate Slim-Wall","PI-4C","120x50"],["Wall Mount","Emergency Help Point","PI-9","30x21"],["Wall Mount","Dual PR&Safety Board-Wall","PI-15A80","120x80"],["Wall Mount","MRTA Bylaw-Wall","PI-22A80","120x80"],["Wall Mount","Refuge Point","SW-8","30x21"],["Wall Mount","Staff Only","SW-9","8.5x30"],["Wall Mount","Track Location","SW-10","20x60"],["Sticker","Inkjet - PSD - PSD Train Side","PI-23","50x200 cm"],["Sticker","Inkjet - PSD - Next Station for TO","PI-24","95x85 cm"],["Sticker","Ticket Office Film","OS-4","As descripted in diagram"],["Stand Mount","MRT Locality Map+Exit Per Entrance+Banned Item","PI-2B4","120x160"],["Stand Mount","MRTA Bylaw-Double Pole","PI-22B","120x130"],["Stand Mount","MRTA Bylaw-Double Pole","PI-22B160","120x160"],["Wall Mount","MRT Locality Map+Exit Survice Hours+Banned Item","PI-2A3A-80","120x80"],["Wall Mount","MRT Locality Map+Exit Information","PI-2A","120x80"],["Stand Mount","MRT Locality Map+Exit Per Entrance+Banned Item","PI-2B2B-160","120x160"],["Lighting Box","2 Side Direction","DS-2E-120","40x120"],["Stand Mount","MRT Locality Map+Exit Per Entrance+Banned Item","PI-2B2A","120x160"],["Sticker","Track Access Warning","SW-1","60x40 cm"],["Sticker","Escalator Balustrade-Hold the Handrail","SW-3","53x260 cm"],["Sticker","Hold the Handrail","SW-4","28x6.5 cm"],["Sticker","Escalator Circle","SW-6","60x60 cm"],["Sticker","Room Name (Non-Public Doors)","LI-9","8.5x30 cm"]],"st":{"OR13":[[0,16,1,1],[1,10,1,1],[2,19,1,1],[3,2,1,1],[4,3,1,1],[5,8,1,1],[6,6,1,1],[7,4,1,1],[8,4,1,1],[9,4,1,1],[10,2,1,1],[11,6,1,1],[12,2,1,1],[13,28,1,1],[14,2,1,1],[15,14,1,1],[16,2,1,1],[17,4,1,1],[18,6,1,1],[19,6,1,1],[20,8,1,1],[21,2,1,1],[22,2,1,1],[23,2,1,1],[24,4,1,1],[25,2,1,1],[26,2,1,1],[27,4,1,1],[28,1,1,1],[29,6,1,1],[30,4,1,1],[31,8,1,1],[32,4,1,1],[33,2,1,1],[34,48,1,1],[35,24,1,1],[36,48,1,1],[37,4,1,1],[38,4,1,1],[39,20,1,1],[40,48,1,1],[41,64,1,1],[42,4,1,1],[43,76,1,1],[44,1,1,1],[45,4,1,0]],"OR14":[[46,2,1,1],[0,16,1,1],[1,4,1,1],[2,11,1,1],[3,4,1,1],[4,4,1,0.75],[5,8,1,1],[6,6,1,1],[7,2,1,1],[8,4,1,1],[9,2,1,1],[10,4,1,1],[11,2,1,1],[12,6,1,1],[13,27,1,1],[14,2,1,1],[16,2,1,1],[17,4,1,1],[18,12,1,1],[19,12,1,1],[20,8,1,1],[21,2,1,1],[22,2,1,1],[23,2,1,1],[24,4,1,1],[25,2,1,1],[26,2,1,1],[27,6,1,1],[28,3,1,1],[29,6,1,1],[30,4,1,1],[31,8,1,1],[32,4,1,0],[33,2,1,1],[34,48,1,1],[47,24,1,0],[36,48,1,1],[37,4,1,0],[38,4,1,1],[39,36,1,1],[40,60,1,1],[41,72,1,1],[42,4,1,1],[43,92,1,0.435],[44,1,1,1],[45,4,1,0]],"OR15":[[48,2,1,1],[0,12,1,1],[1,4,1,1],[49,16,1,1],[3,4,1,0],[4,4,1,0],[5,8,1,1],[6,6,1,1],[7,2,1,1],[8,3,1,1],[9,2,1,1],[10,4,1,1],[11,2,1,1],[12,3,1,1],[13,21,1,1],[14,2,1,1],[15,18,1,1],[16,2,1,1],[17,4,1,1],[18,7,1,1],[19,7,1,1],[20,8,1,1],[21,2,1,1],[22,2,1,1],[23,2,1,1],[24,4,1,0],[25,6,1,0.333],[26,6,1,0.333],[27,6,1,1],[28,2,1,0],[29,6,1,1],[30,4,1,0],[31,16,1,1],[32,4,1,0],[33,2,1,1],[34,48,1,1],[47,24,1,0],[36,48,1,1],[37,4,1,0],[38,4,1,0],[39,48,1,1],[40,60,1,1],[41,80,1,1],[42,4,1,0],[43,60,1,0],[44,1,1,0],[45,4,1,0]],"OR16":[[48,2,1,1],[0,12,1,1],[1,6,1,1],[49,1,1,1],[3,4,1,0],[4,4,1,0],[5,8,1,0],[6,6,1,0],[7,2,1,0],[8,4,1,0],[9,2,1,0],[10,4,1,0],[11,2,1,0],[12,4,1,0],[13,30,1,1],[14,2,1,0],[15,18,1,0],[16,2,1,0],[17,4,1,0],[18,13,1,0],[19,13,1,0],[20,8,1,0],[21,2,1,0],[22,2,1,0],[23,2,1,0],[24,4,1,0],[25,6,1,0],[26,6,1,0],[27,6,1,0],[28,4,1,0],[29,6,1,0],[30,4,1,0],[31,16,1,1],[32,4,1,0],[33,2,1,0],[34,48,1,1],[47,24,1,0],[36,48,1,1],[37,4,1,0],[38,4,1,0],[39,52,1,1],[40,78,1,1],[41,104,1,1],[42,4,1,0],[43,115,1,0],[44,1,1,0],[45,4,1,0]],"OR17":[[48,2,1,1],[0,12,0.889,1],[1,10,1,1],[49,18,1,1],[3,4,1,0],[4,4,1,0],[5,8,1,0],[6,6,1,0],[7,2,1,0],[8,4,1,0],[9,2,1,0],[10,4,1,0],[11,2,1,0],[12,5,1,0],[13,29,1,0],[14,2,1,0],[15,18,1,0],[16,2,1,0],[17,4,1,0],[18,13,1,0],[19,9,1,0],[20,8,1,0],[21,2,1,0],[22,2,1,0],[23,2,1,0],[24,4,1,0],[25,6,1,0],[26,6,1,0],[27,6,1,0],[28,2,1,0],[29,6,1,0],[30,4,1,0],[31,16,1,0],[32,4,1,0],[33,2,1,0],[34,48,1,0],[47,24,1,0],[36,48,1,0],[37,4,1,0],[38,4,1,0],[39,52,1,1],[40,66,1,1],[41,88,1,1],[42,4,1,0],[43,87,0.5,0],[44,1,1,0],[45,4,1,0]],"OR18":[[48,4,1,0.5],[0,18,0.852,0.5],[1,7,1,0.5],[2,7,1,0.5],[49,13,1,0.5],[3,4,1,0],[4,4,1,0],[5,8,1,0],[6,6,1,0],[7,2,1,0],[8,4,1,0],[9,2,1,0],[10,4,1,0],[11,2,1,0],[12,9,1,0],[13,43,1,0],[14,2,1,0],[16,2,1,0],[17,4,1,0],[18,7,1,0],[19,7,1,0],[20,8,1,0],[21,2,1,0],[22,2,1,0],[23,2,1,0],[24,4,1,0],[25,2,1,0],[26,2,1,0],[27,8,1,0],[28,2,1,0],[29,6,1,0],[30,4,1,0],[31,16,1,0],[32,4,1,0],[33,2,1,0],[34,48,1,0],[47,24,1,0],[36,48,1,0],[37,4,1,0],[38,4,1,0],[39,40,1,1],[40,60,1,1],[41,80,1,0.75],[42,4,1,0],[43,98,0.5,0],[44,1,1,0],[45,4,1,0]],"OR19":[[46,4,1,0.5],[0,18,1,0.5],[1,6,1,0.5],[2,16,1,0.5],[3,4,1,0],[4,4,1,0],[5,8,1,0],[6,6,1,0],[7,2,1,0],[8,4,1,0],[9,2,1,0],[10,4,1,0],[11,2,1,0],[12,2,1,0],[13,19,1,0],[14,2,1,0],[16,2,1,0],[17,4,1,1],[18,8,1,0.75],[19,8,1,0],[20,8,1,1],[21,2,1,0],[22,2,1,0],[23,2,1,0],[24,4,1,0],[25,2,1,0],[26,2,1,0],[27,6,1,0],[28,2,1,0],[29,6,1,0],[30,4,1,0],[31,8,1,0],[32,4,1,0],[33,2,1,0],[34,48,1,0],[47,24,1,0],[36,48,1,0],[37,4,1,0],[38,4,1,0],[39,48,1,1],[40,72,1,1],[41,96,1,1],[42,4,1,0],[43,79,0.5,0],[44,1,1,0],[45,4,0.5,0]],"OR20":[[50,3,1,0.333],[48,2,0.667,0.5],[0,14,0.714,0.321],[1,9,1,0.889],[49,21,0.778,0.667],[3,6,0.722,0],[4,6,0.722,0],[5,8,0.75,0.25],[6,9,0.704,0.111],[7,2,0.667,0],[8,6,0.778,0.167],[9,3,0.667,0],[10,6,0.722,0.167],[11,4,0.833,0.5],[12,6,0.722,0.333],[13,24,0.667,0],[14,3,0.778,0.667],[16,4,0.833,0.5],[17,4,0.833,0.5],[18,10,0.8,0.4],[19,10,0.8,0.4],[20,8,0.958,0.5],[21,2,0.833,0.5],[22,2,0.833,0.5],[23,2,0.833,0.5],[24,4,0.833,0.5],[25,4,0.75,0.25],[26,4,0.75,0.25],[27,8,1,0.375],[28,4,1,0],[29,6,1,0],[30,4,1,0],[31,16,1,0],[32,4,1,0],[33,2,1,0.5],[34,48,1,0],[47,24,0.5,0],[36,48,1,0],[37,4,1,0],[38,4,1,0],[39,48,1,1],[40,84,1,1],[41,96,1,1],[42,4,1,0],[43,3,0.5,0],[44,1,1,0],[45,4,0.5,0]],"OR21":[[48,4,0.667,0.5],[0,16,0.667,0.5],[1,7,0.667,0.5],[49,14,0.667,0.5],[3,4,0.667,0],[4,4,0.667,0],[5,8,0.667,0],[6,6,0.667,0],[7,2,0.667,0],[8,4,0.667,0],[9,2,0.667,0],[10,4,0.667,0],[11,2,0.667,0],[12,4,0.667,0],[13,17,0.667,0],[14,2,0.667,0],[16,2,0.667,0],[17,4,0.667,0],[18,6,0.667,0],[19,6,0.667,0],[20,8,0.667,0],[21,2,0.667,0],[22,2,0.667,0],[23,2,0.667,0],[24,4,0.667,0],[25,4,0.667,0],[26,4,0.667,0],[27,4,1,0],[28,2,1,0],[29,6,1,0],[30,4,1,0],[31,16,1,0],[32,4,1,0],[33,2,1,0],[34,48,1,0],[47,24,0.5,0],[36,48,1,0],[37,4,1,0],[38,4,1,0],[39,28,1,0],[40,42,1,0.381],[41,56,1,0],[42,4,1,0],[43,93,0.5,0],[44,1,1,0],[45,4,0.5,0]],"OR22":[[48,4,0.667,0.5],[0,16,0.667,0.5],[49,14,0.667,0.5],[3,4,0.667,0],[4,4,0.667,0],[5,8,0.667,0],[6,6,0.667,0],[8,4,0.667,0],[9,2,0.667,0],[10,4,0.5,0],[11,2,0.667,0],[12,5,0.6,0],[13,17,0.667,0],[14,2,0.667,0],[16,2,0.667,0],[17,4,0.667,0],[18,6,0.667,0],[19,6,0.667,0],[20,8,0.667,0],[21,2,0.667,0],[22,2,0.667,0],[23,2,0.667,0],[24,4,0.667,0],[25,4,0.667,0],[26,4,0.667,0],[27,4,0.667,0],[28,2,0.667,0],[29,6,0.5,0],[30,4,0.5,0],[31,16,1,0],[32,4,0.5,0],[33,2,0.5,0],[34,48,1,0],[47,24,0.5,0],[36,48,1,0],[37,4,1,0],[38,4,0.5,0],[39,28,1,0],[40,42,1,0],[41,56,1,0],[42,4,0.5,0],[43,91,0.5,0],[44,1,1,0],[45,4,0.5,0]],"OR23":[[51,22,1,1],[52,4,1,1],[53,2,0.667,0],[54,2,0.667,0],[55,2,1,1],[56,6,0.667,0],[57,4,1,1],[58,2,0.667,0],[7,2,0.333,0],[59,2,0.333,0],[60,2,0.333,0],[61,2,1,0],[62,4,1,1],[63,2,0.667,0],[64,2,1,0],[65,2,1,0],[18,8,1,0.75],[19,8,1,0],[66,2,1,0],[20,4,1,1],[67,2,1,1],[23,4,1,0],[68,4,1,1],[17,4,1,1],[69,2,1,0],[70,23,0.333,0],[71,4,0.667,0],[27,6,1,1],[29,10,1,1],[30,4,0.333,0],[31,16,1,0],[32,4,0.333,0],[33,2,0.333,0],[34,48,1,0],[35,24,1,0],[72,24,0.667,0],[73,4,0.667,0],[36,48,1,0],[37,4,1,1],[38,4,1,0],[39,12,1,0],[40,36,1,0],[41,24,1,0],[43,1,0.333,0],[44,1,1,0],[74,2,0.667,0],[45,2,1,0],[81,12,0,0.667],[82,2,0,0],[83,4,0,0],[84,12,0,1],[85,36,0,1],[86,24,0,1],[87,1,0,0]],"OR24":[[51,40,0.883,0.825],[52,4,1,0.5],[53,2,0.667,0],[54,4,0.667,0],[55,4,1,1],[56,6,0.333,0],[57,4,1,1],[6,2,0.667,0],[58,4,0.667,0],[7,2,0.333,0],[59,4,0.333,0],[75,2,0.333,0],[9,3,0.333,0],[61,4,0.333,0],[62,12,0.333,0.333],[76,1,0.333,0],[77,2,0.333,0],[63,6,0.667,0],[78,4,0.333,0],[64,2,1,0],[22,2,0.667,0],[65,2,1,0],[18,8,1,1],[19,8,1,1],[66,2,0.333,0],[20,4,1,1],[67,10,0.333,0.3],[23,5,0.667,0],[68,6,0.333,0],[17,4,1,1],[69,2,1,0],[70,8,0.333,0],[71,4,0.667,0],[27,6,1,1],[29,10,1,1],[30,4,0.333,0],[31,16,1,0],[32,4,0.333,0],[33,2,0.333,0],[34,48,1,0],[35,24,0.333,0],[72,24,0.333,0],[73,4,0.333,0],[36,48,1,0],[37,4,1,0],[38,4,1,0],[39,20,1,0],[40,60,1,0],[41,40,1,0],[43,1,0.333,0],[44,1,1,0],[74,2,0.333,0],[45,2,1,0],[81,14,0,0.714],[82,4,0,0],[83,4,0,0],[84,20,0,1],[85,60,0,1],[86,40,0,1],[87,1,0,0]],"OR25":[[51,39,1,1],[52,4,1,1],[53,2,0.667,0],[54,4,0.667,0],[55,4,1,1],[56,6,0.333,0],[57,4,1,1],[58,4,0.333,0],[75,2,0.333,0],[61,4,0.333,0],[62,8,0.333,0],[77,2,0.333,0],[63,5,0.333,0],[78,3,0.333,0],[64,2,1,0],[65,2,1,0],[18,8,1,1],[19,8,1,1],[66,2,0.333,0],[20,4,1,1],[67,9,0.333,0],[14,1,0,0],[23,4,0,0],[68,5,0.333,0],[17,4,1,1],[69,2,0.333,0],[70,8,0,0],[71,4,0,0],[27,6,0,1],[29,10,1,1],[30,4,0.333,0],[31,16,1,0],[32,4,0.333,0],[33,2,0.333,0],[34,48,1,0],[35,24,0.333,0],[72,24,0.333,0],[73,4,0.333,0],[36,48,1,0],[37,4,0,0],[38,4,1,0],[39,20,1,0],[40,60,1,0],[41,40,1,0],[43,1,0.333,0],[44,1,1,0],[74,2,0.333,0],[45,2,1,0],[81,12,0,0.833],[83,4,0,0],[84,20,0,1],[85,60,0,1],[86,40,0,1],[87,1,0,0]],"OR26":[[51,40,0.333,0.925],[52,4,1,1],[53,2,0.667,0],[54,4,0.667,0],[55,4,1,1],[56,6,0.333,0],[57,4,1,1],[58,4,0.333,0],[7,2,0.333,0],[59,4,0.333,0],[61,4,0.333,0],[62,4,0.333,0],[77,2,0.333,0],[63,5,0.333,0],[11,1,0.333,0],[78,4,0.333,0],[64,2,1,0],[65,2,1,0],[18,8,1,1],[19,8,1,1],[66,2,0.333,0],[20,4,1,1],[67,10,0.333,0],[23,2,1,0],[68,5,0.333,0],[16,1,0.333,0],[17,4,1,1],[69,2,0.333,0],[70,30,0.333,0],[71,4,0.333,0],[27,8,1,1],[29,10,1,1],[30,4,0.333,0],[31,16,0.333,0],[32,4,0.333,0],[33,2,0.333,0],[34,48,0.333,0],[35,24,0.333,0],[72,24,0.333,0],[73,4,0.333,0],[36,48,0.333,0],[37,4,1,0],[38,4,0.333,0],[39,20,1,0],[40,60,1,0],[41,40,1,0],[43,25,0.333,0],[44,1,1,0],[74,2,0.333,0],[45,2,1,0],[81,12,0,0.833],[82,4,0,0],[83,4,0,0],[84,20,0,1],[85,60,0,1],[86,40,0,1],[87,25,0,0]],"OR27":[[51,40,0.967,0.9],[52,4,1,1],[53,2,0.667,0],[54,4,0.667,0],[55,4,1,1],[56,6,0.667,0],[57,4,1,1],[58,4,0.667,0],[7,2,0.667,0],[59,3,0.667,0],[61,4,0.667,0],[62,4,0.667,0],[77,2,0.667,0],[63,6,0.667,0],[79,4,0.667,0],[64,2,1,0],[65,2,1,0],[18,8,1,1],[19,8,1,1],[66,2,0.667,0],[20,4,1,1],[67,10,0.667,0],[23,2,0.667,0],[68,6,0.667,0],[17,4,0.667,1],[69,2,0.667,0],[70,22,0.667,0],[71,4,0.667,0],[27,8,1,0.625],[29,10,1,1],[30,4,0.667,0],[31,16,0.667,0],[32,4,0.667,0],[33,2,0.667,0],[34,48,0.667,0],[35,24,0.667,0],[72,24,0.667,0],[73,4,0.667,0],[36,48,0.667,0],[37,4,1,0],[38,4,0.667,0],[39,20,1,0],[40,60,1,0],[41,40,1,0],[43,25,0.667,0],[44,1,1,0],[74,2,0.333,0],[45,2,1,0],[81,12,0,0.833],[82,3,0,0],[83,4,0,0],[84,20,0,1],[85,60,0,1],[86,40,0,1],[87,25,0,0]],"OR28":[[51,30,0.667,0.5],[52,4,0.667,0],[53,2,0.667,0],[54,2,0,0],[55,2,0.667,0.5],[56,6,0.667,0],[57,2,0.667,0.5],[58,6,0,0],[7,2,0,0],[60,2,0,0],[80,2,0,0],[61,4,0,0],[62,4,0,0],[77,2,0,0],[63,1,0,0],[64,2,1,1],[65,2,1,1],[18,8,1,1],[19,8,1,1],[66,2,0,0],[20,4,1,1],[67,3,0,0],[23,2,0,0],[68,1,0,0],[17,4,0,0],[69,2,0,0],[70,28,0,0],[71,4,0,0],[27,8,1,0],[29,10,0,0],[30,4,0,0],[31,16,0,0],[32,4,0,0],[33,2,0,0],[34,48,0,0],[35,24,0,0],[72,24,0,0],[73,4,0,0],[36,48,0,0],[37,4,1,0],[38,4,0,0],[39,12,1,0],[40,36,1,0],[41,24,1,0],[43,25,0,0],[44,1,1,0],[74,2,0,0],[45,2,1,0],[81,12,0,0.5],[83,4,0,0],[84,12,0,1],[85,36,0,1],[86,24,0,1],[87,25,0,0]],"OR29":[[51,30,1,0.833],[52,4,1,1],[53,2,0.667,0],[54,2,0.667,0],[55,2,0.667,1],[56,6,0.667,0],[57,2,0.667,1],[58,5,0,0],[7,2,0,0],[60,2,0,0],[80,2,0,0],[61,3,0,0],[62,4,0,0],[77,1,0,0],[63,2,0,0],[64,2,1,0],[65,2,1,0],[18,8,1,1],[19,8,1,1],[66,2,0,0],[20,4,1,1],[67,5,0,0],[68,1,0,0],[17,4,0,1],[69,25,0,0],[70,22,0,0],[71,4,0,0],[27,8,1,0],[29,10,0,0],[30,4,0,0],[31,16,0,0],[32,4,0,0],[33,2,0,0],[34,48,0,0],[35,24,0,0],[72,24,0,0],[73,4,0,0],[36,48,0,0],[37,4,1,0],[38,4,0,0],[39,12,1,0],[40,36,1,0],[41,24,1,0],[44,1,1,0],[74,2,0,0],[45,2,1,0],[81,12,0,0.833],[83,4,0,0],[84,12,0,1],[85,36,0,1],[86,24,0,1]]}};
+    const G7 = [
+      { key: 'Lighting Box', th: 'กล่องไฟ' }, { key: 'Stand Mount', th: 'ป้ายตั้งพื้น' }, { key: 'Wall Mount', th: 'ป้ายติดผนัง' },
+      { key: 'Surface Mount', th: 'ป้ายติดพื้นผิว' }, { key: 'Side Mount', th: 'ป้ายข้าง' }, { key: 'Sticker', th: 'สติกเกอร์' }, { key: 'A6 Pole', th: 'เสา A6' }
+    ];
+    this.G7 = G7;
+    const gi = (g) => G7.findIndex((x) => x.key === g);
+    const rs = {};
+    Object.keys(RD.st).forEach((st) => {
+      rs[st] = RD.st[st].filter((a) => gi(RD.cat[a[0]][0]) >= 0).map((a) => {
+        const c = RD.cat[a[0]], q = a[1], p = Math.round(q * a[2]), i = Math.round(q * a[3]);
+        return { g: c[0], t: c[1], code: c[2], size: c[3], q, p, i, sp: p, si: i, ts: c[1], cs: c[2], qs: q, vo: false };
+      }).sort((x, y) => gi(x.g) - gi(y.g));
+    });
+    this.RD = RD;
+    this.baseTypes = RD.cat.filter((c) => gi(c[0]) >= 0).length;
+    const insp = {};
+    Object.keys(rs).forEach((st) => {
+      insp[st] = {};
+      G7.forEach((g) => { if (rs[st].some((r) => r.g === g.key)) insp[st][g.key] = { s: 'wait', cm: '', doc: '', meta: '', punch: [], nv: '' }; });
+    });
+    const seed = (st, g, o) => { if (insp[st] && insp[st][g]) insp[st][g] = { ...insp[st][g], ...o }; };
+    ['Lighting Box', 'Stand Mount', 'Wall Mount', 'Surface Mount', 'Side Mount', 'A6 Pole'].forEach((g) => seed('OR13', g, { s: 'ok', cm: 'ตรวจรับตามแบบ ไม่มีข้อสังเกต', doc: 'ตรวจรับ_OR13_' + g.replace(' ', '') + '.pdf', meta: '10 พ.ย. 69 · PM' }));
+    seed('OR14', 'Lighting Box', { s: 'ok', cm: 'เรียบร้อย', doc: 'ตรวจรับ_OR14_LightingBox.pdf', meta: '11 พ.ย. 69 · PM' });
+    seed('OR14', 'Wall Mount', { s: 'punch', cm: 'ป้ายบางตำแหน่งไม่ได้ระดับ', doc: 'ตรวจรับ_OR14_WallMount.pdf', meta: '11 พ.ย. 69 · PM', punch: [{ t: 'ป้าย WM ชั้นชานชาลา เอียง 2 ป้าย', d: false }, { t: 'สติกเกอร์หลุดขอบ 1 ตำแหน่ง', d: true }] });
+    seed('OR14', 'Sticker', { s: 'no', cm: 'รอ BEM ยืนยันตำแหน่ง จึงยังไม่ตรวจรับ', doc: '', meta: '11 พ.ย. 69 · PM' });
+    this.RAWFULL = RAW; this.RAWMAP = {}; RAW.forEach((a) => { this.RAWMAP[a[0]] = [a[6], a[12]]; });
+    this.rowsInit = RAW.map((a) => ({ st: a[0], mq: a[1], md: a[2], ma: a[3], mp: a[4], ms: a[5], iq: a[7], id: a[8], ia: a[9], ip: a[10], is: a[11], inf: a[12], rem: a[13] }));
+    this.catsInit = [
+      { key: 'Lighting Box', th: 'กล่องไฟ', mq: 1032, md: 875, iq: 1050, id: 646 },
+      { key: 'Stand Mount', th: 'ป้ายตั้งพื้น', mq: 324, md: 206, iq: 337, id: 49 },
+      { key: 'Wall Mount', th: 'ป้ายติดผนัง', mq: 1349, md: 1036, iq: 1349, id: 426 },
+      { key: 'Surface Mount', th: 'ป้ายติดพื้นผิว', mq: 116, md: 105, iq: 116, id: 20 },
+      { key: 'Side Mount', th: 'ป้ายข้าง', mq: 132, md: 121, iq: 132, id: 48 },
+      { key: 'Sticker', th: 'สติกเกอร์', mq: 6813, md: 5669, iq: 6513, id: 2146 },
+      { key: 'A6 Pole', th: 'เสา A6', mq: 54, md: 42, iq: 40, id: 0 }
+    ];
+    this.state = {
+      zone: 'all', open: false, tab: 'ov', role: 'pm', st: 'OR22', grp: 'Wall Mount', exp: { on: false, fmt: 'pdf', zone: 'all' }, imp: { on: false, file: '', has: false, busy: false, err: '', parsed: [] }, hl: '', toast: '', err: '',
+      rows: this.rowsInit, cats: this.catsInit, rs, insp, pend: [], types: [], log: [],
+      tf: { g: 'Lighting Box', t: '', code: '', size: '', desc: '', qG: '', qC: '', qP: '' }
+    };
+  }
+  // apply a list of row changes to station totals + category totals
+  commit(S, st, ch) {
+    const rs2 = S.rs[st].map((r) => ({ ...r }));
+    let rows = S.rows, cats = S.cats;
+    ch.forEach((c) => {
+      const r = rs2[c.ri]; if (!r) return;
+      const dp = c.p - r.sp, di = c.i - r.si;
+      Object.assign(r, { p: c.p, i: c.i, t: c.t, code: c.code, q: c.q, sp: c.p, si: c.i, ts: c.t, cs: c.code, qs: c.q });
+      if (r.vo) return;
+      rows = rows.map((x) => {
+        if (x.st !== st) return x;
+        const n = { ...x };
+        n.md = Math.max(0, Math.min(n.mq, n.md + dp)); n.ma = Math.round(n.md / n.mq * 1000) / 10; if (n.md >= n.mq) n.ms = 'Completed';
+        n.id = Math.max(0, Math.min(n.iq, n.id + di)); n.ia = Math.round(n.id / n.iq * 1000) / 10; if (n.id >= n.iq) n.is = 'Completed';
+        return n;
+      });
+      cats = cats.map((k) => k.key !== r.g ? k : { ...k, md: Math.max(0, Math.min(k.mq, k.md + dp)), id: Math.max(0, Math.min(k.iq, k.id + di)) });
+    });
+    return { rows, cats, rs: { ...S.rs, [st]: rs2 } };
+  }
+  // ---- file helpers (real .xlsx / .pdf export, .xlsx read) ----
+  xLoad() {
+    if (window.XLSX) return Promise.resolve(window.XLSX);
+    if (this._xp) return this._xp;
+    this._xp = new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+      s.onload = () => res(window.XLSX);
+      s.onerror = () => { this._xp = null; rej(new Error('xlsx-load')); };
+      document.head.appendChild(s);
+    });
+    return this._xp;
+  }
+  async fileSave(filename, data) {
+    const d = window.claude && window.claude.use ? await window.claude.use('downloads') : null;
+    if (!d) {
+      try { const a = document.createElement('a'); a.href = URL.createObjectURL(data); a.download = filename; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000); return { status: 'saved' }; }
+      catch (x) { const e = new Error('unavailable'); e.code = 'unavailable'; throw e; }
+    }
+    return d.save({ filename, data });
+  }
+  saveMsg(e, name) {
+    const c = e && e.code;
+    if (!e) return 'บันทึกไฟล์ ' + name + ' แล้ว';
+    if (c === 'declined') return 'ยกเลิกการบันทึกไฟล์';
+    if (c === 'unavailable' || c === 'not_granted' || c === 'capability_disabled') return 'มุมมองนี้ดาวน์โหลดไฟล์ไม่ได้ — เปิดหน้านี้ใน Claude แล้วลองอีกครั้ง';
+    if (e.message === 'xlsx-load') return 'โหลดตัวสร้างไฟล์ Excel ไม่สำเร็จ (ต้องต่อเน็ต) — ลองอีกครั้ง';
+    return 'สร้างไฟล์ไม่สำเร็จ: ' + (e.message || c || 'ไม่ทราบสาเหตุ');
+  }
+  async xlsxSave(name, sheets) {
+    const X = await this.xLoad(), wb = X.utils.book_new();
+    sheets.forEach((s) => { const ws = X.utils.aoa_to_sheet(s.aoa); if (s.cols) ws['!cols'] = s.cols.map((w) => ({ wch: w })); X.utils.book_append_sheet(wb, ws, s.name.slice(0, 31)); });
+    const buf = X.write(wb, { bookType: 'xlsx', type: 'array' });
+    return this.fileSave(name, new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
+  }
+  // table -> PDF (A4 landscape, one JPEG per page; Thai text rendered by the browser)
+  async pdfTable(title, sub, head, rows, widths) {
+    try { await document.fonts.load("700 16px Sarabun"); await document.fonts.load("400 16px Sarabun"); } catch (e) { /* ignore */ }
+    const W = 1123, H = 794, K = 2, M = 40, RH = 26, F = "Sarabun, 'Noto Sans Thai', sans-serif";
+    const sw = widths.reduce((a, b) => a + b, 0), cw = widths.map((w) => w / sw * (W - 2 * M));
+    const pages = []; let ri = 0, pg = 0;
+    const per0 = Math.floor((H - M - 110) / RH), perN = Math.floor((H - 2 * M - RH - 10) / RH);
+    do {
+      const cv = document.createElement('canvas'); cv.width = W * K; cv.height = H * K;
+      const g = cv.getContext('2d'); g.scale(K, K); g.fillStyle = '#FFFFFF'; g.fillRect(0, 0, W, H); g.textBaseline = 'middle';
+      let y = M;
+      if (pg === 0) { g.fillStyle = '#142B4F'; g.font = '700 24px ' + F; g.fillText(title, M, y + 12); g.fillStyle = '#5B6B7F'; g.font = '400 13px ' + F; g.fillText(sub, M, y + 42); y += 66; }
+      const fit = (t, w) => { let s = String(t); while (s.length > 1 && g.measureText(s).width > w - 12) s = s.slice(0, -1); return s === String(t) ? s : s + '…'; };
+      g.fillStyle = '#142B4F'; g.fillRect(M, y, W - 2 * M, RH); g.fillStyle = '#FFFFFF'; g.font = '700 12px ' + F;
+      let x = M; head.forEach((h, i) => { g.fillText(fit(h, cw[i]), x + 6, y + RH / 2); x += cw[i]; }); y += RH;
+      const cap = pg === 0 ? per0 : perN; let n = 0;
+      while (ri < rows.length && n < cap) {
+        const r = rows[ri], bold = r.bold; g.fillStyle = bold ? '#E3F0FB' : (ri % 2 ? '#F5F7FA' : '#FFFFFF'); g.fillRect(M, y, W - 2 * M, RH);
+        g.fillStyle = '#263445'; g.font = (bold ? '700 ' : '400 ') + '12px ' + F; x = M;
+        (r.c || r).forEach((v, i) => { g.fillText(fit(v, cw[i]), x + 6, y + RH / 2); x += cw[i]; }); y += RH; ri++; n++;
+      }
+      g.fillStyle = '#8A95A5'; g.font = '400 10px ' + F; g.fillText('ORL-SignTrack · หน้า ' + (pg + 1), M, H - 18);
+      pages.push(cv); pg++;
+    } while (ri < rows.length);
+    const jp = [];
+    for (const cv of pages) { const b = await new Promise((r) => cv.toBlob(r, 'image/jpeg', 0.92)); jp.push({ w: cv.width, h: cv.height, jpeg: new Uint8Array(await b.arrayBuffer()) }); }
+    const enc = new TextEncoder(), parts = [], offs = []; let len = 0;
+    const push = (u) => { parts.push(u); len += u.length; }, str = (s) => push(enc.encode(s));
+    const obj = (id, fn) => { offs[id] = len; str(id + ' 0 obj\n'); fn(); str('endobj\n'); };
+    const n = jp.length, total = 3 + 3 * n;
+    str('%PDF-1.4\n');
+    obj(1, () => str('<< /Type /Catalog /Pages 2 0 R >>\n'));
+    obj(2, () => str('<< /Type /Pages /Count ' + n + ' /Kids [' + jp.map((_, i) => (5 + 3 * i) + ' 0 R').join(' ') + '] >>\n'));
+    jp.forEach((p, i) => {
+      obj(3 + 3 * i, () => { str('<< /Type /XObject /Subtype /Image /Width ' + p.w + ' /Height ' + p.h + ' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ' + p.jpeg.length + ' >>\nstream\n'); push(p.jpeg); str('\nendstream\n'); });
+      const cs = 'q 842 0 0 595 0 0 cm /Im0 Do Q';
+      obj(4 + 3 * i, () => str('<< /Length ' + cs.length + ' >>\nstream\n' + cs + '\nendstream\n'));
+      obj(5 + 3 * i, () => str('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /XObject << /Im0 ' + (3 + 3 * i) + ' 0 R >> >> /Contents ' + (4 + 3 * i) + ' 0 R >>\n'));
+    });
+    const xref = len; str('xref\n0 ' + total + '\n0000000000 65535 f \n');
+    for (let k = 1; k < total; k++) str(String(offs[k]).padStart(10, '0') + ' 00000 n \n');
+    str('trailer\n<< /Size ' + total + ' /Root 1 0 R >>\nstartxref\n' + xref + '\n%%EOF');
+    return new Blob(parts, { type: 'application/pdf' });
+  }
+  async pdfSave(name, title, sub, head, rows, widths) { return this.fileSave(name, await this.pdfTable(title, sub, head, rows, widths)); }
+  parseWb(X, wb) {
+    const out = {}, num = (v) => (typeof v === 'number' ? v : 0);
+    const get = (ws, r, c) => { const cell = ws[X.utils.encode_cell({ r: r - 1, c: c - 1 })]; return cell ? cell.v : undefined; };
+    [['STA Manu CH (1)', 'm', 0, 4, 4], ['STA Manu TNK (1)', 'm', 0, 4, 4], ['STA Install CH (1)', 'i', 0, 3, 4], ['STA Install TNK (1)', 'i', 0, 1, 5]].forEach((d) => {
+      const ws = wb.Sheets[d[0]]; if (!ws || !ws['!ref']) return;
+      const ref = X.utils.decode_range(ws['!ref']);
+      for (let c = 1; c <= ref.e.c + 1; c++) {
+        const v = get(ws, 2, c);
+        if (typeof v === 'string' && /^OR\d{2}/.test(v.trim())) {
+          const st = v.trim().slice(0, 4), o = out[st] || (out[st] = {});
+          const plan = num(get(ws, d[4], c + d[2])), done = Math.round(num(get(ws, d[4], c + d[3])));
+          if (d[1] === 'm') { o.mq = plan; o.md = done; } else { o.iq = plan; o.id = done; }
+        }
+      }
+    });
+    return out;
+  }
+  impApply(rows, ch) {
+    return rows.map((x) => {
+      const c = ch.find((k) => k.st === x.st); if (!c) return x;
+      const n = { ...x, mq: c.mq, md: c.md, iq: c.iq, id: c.id };
+      n.ma = Math.round(n.md / n.mq * 1000) / 10; n.ia = Math.round(n.id / n.iq * 1000) / 10;
+      if (n.md >= n.mq) n.ms = 'Completed'; if (n.id >= n.iq) n.is = 'Completed';
+      return n;
+    });
+  }
+  renderVals() {
+    const LNAV = (arr) => {
+      const HR = { 'Dashboard': 'Dashboard.dc.html', 'Projects': 'ProjectEdit.dc.html', 'Production & Install': 'Progress.dc.html', 'Job Management': 'Jobs.dc.html', 'Warranty': 'Warranty.dc.html', 'Documents': 'Docs.dc.html', 'Maintenance': 'OwnerRepair.dc.html', 'Repair': 'OwnerRepair.dc.html', 'Repair Requests': 'OwnerRepair.dc.html', 'Maintenance Log': 'MaintReport.dc.html', 'Reports': 'MaintReport.dc.html', 'Summary Report': 'MaintReport.dc.html', 'Requests': 'OwnerRepair.dc.html', 'My Requests': 'OwnerRepair.dc.html', 'Report': 'OwnerRepair.dc.html' };
+      return arr.map((n) => {
+        const href = String(n.en).indexOf('Signage') === 0 ? 'SignDB.dc.html' : (HR[n.en] || '');
+        const active = !!n.bg && n.bg !== 'transparent';
+        const link = !!href && !active;
+        return { ...n, href: href || '#', isLink: link, isBtn: !link };
+      });
+    };
+    const MON = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+    const fd = (s) => { const p = s.split('-'); return parseInt(p[2], 10) + ' ' + MON[parseInt(p[1], 10) - 1] + ' ' + String((parseInt(p[0], 10) + 543) % 100); };
+    const TODAY = '13 พ.ย. 69';
+    const ST = {
+      'Completed': { th: 'เสร็จสิ้น', bg: '#E1F4EA', fg: '#1B6B43' },
+      'Late': { th: 'ล่าช้า', bg: '#FBE4E2', fg: '#A32019' },
+      'On Schedule': { th: 'ตามแผน', bg: '#E3F0FB', fg: '#1B5C9E' }
+    };
+    const nf = (n) => Math.round(n).toLocaleString('en-US');
+    const pc = (n) => (Math.round(n * 10) / 10).toFixed(1) + '%';
+    const gap = (a, p) => { const g = Math.round((a - p) * 10) / 10; return g < -0.05 ? '−' + Math.abs(g).toFixed(1) : ''; };
+    const S = this.state;
+    const G7 = this.G7;
+    const zone = S.zone;
+    const ROLE = { pm: { th: 'PM', full: 'ผู้จัดการโครงการ (PM)' }, grs: { th: 'GRS Leader', full: 'GRS Leader' }, ins: { th: 'Installation', full: 'Installation' } };
+    const isPM = S.role === 'pm', isGRS = S.role === 'grs';
+    const ISTAT = {
+      wait: { th: 'รอตรวจ', bg: '#EEF1F5', fg: '#5B6B7F' },
+      no: { th: 'ไม่ตรวจรับ', bg: '#FBE4E2', fg: '#A32019' },
+      ok: { th: 'ตรวจรับสำเร็จ', bg: '#E1F4EA', fg: '#1B6B43' },
+      punch: { th: 'มีรายการปรับปรุง', bg: '#FFF1DB', fg: '#8A4B08' }
+    };
+    const stGroups = (st) => Object.keys(S.insp[st] || {});
+    const stSummary = (st) => {
+      const gs = stGroups(st), n = gs.length;
+      const c = (k) => gs.filter((g) => S.insp[st][g].s === k).length;
+      const ok = c('ok'), pk = c('punch'), no = c('no');
+      let key = 'wait', th = 'รอตรวจ';
+      if (n > 0 && ok === n) { key = 'ok'; th = 'ตรวจรับสำเร็จ'; }
+      else if (pk > 0) { key = 'punch'; th = 'มีรายการปรับปรุง'; }
+      else if (ok + no > 0) { key = 'part'; th = 'ตรวจบางส่วน'; }
+      return { n, ok, pk, no, key, th, all: n > 0 && ok === n };
+    };
+
+    // station rows, with accepted stations counted as installation-complete
+    const eff = S.rows.map((r) => (stSummary(r.st).all ? { ...r, id: r.iq, ia: 100, is: 'Completed', accepted: true } : r));
+    const sel = eff.filter((r) => {
+      const n = parseInt(r.st.slice(2), 10);
+      return zone === 'all' || (zone === 'ch' && n <= 22) || (zone === 'tnk' && n >= 23);
+    });
+    const sum = (f) => sel.reduce((t, r) => t + f(r), 0);
+    const mPlan = sum((r) => r.mq), mDone = sum((r) => r.md), iPlan = sum((r) => r.iq), iDone = sum((r) => r.id);
+    const mfg = mDone / mPlan * 100, ins = iDone / iPlan * 100, overall = (mfg + ins) / 2;
+    const lateN = sum((r) => (r.ms === 'Late' ? 1 : 0) + (r.is === 'Late' ? 1 : 0));
+    const k = {
+      overall: pc(overall), overallW: overall.toFixed(1) + '%',
+      mfg: pc(mfg), mfgW: mfg.toFixed(1) + '%', mDone: nf(mDone), mPlan: nf(mPlan),
+      ins: pc(ins), insW: ins.toFixed(1) + '%', iDone: nf(iDone), iPlan: nf(iPlan),
+      wait: nf(Math.max(0, mDone - iDone)), late: String(lateN), lateOf: String(sel.length * 2)
+    };
+    const zdefs = [['all', 'ทั้งหมด OR13–OR29'], ['ch', 'OR13–OR22'], ['tnk', 'OR23–OR29']];
+    const zones = zdefs.map((z) => ({
+      label: z[1], w: zone === z[0] ? '700' : '500',
+      bg: zone === z[0] ? '#142B4F' : '#FFFFFF', fg: zone === z[0] ? '#FFFFFF' : '#263445',
+      pick: () => this.setState({ zone: z[0] })
+    }));
+    const bars = sel.map((r) => ({
+      st: r.st, m: Math.round(r.ma) + '', i: Math.round(r.ia) + '',
+      mh: Math.max(2, r.ma * 1.75).toFixed(0) + 'px', ih: Math.max(2, r.ia * 1.75).toFixed(0) + 'px'
+    }));
+    const VB = { ok: ['#E1F4EA', '#1B6B43'], punch: ['#FFF1DB', '#8A4B08'], part: ['#E3F0FB', '#1B5C9E'], wait: ['#EEF1F5', '#5B6B7F'] };
+    const rows = sel.map((r) => {
+      const late = r.inf < '2026-11-12' && r.ia < 99.95;
+      const sm = stSummary(r.st);
+      const label = sm.all ? 'ตรวจรับสำเร็จ' : sm.pk > 0 ? 'ปรับปรุง ' + sm.pk : sm.ok + sm.no > 0 ? 'ตรวจ ' + sm.ok + '/' + sm.n : 'รอตรวจ';
+      return {
+        st: r.st, ma: pc(r.ma), ia: pc(r.ia), mW: r.ma + '%', iW: r.ia + '%', mP: r.mp + '%', iP: r.ip + '%',
+        mgap: gap(r.ma, r.mp), igap: gap(r.ia, r.ip),
+        mq: nf(r.md) + ' / ' + nf(r.mq), iq: nf(r.id) + ' / ' + nf(r.iq),
+        msTh: ST[r.ms].th, msBg: ST[r.ms].bg, msFg: ST[r.ms].fg,
+        isTh: ST[r.is].th, isBg: ST[r.is].bg, isFg: ST[r.is].fg,
+        wait: nf(Math.max(0, r.md - r.id)), inf: fd(r.inf), rem: r.rem || '—',
+        infColor: late ? '#A32019' : '#263445', infW: late ? '700' : '400',
+        bg: S.hl === r.st ? '#FFF6E8' : '#FFFFFF',
+        vTh: label, vBg: VB[sm.key][0], vFg: VB[sm.key][1],
+        openInsp: () => this.setState({ open: true, tab: 'insp', st: r.st, toast: '', err: '' })
+      };
+    });
+    const cats = S.cats.map((c) => ({
+      th: c.th, en: c.key, mq: nf(c.mq), md: nf(c.md), iq: nf(c.iq), id: nf(c.id),
+      mp: pc(c.md / c.mq * 100), ip: pc(c.id / c.iq * 100)
+    }));
+    const acceptedN = S.rows.filter((r) => stSummary(r.st).all).length;
+    const voPcs = Object.keys(S.rs).reduce((t, st) => t + S.rs[st].filter((r) => r.vo).reduce((a, r) => a + r.q, 0), 0);
+
+    // ----- drawer: shared -----
+    const st = S.st;
+    const rsSt = S.rs[st];
+    const FL = [['G', 'Ground Level'], ['C', 'Concourse'], ['P', 'Platform']];
+    const two = (n) => String(n).padStart(2, '0');
+    const fbase = (stn, fl) => { const n = parseInt(stn.slice(2), 10); return fl === 'G' ? 1 + n % 5 : (fl === 'C' ? 7 + n : 5 + n % 7); };
+    const voStart = (stn, list, idx) => {
+      let c = 0; for (let j = 0; j < idx; j++) if (list[j].vo && list[j].fl === list[idx].fl) c += list[j].q;
+      return fbase(stn, list[idx].fl) + 1 + c;
+    };
+    const idText = (stn, list, idx) => {
+      const r = list[idx]; if (!(r.q > 0)) return 'ยังไม่กำหนดจำนวน';
+      const a = voStart(stn, list, idx), b = a + r.q - 1;
+      return (r.q === 1 ? two(a) + r.fl : two(a) + r.fl + '–' + two(b) + r.fl) + '_' + stn + '_' + r.code;
+    };
+    const fStations = S.rows.map((r) => ({
+      st: r.st,
+      bg: st === r.st ? '#142B4F' : '#FFFFFF', fg: st === r.st ? '#FFFFFF' : '#263445', bd: st === r.st ? '#142B4F' : '#B8C4D4',
+      pick: () => this.setState({ st: r.st, err: '' })
+    }));
+    const roles = ['pm', 'grs', 'ins'].map((x) => ({
+      label: ROLE[x].th, w: S.role === x ? '700' : '500',
+      bg: S.role === x ? '#142B4F' : '#FFFFFF', fg: S.role === x ? '#FFFFFF' : '#263445',
+      pick: () => this.setState({ role: x, err: '' })
+    }));
+    const tabs = [['ov', 'ภาพรวมสถานี'], ['rows', 'อัปเดตรายแถว'], ['insp', 'ตรวจรับรายสถานี'], ['types', 'ประเภทป้าย / VO']].map((t) => ({
+      label: t[1], w: S.tab === t[0] ? '700' : '500', fg: S.tab === t[0] ? '#142B4F' : '#5B6B7F', bd: S.tab === t[0] ? '#F28C28' : 'transparent',
+      pick: () => this.setState({ tab: t[0], err: '' })
+    }));
+    const roleNote = isPM ? 'PM: อนุมัติการอัปเดต · กำหนดสถานะตรวจรับ · สร้างประเภทป้ายใหม่ได้'
+      : isGRS ? 'GRS Leader: อัปเดตความคืบหน้า (ส่งให้ PM อนุมัติ) · อัปโหลดเอกสารตรวจรับ · สร้างประเภทป้ายใหม่ได้'
+      : 'Installation: อัปเดตความคืบหน้า (ส่งให้ PM อนุมัติ) · ดูผลตรวจรับ';
+    const denied = (m) => this.setState({ err: m });
+
+    // ----- tab: rows -----
+    const present = G7.filter((g) => rsSt.some((r) => r.g === g.key));
+    const gcur = present.some((g) => g.key === S.grp) ? S.grp : (present[0] ? present[0].key : '');
+    const gChips = present.map((g) => {
+      const n = rsSt.filter((r) => r.g === g.key).length;
+      return { label: g.th + ' (' + n + ')', bg: gcur === g.key ? '#142B4F' : '#FFFFFF', fg: gcur === g.key ? '#FFFFFF' : '#263445', bd: gcur === g.key ? '#142B4F' : '#B8C4D4', pick: () => this.setState({ grp: g.key, err: '' }) };
+    });
+    const setRow = (ri, patch) => this.setState({ rs: { ...S.rs, [st]: rsSt.map((r, j) => (j === ri ? { ...r, ...patch } : r)) }, err: '' });
+    const num0 = (v, max) => Math.max(0, Math.min(max, parseInt(v, 10) || 0));
+    const dirtyOf = (r) => r.p !== r.sp || r.i !== r.si || r.t !== r.ts || r.code !== r.cs || r.q !== r.qs;
+    const chip = (done, yes, no, bgYes, fgYes) => (done ? { th: yes, bg: bgYes, fg: fgYes } : { th: no, bg: '#EEF1F5', fg: '#5B6B7F' });
+    const rowsView = rsSt.map((r, ri) => ({ r, ri })).filter((x) => x.r.g === gcur).map((x) => {
+      const r = x.r, ri = x.ri;
+      const pc1 = chip(r.p >= r.q && r.q > 0, 'ผลิตแล้ว', 'ยังไม่ผลิต', '#DCEBFA', '#1B5C9E');
+      const ic1 = chip(r.i >= r.q && r.q > 0, 'ติดตั้งแล้ว', 'ยังไม่ติดตั้ง', '#FDE9D0', '#8A4B08');
+      return {
+        t: r.t, code: r.code, size: r.size || '—', idr: r.vo ? idText(st, rsSt, ri) : '', q: r.vo ? String(r.q) : nf(r.q), p: String(r.p), i: String(r.i), vo: r.vo, notVo: !r.vo,
+        bg: dirtyOf(r) ? '#FFF6E8' : (r.vo ? '#FFFBF3' : '#FFFFFF'),
+        pTh: pc1.th, pBg: pc1.bg, pFg: pc1.fg, iTh: ic1.th, iBg: ic1.bg, iFg: ic1.fg,
+        onT: (e) => setRow(ri, { t: e.target.value }), onC: (e) => setRow(ri, { code: e.target.value }),
+        onQ: (e) => { const q = Math.max(0, parseInt(e.target.value, 10) || 0); setRow(ri, { q, p: Math.min(r.p, q), i: Math.min(r.i, q) }); },
+        onP: (e) => { const p = num0(e.target.value, r.q); setRow(ri, { p, i: Math.min(r.i, p) }); },
+        onI: (e) => { const i = num0(e.target.value, r.q); setRow(ri, { i, p: Math.max(r.p, i) }); },
+        togP: () => setRow(ri, r.p >= r.q ? { p: 0, i: 0 } : { p: r.q }),
+        togI: () => setRow(ri, r.i >= r.q ? { i: 0 } : { i: r.q, p: r.q })
+      };
+    });
+    const dirtyN = rsSt.filter(dirtyOf).length;
+    const save = () => {
+      const ch = rsSt.map((r, ri) => ({ ri, p: r.p, i: r.i, t: r.t, code: r.code, q: r.q, d: dirtyOf(r) })).filter((c) => c.d);
+      if (!ch.length) { this.setState({ err: 'ยังไม่มีการแก้ไขในสถานี ' + st }); return; }
+      const dP = ch.reduce((t, c) => t + (c.p - rsSt[c.ri].sp), 0), dI = ch.reduce((t, c) => t + (c.i - rsSt[c.ri].si), 0);
+      const txt = st + ' · ' + ch.length + ' แถว · ผลิต ' + (dP >= 0 ? '+' : '') + dP + ' · ติดตั้ง ' + (dI >= 0 ? '+' : '') + dI + ' ชิ้น';
+      if (isPM) {
+        const out = this.commit(S, st, ch);
+        this.setState({ ...out, hl: st, err: '', toast: 'บันทึกแล้ว — ' + txt + ' ตัวเลขและกราฟอัปเดตทันที' });
+      } else {
+        const rsBack = rsSt.map((r) => ({ ...r, p: r.sp, i: r.si, t: r.ts, code: r.cs, q: r.qs }));
+        this.setState({ pend: S.pend.concat([{ id: Date.now(), st, ch, text: txt, by: ROLE[S.role].th }]), rs: { ...S.rs, [st]: rsBack }, err: '', toast: 'ส่งให้ PM อนุมัติแล้ว — ' + txt });
+      }
+    };
+    const pend = S.pend.map((p) => ({
+      text: p.st + ' · ' + p.text.split(' · ').slice(1).join(' · ') + ' · โดย ' + p.by,
+      bg: isPM ? '#8A4B08' : '#EEF1F5', fg: isPM ? '#FFFFFF' : '#8B97A8', bd: isPM ? '#8A4B08' : '#D5DDE8',
+      approve: () => {
+        if (!isPM) { denied('เฉพาะ PM เท่านั้นที่อนุมัติได้'); return; }
+        const out = p.imp ? { rows: this.impApply(S.rows, p.imp) } : (p.ch.length ? this.commit(S, p.st, p.ch) : {});
+        this.setState({ ...out, pend: S.pend.filter((x) => x.id !== p.id), hl: p.st, toast: 'PM อนุมัติแล้ว — ' + p.text, err: '' });
+      }
+    }));
+    const typeChips = [];
+    S.types.forEach((y) => FL.forEach((fl) => typeChips.push({
+      label: y.code + ' · ' + fl[0],
+      pick: () => {
+        if (rsSt.some((r) => r.vo && r.code === y.code && r.fl === fl[0])) { denied(y.code + ' ชั้น ' + fl[0] + ' อยู่ในสถานี ' + st + ' แล้ว'); return; }
+        const nr = { g: y.g, t: y.t, code: y.code, size: y.size, fl: fl[0], q: 1, p: 0, i: 0, sp: 0, si: 0, ts: y.t, cs: y.code, qs: 1, vo: true };
+        this.setState({ rs: { ...S.rs, [st]: rsSt.concat([nr]) }, grp: y.g, err: '' });
+      }
+    })));
+    if (!typeChips.length) typeChips.push({ label: 'ยังไม่มี — สร้างที่แท็บ ประเภทป้าย / VO', pick: () => this.setState({ tab: 'types' }) });
+
+    // ----- tab: inspection -----
+    const sm = stSummary(st);
+    const setI = (g, patch) => this.setState({ insp: { ...S.insp, [st]: { ...S.insp[st], [g]: { ...S.insp[st][g], ...patch } } }, err: '' });
+    const gcount = (g) => rsSt.filter((r) => r.g === g).reduce((t, r) => t + r.q, 0);
+    const iflat = [];
+    stGroups(st).forEach((g) => {
+      const I = S.insp[st][g], d = ISTAT[I.s], gm = G7.find((x) => x.key === g);
+      const opts = ['wait', 'no', 'ok', 'punch'].map((o) => ({
+        label: ISTAT[o].th, op: isPM ? '1' : '0.45',
+        bg: I.s === o ? ISTAT[o].bg : '#FFFFFF', fg: I.s === o ? ISTAT[o].fg : '#5B6B7F', bd: I.s === o ? ISTAT[o].fg : '#C9D3E1',
+        pick: () => { if (!isPM) { denied('เฉพาะ PM เท่านั้นที่กำหนดสถานะตรวจรับได้'); return; } setI(g, { s: o, meta: TODAY + ' · PM' }); }
+      }));
+      iflat.push({ head: true, pk: false, add: false, cap: false, th: gm.th, en: g, qty: nf(gcount(g)), stTh: d.th, bg: d.bg, fg: d.fg, opts, cm: I.cm,
+        onCm: (e) => { if (!isPM && !isGRS) { denied('Installation ดูผลตรวจรับได้อย่างเดียว'); return; } setI(g, { cm: e.target.value }); },
+        upOp: isGRS ? '1' : '0.45',
+        upload: () => { if (!isGRS) { denied('เฉพาะ GRS Leader เท่านั้นที่อัปโหลดเอกสารได้'); return; } setI(g, { doc: 'ตรวจรับ_' + st + '_' + g.replace(' ', '') + '_' + TODAY.replace(/ /g, '') + '.pdf', meta: TODAY + ' · GRS Leader' }); },
+        doc: I.doc || 'ยังไม่มีเอกสาร', meta: I.meta || '' });
+      if (I.s === 'punch') {
+        I.punch.forEach((p, pi) => iflat.push({ pk: true, head: false, add: false, cap: false, text: p.t, chk: p.d ? '✓' : '', chkBg: p.d ? '#8A4B08' : '#FFFFFF', fg: p.d ? '#8B97A8' : '#263445', dec: p.d ? 'line-through' : 'none',
+          tog: () => setI(g, { punch: I.punch.map((z, j) => (j === pi ? { ...z, d: !z.d } : z)) }) }));
+        iflat.push({ add: true, head: false, pk: false, cap: false, nv: I.nv,
+          onNew: (e) => setI(g, { nv: e.target.value }),
+          addNew: () => { if (!(isPM || isGRS)) { denied('Installation เพิ่มรายการไม่ได้'); return; } if (!I.nv.trim()) return; setI(g, { punch: I.punch.concat([{ t: I.nv.trim(), d: false }]), nv: '' }); } });
+      } else { iflat.push({ cap: true, head: false, pk: false, add: false }); }
+    });
+    const sumBg = sm.all ? ['#E1F4EA', '#1B6B43'] : sm.pk > 0 ? ['#FFF1DB', '#8A4B08'] : sm.key === 'part' ? ['#E3F0FB', '#1B5C9E'] : ['#EEF1F5', '#5B6B7F'];
+    const sumV = {
+      text: 'ตรวจรับสำเร็จ ' + sm.ok + ' / ' + sm.n + ' กลุ่มป้าย', badge: sm.th, bg: sumBg[0], fg: sumBg[1],
+      note: sm.all ? 'ครบทุกกลุ่ม — นับเป็นติดตั้งเสร็จในรายงาน' : 'เมื่อ "ตรวจรับสำเร็จ" ครบทุกกลุ่ม สถานีจะนับเป็นติดตั้งเสร็จในรายงาน · เก็บเฉพาะผลล่าสุด'
+    };
+
+    // ----- tab: types -----
+    const TF = S.tf;
+    const tgChips = G7.map((g) => ({ label: g.th, bg: TF.g === g.key ? '#142B4F' : '#FFFFFF', fg: TF.g === g.key ? '#FFFFFF' : '#263445', bd: TF.g === g.key ? '#142B4F' : '#B8C4D4', pick: () => this.setState({ tf: { ...TF, g: g.key }, err: '' }) }));
+    const qOf = (fl) => Math.max(0, parseInt(TF['q' + fl], 10) || 0);
+    const floorQty = FL.map((x) => ({ k: x[0], name: x[1], q: TF['q' + x[0]], on: (e) => this.setState({ tf: { ...TF, ['q' + x[0]]: e.target.value } }) }));
+    const codePrev = [];
+    FL.forEach((x) => {
+      const q = qOf(x[0]); if (!q) return;
+      const code = TF.code.trim() || 'CODE';
+      const a0 = fbase(st, x[0]) + 1 + rsSt.filter((r) => r.vo && r.fl === x[0]).reduce((t, r) => t + r.q, 0), b0 = a0 + q - 1;
+      codePrev.push({ ids: (q === 1 ? two(a0) + x[0] : two(a0) + x[0] + ' – ' + two(b0) + x[0]) + '_' + st + '_' + code, note: '(' + q + ' ชิ้น · ชั้น ' + x[0] + ' ล่าสุดเดิม ' + two(a0 - 1 - rsSt.filter((r) => r.vo && r.fl === x[0]).reduce((t, r) => t + r.q, 0)) + ')' });
+    });
+    if (!codePrev.length) codePrev.push({ ids: '—', note: 'ใส่จำนวนอย่างน้อย 1 ชั้นเพื่อดูรหัสที่จะได้ (Code pattern เดิมก็รันเลขต่อจากเดิม)' });
+    const createType = () => {
+      if (!(isPM || isGRS)) { denied('เฉพาะ PM และ GRS Leader เท่านั้นที่สร้างประเภทป้ายได้'); return; }
+      const t = TF.t.trim(), code = TF.code.trim();
+      if (!t || !code) { denied('กรุณากรอก Type of Installation และ Code pattern'); return; }
+      const y = { g: TF.g, t, code, size: TF.size.trim() || '—', desc: TF.desc.trim() || '—', by: ROLE[S.role].th, at: TODAY };
+      const newRows = FL.filter((x) => qOf(x[0]) > 0).map((x) => ({ g: y.g, t, code, size: y.size, fl: x[0], q: qOf(x[0]), p: 0, i: 0, sp: 0, si: 0, ts: t, cs: code, qs: qOf(x[0]), vo: true }));
+      const listAfter = rsSt.concat(newRows);
+      const ids = newRows.map((r, k) => idText(st, listAfter, rsSt.length + k));
+      const exists = S.types.some((z) => z.code.toLowerCase() === code.toLowerCase());
+      this.setState({ types: exists ? S.types : S.types.concat([y]), rs: newRows.length ? { ...S.rs, [st]: listAfter } : S.rs, tf: { g: TF.g, t: '', code: '', size: '', desc: '', qG: '', qC: '', qP: '' }, err: '',
+        toast: 'สร้างประเภทป้ายใหม่แล้ว (VO) — ' + code + (ids.length ? ' · รหัส ' + ids.join(', ') : ' · เลือกใช้ได้ในการอัปเดตครั้งถัดไป') });
+    };
+    const typeList = S.types.map((y) => {
+      const used = Object.keys(S.rs).filter((s2) => S.rs[s2].some((r) => r.vo && r.code === y.code));
+      return { ...y, g: (G7.find((x) => x.key === y.g) || {}).th, use: used.length ? 'ใช้ใน ' + used.join(', ') : 'ยังไม่ได้ใช้ในสถานีใด' };
+    });
+
+    // ----- tab: overview -----
+    const gTh = (k) => (G7.find((x) => x.key === k) || {}).th || k;
+    const totP = rsSt.reduce((t, r) => t + r.p, 0), totI = rsSt.reduce((t, r) => t + r.i, 0), totQ = rsSt.reduce((t, r) => t + r.q, 0);
+    const mLeftRows = rsSt.map((r, ri) => ({ r, ri })).filter((x) => x.r.p < x.r.q).sort((x, y) => (y.r.q - y.r.p) - (x.r.q - x.r.p));
+    const iLeftRows = rsSt.map((r, ri) => ({ r, ri })).filter((x) => x.r.i < x.r.q).sort((x, y) => (y.r.q - y.r.i) - (x.r.q - x.r.i));
+    const ovItem = (x, left) => ({ g: gTh(x.r.g), t: x.r.t + (x.r.vo ? ' (VO)' : ''), code: x.r.code, size: x.r.size || '—', left: nf(left), go: () => this.setState({ tab: 'rows', grp: x.r.g, err: '' }) });
+    const ovM = mLeftRows.slice(0, 14).map((x) => ovItem(x, x.r.q - x.r.p)), ovI = iLeftRows.slice(0, 14).map((x) => ovItem(x, x.r.q - x.r.i));
+    const ovCards = [
+      { label: 'ผลิตแล้ว', val: nf(totP) + ' / ' + nf(totQ), sub: pc(totQ ? totP / totQ * 100 : 0) + ' ของแผนสถานีนี้', fg: '#1B5C9E', bg: '#FFFFFF' },
+      { label: 'ติดตั้งแล้ว', val: nf(totI) + ' / ' + nf(totQ), sub: pc(totQ ? totI / totQ * 100 : 0) + ' ของแผนสถานีนี้', fg: '#A8590A', bg: '#FFFFFF' },
+      { label: 'ยังไม่ผลิต', val: nf(totQ - totP) + ' ชิ้น', sub: mLeftRows.length + ' รายการประเภทป้าย', fg: '#1B5C9E', bg: '#F3F8FD' },
+      { label: 'ยังไม่ติดตั้ง', val: nf(totQ - totI) + ' ชิ้น', sub: iLeftRows.length + ' รายการประเภทป้าย', fg: '#A8590A', bg: '#FFF8EF' }
+    ];
+    const ovGroups = G7.filter((g) => rsSt.some((r) => r.g === g.key)).map((g) => {
+      const rr = rsSt.filter((r) => r.g === g.key), q = rr.reduce((t, r) => t + r.q, 0), p = rr.reduce((t, r) => t + r.p, 0), i = rr.reduce((t, r) => t + r.i, 0);
+      const I = (S.insp[st] || {})[g.key], iv = ISTAT[I ? I.s : 'wait'];
+      return { th: g.th, mW: (q ? p / q * 100 : 0).toFixed(0) + '%', iW: (q ? i / q * 100 : 0).toFixed(0) + '%', mTxt: nf(p) + '/' + nf(q), iTxt: nf(i) + '/' + nf(q),
+        mLeft: q - p > 0 ? nf(q - p) + ' ชิ้น' : 'ครบแล้ว', mLeftFg: q - p > 0 ? '#1B5C9E' : '#1B6B43', iLeft: q - i > 0 ? nf(q - i) + ' ชิ้น' : 'ครบแล้ว', iLeftFg: q - i > 0 ? '#A8590A' : '#1B6B43',
+        vTh: iv.th, vBg: iv.bg, vFg: iv.fg };
+    });
+
+    // ----- export dialog -----
+    const X = S.exp;
+    const impCh = (S.imp.parsed || []).map((p) => { const r = S.rows.find((x) => x.st === p.st); if (!r) return null; const mq = p.mq || r.mq, iq = p.iq || r.iq, md = p.md === undefined ? r.md : Math.min(mq, p.md), id = p.id === undefined ? r.id : Math.min(iq, p.id); return { st: p.st, mq, md, iq, id, om: r.md, oi: r.id, dm: md - r.md, di: id - r.id }; }).filter((c) => c && (c.dm || c.di));
+    const impRows = impCh.map((c) => ({ st: c.st, m: c.om + ' → ' + c.md, i: c.oi + ' → ' + c.id, dm: c.dm, di: c.di, d: (c.dm ? (c.dm > 0 ? '+' : '') + c.dm + ' ผลิต ' : '') + (c.di ? (c.di > 0 ? '+' : '') + c.di + ' ติดตั้ง' : '') }));
+    const STARTS = { OR13: ['2026-08-15', '2026-08-20'], OR14: ['2026-08-15', '2026-09-20'], OR15: ['2026-08-15', '2026-10-01'], OR16: ['2026-08-15', '2026-10-01'], OR17: ['2026-08-15', '2026-10-01'], OR18: ['2026-08-15', '2026-10-10'], OR19: ['2026-08-15', '2026-10-10'], OR20: ['2026-08-15', '2026-09-14'], OR21: ['2026-08-15', '2026-10-20'], OR22: ['2026-08-15', '2026-11-01'], OR23: ['2026-09-04', '2026-09-29'], OR24: ['2026-09-10', '2026-10-06'], OR25: ['2026-09-18', '2026-10-13'], OR26: ['2026-09-25', '2026-10-20'], OR27: ['2026-10-02', '2026-10-27'], OR28: ['2026-10-09', '2026-11-03'], OR29: ['2026-10-16', '2026-11-10'] };
+    const rawOf = (stn) => this.RAWMAP[stn];
+    const xsel = eff.filter((r) => { const n = parseInt(r.st.slice(2), 10); return X.zone === 'all' || (X.zone === 'ch' && n <= 22) || (X.zone === 'tnk' && n >= 23); });
+    const xm = xsel.reduce((t, r) => t + r.md, 0) / xsel.reduce((t, r) => t + r.mq, 0) * 100, xi = xsel.reduce((t, r) => t + r.id, 0) / xsel.reduce((t, r) => t + r.iq, 0) * 100;
+    const expRows = xsel.map((r, k) => ({ no: String(k + 1), st: r.st, ms: fd(STARTS[r.st][0]), mf: fd(this.RAWMAP[r.st][0]), mp: pc(r.ma), is: fd(STARTS[r.st][1]), if: fd(this.RAWMAP[r.st][1]), ip: pc(r.ia), avg: pc((r.ma + r.ia) / 2) }));
+    const ext = X.fmt === 'pdf' ? 'pdf' : 'xlsx';
+    const expFile = 'Progress_GRS_' + (X.zone === 'all' ? 'OR13-OR29' : X.zone === 'ch' ? 'OR13-OR22' : 'OR23-OR29') + '_20261112.' + ext;
+    const pk = (cur, val, label, fn) => ({ label, bg: cur === val ? '#142B4F' : '#FFFFFF', fg: cur === val ? '#FFFFFF' : '#263445', bd: cur === val ? '#142B4F' : '#B8C4D4', pick: fn });
+    const expFmts = [['pdf', 'PDF (.pdf)'], ['xlsx', 'Excel (.xlsx)']].map((f) => pk(X.fmt, f[0], f[1], () => this.setState({ exp: { ...X, fmt: f[0] } })));
+    const expZones = zdefs.map((f) => pk(X.zone, f[0], f[1], () => this.setState({ exp: { ...X, zone: f[0] } })));
+
+    // ----- navigation -----
+    const P = {
+      dash: 'M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z',
+      proj: 'M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z',
+      job: 'M9 4h6v3H9zM7 5H5v15h14V5h-2M9 13l2 2 4-4',
+      prog: 'M3 17l5-5 4 4 8-9M15 7h5v5',
+      db: 'M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6',
+      doc: 'M6 3h8l5 5v13H6zM14 3v5h5M9 13h6M9 17h6',
+      fix: 'M14.7 6.3a4 4 0 0 0-5 5L3 18l3 3 6.7-6.7a4 4 0 0 0 5-5l-2.5 2.5-2.2-.5-.5-2.2z',
+      rep: 'M5 20V10M12 20V4M19 20v-7M3 20h18',
+      set: 'M4 7h10M18 7h2M4 17h2M10 17h10M14 5v4M8 15v4'
+    };
+    const mk = (th, en, d, o) => Object.assign({
+      th, en, d, pad: '8px 10px', ml: '0px', is: '17', fs: '13px', bg: 'transparent', fg: '#C9D6E8', sub: '#9FB4D1', chev: '0'
+    }, o || {});
+    const nav = [
+      mk('ภาพรวม', 'Dashboard', P.dash),
+      mk('โครงการ', 'Projects', P.proj, { bg: 'rgba(255,255,255,0.10)', fg: '#FFFFFF', chev: '0.9' }),
+      mk('ความคืบหน้าผลิต/ติดตั้ง', 'Production & Install', P.prog, { pad: '7px 10px', ml: '14px', is: '15', fs: '12px', bg: '#2878C7', fg: '#FFFFFF', sub: '#E3F0FB' }),
+      mk('จัดการงาน', 'Job Management', P.job),
+      mk('ฐานข้อมูลป้าย', 'Signage Database', P.db),
+      mk('การรับประกัน', 'Warranty', 'M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6zM9 12l2 2 4-4'),
+      mk('เอกสาร', 'Documents', P.doc),
+      mk('แจ้งซ่อม', 'Maintenance', P.fix),
+      mk('รายงาน', 'Reports', P.rep),
+      mk('ตั้งค่าระบบ', 'Settings', P.set, { chev: '0.5' })
+    ];
+
+    return {
+      nav: LNAV(nav), zones, k, bars, rows, cats, rowCount: String(sel.length),
+      drawerOn: S.open, closeDrawer: () => this.setState({ open: false }),
+      openDrawer: () => this.setState({ open: true, tab: 'ov', toast: '', err: '' }),
+      tabOv: S.tab === 'ov', ovCards, ovGroups, ovM, ovI, ovMN: nf(totQ - totP) + ' ชิ้น (' + mLeftRows.length + ' รายการ)', ovIN: nf(totQ - totI) + ' ชิ้น (' + iLeftRows.length + ' รายการ)',
+      openImport: () => this.setState({ imp: { on: true, file: '', has: false, busy: false, err: '', parsed: [] }, toast: '' }), closeImport: () => this.setState({ imp: { ...S.imp, on: false } }),
+      impOn: S.imp.on, impHas: S.imp.has, impFile: S.imp.file || 'ยังไม่ได้เลือกไฟล์',
+      impPick: async (e) => {
+        const fl = Array.from((e && e.target && e.target.files) || []); if (!fl.length) return;
+        const nm = fl.map((f) => f.name).join(', ');
+        this.setState({ imp: { on: true, file: nm, has: false, busy: true, err: '', parsed: [] } });
+        try {
+          const X = await this.xLoad(), acc = {};
+          for (const f of fl) { const o = this.parseWb(X, X.read(await f.arrayBuffer(), { type: 'array' })); Object.keys(o).forEach((k) => { acc[k] = { ...(acc[k] || {}), ...o[k] }; }); }
+          const parsed = Object.keys(acc).sort().map((k) => ({ st: k, ...acc[k] }));
+          if (!parsed.length) throw new Error('ไม่พบข้อมูลสถานี — ต้องเป็นไฟล์ Progress_GRS รูปแบบเดิม (มีชีต STA Manu / STA Install)');
+          this.setState({ imp: { on: true, file: nm, has: true, busy: false, err: '', parsed } });
+        } catch (er) { this.setState({ imp: { on: true, file: nm, has: false, busy: false, err: er.message === 'xlsx-load' ? 'โหลดตัวอ่าน Excel ไม่สำเร็จ (ต้องต่อเน็ต)' : 'อ่านไฟล์ไม่สำเร็จ: ' + er.message, parsed: [] } }); }
+      },
+      impSample: () => this.setState({ imp: { on: true, file: 'ไฟล์ตัวอย่าง (จำลอง)', has: true, busy: false, err: '', parsed: S.rows.map((r, i) => ({ st: r.st, mq: r.mq, md: Math.min(r.mq, r.md + ((i * 7) % 11)), iq: r.iq, id: Math.min(r.iq, r.id + 8 + ((i * 5) % 17)) })) } }),
+      impErr: S.imp.busy ? 'กำลังอ่านไฟล์…' : (S.imp.err || (S.imp.has && !impRows.length ? 'ไม่มีสถานีที่ตัวเลขต่างจากข้อมูลปัจจุบัน' : '')),
+      impRows: impRows, impBtn: isPM ? 'นำเข้า ' + impRows.length + ' สถานี' : 'ส่งให้ PM อนุมัติ ' + impRows.length + ' สถานี',
+      impGo: () => {
+        if (!impRows.length) return;
+        const txt = 'นำเข้า Excel · ' + impRows.length + ' สถานี · ผลิต ' + impRows.reduce((t, r) => t + r.dm, 0) + ' / ติดตั้ง ' + impRows.reduce((t, r) => t + r.di, 0) + ' ชิ้น';
+        if (isPM) this.setState({ rows: this.impApply(S.rows, impCh), imp: { ...S.imp, on: false }, toast: 'นำเข้าแล้ว — ' + txt + ' · ตัวเลขภาพรวมอัปเดตแล้ว' });
+        else this.setState({ imp: { ...S.imp, on: false }, pend: S.pend.concat([{ id: Date.now(), st: 'ทั้งหมด', ch: [], imp: impCh, text: 'ทั้งหมด · ' + txt, by: ROLE[S.role].th }]), toast: 'ส่งให้ PM อนุมัติแล้ว — ' + txt });
+      },
+      openExport: () => this.setState({ exp: { ...S.exp, on: true }, toast: '' }), closeExport: () => this.setState({ exp: { ...S.exp, on: false } }),
+      expOn: X.on, expFmts, expZones, expRows, expFile, expTot: { m: pc(xm), i: pc(xi), a: pc((xm + xi) / 2) },
+      expNote: 'สร้างไฟล์ .pdf / .xlsx จริง · ระบบจะถามยืนยันก่อนบันทึก', expBtn: 'ส่งออก ' + (X.fmt === 'pdf' ? 'PDF' : 'Excel'),
+      doExport: async () => {
+        const name = expFile, zl = (zdefs.find((z) => z[0] === X.zone) || zdefs[0])[1];
+        const head = ['ลำดับ', 'สถานี', 'ผลิต: เริ่ม', 'ผลิต: Forecast', 'ผลิต: %', 'ติดตั้ง: เริ่ม', 'ติดตั้ง: Forecast', 'ติดตั้ง: %', 'เฉลี่ย %'];
+        const body = expRows.map((r) => [r.no, r.st, r.ms, r.mf, r.mp, r.is, r.if, r.ip, r.avg]);
+        const tot = ['', 'รวม', '', '', pc(xm), '', '', pc(xi), pc((xm + xi) / 2)];
+        const title = 'รายงานความคืบหน้าการผลิตและติดตั้ง ORL-GRS', sub = zl + ' · ข้อมูล ณ 12 พ.ย. 2569';
+        let msg;
+        try {
+          if (X.fmt === 'pdf') await this.pdfSave(name, title, sub, head, body.concat([{ bold: true, c: tot }]), [0.6, 0.9, 1.2, 1.3, 0.9, 1.2, 1.3, 0.9, 0.9]);
+          else await this.xlsxSave(name, [{ name: 'Sheet1', aoa: [[title], [sub], [], head].concat(body, [tot]), cols: [8, 10, 14, 14, 10, 14, 14, 10, 10] }]);
+          msg = this.saveMsg(null, name);
+        } catch (e) { msg = this.saveMsg(e, name); }
+        this.setState({ exp: { ...this.state.exp, on: false }, toast: msg });
+      },
+      floorQty, codePrev,
+      openTypes: () => this.setState({ open: true, tab: 'types', toast: '', err: '' }),
+      stLabel: st, roles, tabs, roleNote, errOn: !!S.err, err: S.err, toastOn: !!S.toast, toast: S.toast,
+      tabRows: S.tab === 'rows', tabInsp: S.tab === 'insp', tabTypes: S.tab === 'types',
+      fStations, gChips, rowsView, pendOn: S.pend.length > 0, pendN: String(S.pend.length), pend, typeChips, save,
+      saveLabel: isPM ? 'บันทึกและอนุมัติ' + (dirtyN ? ' (' + dirtyN + ' แถว)' : '') : 'ส่งให้ PM อนุมัติ' + (dirtyN ? ' (' + dirtyN + ' แถว)' : ''),
+      rowsHint: 'แถวที่แก้ไขไฮไลต์สีส้ม · กดป้ายสถานะเพื่อสลับ ผลิต/ติดตั้งครบทั้งแถว · แถว VO ไม่รวมในยอดแผนเดิม',
+      sum: sumV, iflat,
+      tf: TF, tgChips, baseTypes: String(this.baseTypes), typeList, noTypes: !S.types.length, createType,
+      onTfT: (e) => this.setState({ tf: { ...TF, t: e.target.value } }), onTfC: (e) => this.setState({ tf: { ...TF, code: e.target.value } }),
+      onTfS: (e) => this.setState({ tf: { ...TF, size: e.target.value } }), onTfD: (e) => this.setState({ tf: { ...TF, desc: e.target.value } }),
+      noteTxt: 'ข้อมูล ณ 12 พ.ย. 69 จากไฟล์ Progress GRS · % ถ่วงน้ำหนักตามจำนวนชิ้นงาน · Forecast ที่เลยกำหนดแต่งานไม่เสร็จแสดงสีแดง · สถานีที่ตรวจรับสำเร็จครบทุกกลุ่มนับเป็นติดตั้งเสร็จ (' + acceptedN + ' สถานี) · งาน VO แยกนับ ' + nf(voPcs) + ' ชิ้น'
+    };
+  }
+}
+</script>
+</body>
+</html>

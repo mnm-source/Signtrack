@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>Screen 13 Repair Management</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+input::placeholder{color:#5B6B7F}
+button{cursor:pointer}
+summary{list-style:none;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+</style>
+</helmet>
+<div style="width:1440px;height:1180px;box-sizing:border-box;display:flex;background:#F5F7FA;font-family:'Sarabun','Noto Sans Thai',system-ui,sans-serif;color:#263445;line-height:1.3">
+
+  <!-- SIDEBAR -->
+  <div style="width:208px;flex:0 0 208px;background:#142B4F;display:flex;flex-direction:column;padding:16px 12px;box-sizing:border-box;gap:16px">
+    <div style="display:flex;align-items:center;gap:9px;padding:0 4px">
+      <div style="width:34px;height:34px;flex:0 0 34px;border-radius:9px;background:#F28C28;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="20" height="20" style="fill:none;stroke:#142B4F;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M4 7h11l5 5-5 5H4zM8 12h6"></path></svg></div>
+      <div style="display:flex;flex-direction:column;line-height:1.15"><span style="color:#fff;font-weight:700;font-size:15px">ORL-SignTrack</span><span style="color:#9FB4D1;font-size:10px">MRT Orange Line · GRS</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <sc-for list="{{nav}}" as="n" hint-placeholder-count="9">
+<sc-if value="{{n.isLink}}" hint-placeholder-val="{{ false }}"><a href="{{n.href}}" style="display:block;text-decoration:none;color:inherit">
+        <div style="display:flex;align-items:center;gap:10px;padding:{{n.pad}};margin-left:{{n.ml}};border-radius:8px;background:{{n.bg}};color:{{n.fg}}">
+          <svg viewBox="0 0 24 24" width="{{n.is}}" height="{{n.is}}" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+          <div style="display:flex;flex-direction:column;line-height:1.15;flex:1;min-width:0"><span style="font-size:{{n.fs}};font-weight:600">{{n.th}}</span><span style="font-size:10px;color:{{n.sub}}">{{n.en}}</span></div>
+        </div>
+      
+</a></sc-if>
+<sc-if value="{{n.isBtn}}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:10px;padding:{{n.pad}};margin-left:{{n.ml}};border-radius:8px;background:{{n.bg}};color:{{n.fg}}">
+          <svg viewBox="0 0 24 24" width="{{n.is}}" height="{{n.is}}" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+          <div style="display:flex;flex-direction:column;line-height:1.15;flex:1;min-width:0"><span style="font-size:{{n.fs}};font-weight:600">{{n.th}}</span><span style="font-size:10px;color:{{n.sub}}">{{n.en}}</span></div>
+        </div>
+      
+</sc-if>
+</sc-for>
+    </div>
+    <div style="margin-top:auto;background:rgba(255,255,255,0.08);border-radius:8px;padding:9px 11px;display:flex;flex-direction:column;line-height:1.2">
+      <span style="font-size:10px;color:#9FB4D1">ผู้ใช้งาน</span>
+      <span style="font-size:13px;font-weight:600;color:#fff">{{meRole}}</span>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+    <div style="height:54px;flex:0 0 54px;background:#fff;border-bottom:1px solid #E1E7EF;display:flex;align-items:center;padding:0 20px;gap:16px">
+      <div style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:#5B6B7F"><span>งาน Maintenance</span><span>/</span><span>แจ้งซ่อม</span><span>/</span><span style="color:#142B4F;font-weight:700">จัดการใบแจ้งซ่อม</span></div>
+      <div style="flex:1"></div>
+      <details style="position:relative"><summary aria-label="การแจ้งเตือน 3 รายการ" style="width:32px;height:32px;border:1px solid #D5DDE8;background:#fff;border-radius:16px;color:#263445;display:flex;align-items:center;justify-content:center;list-style:none;cursor:pointer;box-sizing:border-box;font-size:12px;font-weight:700">3</summary><div style="position:absolute;right:0;top:38px;width:300px;background:#fff;border:1px solid #D5DDE8;border-radius:10px;box-shadow:0 10px 30px rgba(20,43,79,0.18);padding:6px;z-index:30;display:flex;flex-direction:column;gap:2px"><span style="padding:6px 8px;font-size:12px;font-weight:700;color:#142B4F">การแจ้งเตือน (3)</span><a href="Progress.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>OR22 ติดตั้งล่าช้ากว่า Forecast</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 05</span></a><a href="RepairMgmt.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>ใบแจ้งซ่อมรอแจกงาน 2 ใบ</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 13</span></a><a href="Approvals.dc.html" style="padding:7px 8px;border-radius:7px;font-size:12px;color:#263445;text-decoration:none;line-height:1.3"><b>รออนุมัติ / รอตรวจรับ</b><br><span style="color:#5B6B7F;font-size:11px">ไปที่ Screen 12</span></a></div></details>
+      <div style="display:flex;align-items:center;gap:9px"><div style="width:32px;height:32px;border-radius:16px;background:#142B4F;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">{{meInit}}</div>
+        <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:12.5px;font-weight:600;color:#142B4F">ผู้ใช้ตัวอย่าง</span><span style="font-size:10px;color:#5B6B7F">{{meRole}}</span></div></div>
+    </div>
+    <div style="flex:1;min-height:0;padding:18px 20px 16px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px">
+      <div style="flex:0 0 40px;display:flex;align-items:center;justify-content:space-between;gap:12px"><div style="display:flex;align-items:baseline;gap:12px"><span style="font-size:22px;font-weight:700;color:#142B4F">จัดการใบแจ้งซ่อม</span><span style="font-size:12.5px;color:#5B6B7F">Maintenance Request Management · งาน Maintenance · Engineer แจกงาน → Chief Technician รับงาน → Technician ซ่อม → เจ้าของพื้นที่ยืนยัน → Engineer ปิดงาน</span></div><div style="display:flex;gap:10px;align-items:center"><span style="font-size:11.5px;color:#5B6B7F">ดูในบทบาท (ตัวอย่าง)</span><div style="display:flex;border:1px solid #D5DDE8;border-radius:8px;overflow:hidden"><sc-for list="{{roles}}" as="ro" hint-placeholder-count="4"><button onClick="{{ro.pick}}" style="border:0;padding:7px 12px;font-family:inherit;font-size:12px;font-weight:{{ro.w}};background:{{ro.bg}};color:{{ro.fg}}">{{ro.label}}</button></sc-for></div></div></div>
+      <sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}"><div style="flex:0 0 34px;display:flex;align-items:center;background:#E1F4EA;color:#1B6B43;border-radius:8px;padding:0 14px;font-size:12.5px;font-weight:600">{{toast}}</div></sc-if>
+      <div style="flex:0 0 80px;display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:12px">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4"><div style="background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:10px 15px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between"><span style="font-size:12.5px;font-weight:600">{{k.th}}</span><div style="display:flex;align-items:baseline;gap:6px"><span style="font-size:26px;font-weight:700;line-height:1;color:{{k.fg}}">{{k.val}}</span><span style="font-size:11.5px;color:#5B6B7F">{{k.unit}}</span></div></div></sc-for>
+      </div>
+      <div style="flex:0 0 auto;display:flex;gap:6px;align-items:center"><span style="font-size:12px;font-weight:700;color:#142B4F;margin-right:4px">ขั้นตอน</span><sc-for list="{{fSt}}" as="c" hint-placeholder-count="4"><button onClick="{{c.pick}}" style="height:26px;padding:0 13px;border-radius:14px;border:1px solid {{c.bd}};background:{{c.bg}};color:{{c.fg}};font-family:inherit;font-size:12px;font-weight:600">{{c.label}}</button></sc-for></div>
+      <div style="flex:1;min-height:0;display:flex;gap:12px">
+        <div style="flex:1;min-width:0;background:#fff;border:1px solid #E1E7EF;border-radius:10px;display:flex;flex-direction:column;overflow:hidden">
+          <div style="flex:0 0 30px;display:grid;grid-template-columns:72px 62px minmax(0,1.6fr) 56px minmax(0,1fr) 150px;gap:8px;align-items:center;padding:0 14px;background:#F0F3F8;font-size:10.5px;font-weight:700;color:#5B6B7F"><span>เลขที่</span><span>สถานี</span><span>รายการป้าย</span><span>ชิ้น</span><span>ผู้รับผิดชอบ</span><span>ขั้นตอน</span></div>
+          <div style="flex:1;min-height:0;overflow:auto">
+            <sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
+              <button onClick="{{r.pick}}" style="width:100%;border:0;border-top:1px solid #EEF1F5;background:{{r.bg}};text-align:left;font-family:inherit;display:grid;grid-template-columns:72px 62px minmax(0,1.6fr) 56px minmax(0,1fr) 150px;gap:8px;align-items:center;padding:7px 14px;font-size:11.5px;color:#263445;box-shadow:inset 3px 0 0 {{r.bar}}">
+                <b style="color:#142B4F">{{r.no}}</b><span>{{r.st}}</span>
+                <span style="display:flex;flex-direction:column;line-height:1.25;min-width:0"><span style="font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{r.first}}</span><span style="font-size:10.5px;color:#5B6B7F">{{r.more}}</span></span>
+                <span>{{r.qty}}</span><span style="font-size:11px;color:#5B6B7F">{{r.who}}</span>
+                <span><span style="padding:2px 9px;border-radius:10px;font-size:10.5px;font-weight:700;background:{{r.sBg}};color:{{r.sFg}};white-space:nowrap">{{r.sTh}}</span></span>
+              </button>
+            </sc-for>
+            <sc-if value="{{empty}}" hint-placeholder-val="{{ false }}"><div style="padding:34px;text-align:center;color:#5B6B7F;font-size:13px">ไม่มีใบแจ้งซ่อมที่บทบาทนี้ต้องดูในตัวกรองนี้</div></sc-if>
+          </div>
+        </div>
+        <div style="flex:0 0 430px;background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:14px 16px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;overflow:auto">
+          <div style="display:flex;align-items:center;gap:8px"><span style="font-size:16px;font-weight:700;color:#142B4F">{{d.no}}</span><span style="font-size:12px;color:#5B6B7F">{{d.st}} · แจ้งโดย {{d.by}} · {{d.date}}</span><span style="flex:1"></span><span style="padding:2px 9px;border-radius:10px;font-size:10.5px;font-weight:700;background:{{d.wBg}};color:{{d.wFg}}">{{d.warranty}}</span></div>
+          <div style="border:1px solid #E1E7EF;border-radius:8px;overflow:hidden"><sc-for list="{{d.items}}" as="i" hint-placeholder-count="2"><div style="padding:7px 11px;border-top:1px solid #EEF1F5;font-size:11.5px;line-height:1.35"><b style="color:#142B4F">{{i.sid}}</b><br><span style="color:#263445">{{i.txt}}</span><br><span style="color:#5B6B7F;font-size:10.5px">{{i.pos}}</span></div></sc-for></div>
+          <span style="font-size:12.5px;font-weight:700;color:#142B4F">ลำดับงาน</span>
+          <div style="display:flex;flex-direction:column"><sc-for list="{{d.steps}}" as="s" hint-placeholder-count="7"><div style="display:flex;gap:10px;align-items:stretch"><div style="display:flex;flex-direction:column;align-items:center;width:14px"><span style="width:12px;height:12px;border-radius:6px;background:{{s.dot}};margin-top:2px"></span><span style="flex:1;width:2px;background:#E1E7EF;margin-top:2px"></span></div><div style="padding-bottom:7px;line-height:1.25"><span style="font-size:12px;font-weight:{{s.w}};color:{{s.fg}}">{{s.th}}</span><span style="font-size:10.5px;color:#5B6B7F"> {{s.note}}</span></div></div></sc-for></div>
+          <div style="margin-top:auto;border:1px solid #F5D9A8;background:#FFFBF3;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:8px">
+            <span style="font-size:12px;font-weight:700;color:#8A4B08">{{act.title}}</span>
+            <sc-if value="{{act.hasPick}}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:6px;flex-wrap:wrap"><span style="font-size:11.5px;color:#5B6B7F;align-self:center">{{act.pickLabel}}</span><sc-for list="{{act.picks}}" as="p" hint-placeholder-count="2"><button onClick="{{p.pick}}" style="height:28px;padding:0 12px;border-radius:14px;border:1px solid {{p.bd}};background:{{p.bg}};color:{{p.fg}};font-family:inherit;font-size:11.5px;font-weight:600">{{p.label}}</button></sc-for></div></sc-if>
+            <sc-if value="{{act.hasBtn}}" hint-placeholder-val="{{ true }}"><button onClick="{{act.go}}" style="height:38px;border-radius:8px;border:1px solid {{act.bd}};background:{{act.bg}};color:{{act.fg}};font-family:inherit;font-size:13px;font-weight:700">{{act.label}}</button></sc-if>
+            <span style="font-size:11px;color:#5B6B7F;line-height:1.35">{{act.hint}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const it = (sid, t, dmg, q, pos) => ({ sid, txt: t + ' · ' + dmg + ' × ' + q, q, pos });
+    this.state = { role: 'ENG', f: 'all', sel: 'RQ-0418', toast: '', pickCT: 'CT-สมชาย', pickT: 'T-ปรีชา',
+      reqs: [
+        { no: 'RQ-0418', st: 'OR13', by: 'วรรณา สถานีสุข', date: '12 พ.ย.', stage: 0, appr: false, war: true, ct: '', t: '', items: [it('03P_OR13_PI-23', 'สติกเกอร์ PSD', 'สติกเกอร์ลอก/ซีด', 3, 'Platform · ประตูกั้นชานชาลา')] },
+        { no: 'RQ-0419', st: 'OR14', by: 'ธนา ผู้จัดการสถานี', date: '13 พ.ย.', stage: 0, appr: false, war: false, ct: '', t: '', items: [it('03C_OR14_SW-9', 'ป้ายห้องเจ้าหน้าที่', 'ป้ายหลุด/เอียง', 1, 'Concourse · Walk Way')] },
+        { no: 'RQ-0415', st: 'OR14', by: 'ธนา ผู้จัดการสถานี', date: '12 พ.ย.', stage: 1, appr: true, war: false, ct: 'CT-สมชาย', t: '', items: [it('01G_OR14_DS-2E-120', 'ป้ายทางออก', 'หน้าป้ายแตก/ร้าว', 1, 'Ground · ทางออก 2'), it('02G_OR14_LI-5E', 'ชื่อสถานีทางเข้า', 'ไฟไม่ติด', 1, 'Ground · หน้าทางเข้า')] },
+        { no: 'RQ-0410', st: 'OR16', by: 'สุดา สถานีสุข', date: '10 พ.ย.', stage: 2, appr: true, war: false, ct: 'CT-สมชาย', t: 'T-ปรีชา', items: [it('05C_OR16_PI-9', 'จุดช่วยเหลือฉุกเฉิน', 'ไฟไม่ติด', 2, 'Concourse · ใกล้ AFC')] },
+        { no: 'RQ-0408', st: 'OR17', by: 'สุดา สถานีสุข', date: '09 พ.ย.', stage: 3, appr: true, war: false, ct: 'CT-วิชัย', t: 'T-สุรศักดิ์', items: [it('02P_OR17_DS-2E-300', 'ป้ายชานชาลา', 'ป้ายหลุด/เอียง', 1, 'Platform · บันไดเลื่อน A')] },
+        { no: 'RQ-0412', st: 'OR13', by: 'วรรณา สถานีสุข', date: '11 พ.ย.', stage: 4, appr: true, war: true, ct: 'CT-สมชาย', t: 'T-ปรีชา', items: [it('22C_OR13_PI-9', 'จุดช่วยเหลือฉุกเฉิน', 'ไฟไม่ติด', 1, 'Concourse · ผนังใกล้ AFC')] },
+        { no: 'RQ-0405', st: 'OR20', by: 'ปรีชา ผู้จัดการสถานี', date: '08 พ.ย.', stage: 5, appr: true, war: false, ct: 'CT-วิชัย', t: 'T-สุรศักดิ์', items: [it('04C_OR20_OS-6', 'สติกเกอร์ AFC', 'สติกเกอร์ลอก/ซีด', 6, 'Concourse · พื้นหน้า AFC')] },
+        { no: 'RQ-0398', st: 'OR14', by: 'ธนา ผู้จัดการสถานี', date: '05 พ.ย.', stage: 6, appr: true, war: false, ct: 'CT-สมชาย', t: 'T-ปรีชา', items: [it('01P_OR14_DS-2E-300', 'ป้ายชานชาลา', 'ป้ายหลุด/เอียง', 1, 'Platform · บันไดเลื่อน B')] }
+      ] };
+  }
+  renderVals() {
+    const IC = { man: 'M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 19c0-3 3-5 6-5s6 2 6 5M14 14c3 0 8 1 8 5', fld: 'M7 2h10a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM11 18h2', dash: 'M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z', proj: 'M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z', prog: 'M3 17l5-5 4 4 8-9M15 7h5v5', job: 'M9 4h6v3H9zM7 5H5v15h14V5h-2M9 13l2 2 4-4', apr: 'M5 12l4 4 10-10M4 20h16', db: 'M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6', war: 'M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6zM9 12l2 2 4-4', doc: 'M6 3h8l5 5v13H6zM14 3v5h5M9 13h6M9 17h6', fix: 'M14.7 6.3a4 4 0 0 0-5 5L3 18l3 3 6.7-6.7a4 4 0 0 0 5-5l-2.5 2.5-2.2-.5-.5-2.2z', rep: 'M5 20V10M12 20V4M19 20v-7M3 20h18', set: 'M4 7h10M18 7h2M4 17h2M10 17h10M14 5v4M8 15v4', qr: 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h3v3h-3zM18 18h2v2h-2z' };
+    const HR = { 'Dashboard': 'Dashboard.dc.html', 'Projects': 'ProjectEdit.dc.html', 'Production & Install': 'Progress.dc.html', 'Job Management': 'Jobs.dc.html', 'Approvals': 'Approvals.dc.html', 'Signage Database': 'SignDB.dc.html', 'Warranty': 'Warranty.dc.html', 'Documents': 'Docs.dc.html', 'Maintenance': 'RepairMgmt.dc.html', 'Reports': 'MaintReport.dc.html', 'Manpower': 'Manpower.dc.html', 'Field App': 'FieldApp.dc.html', 'Settings': 'Admin.dc.html' };
+    const NAVF = (active) => [['ภาพรวม', 'Dashboard', 'dash'], ['โครงการ', 'Projects', 'proj'], ['ความคืบหน้าผลิต/ติดตั้ง', 'Production & Install', 'prog', 1], ['จัดการงาน', 'Job Management', 'job'], ['อนุมัติ / ตรวจรับ', 'Approvals', 'apr'], ['ฐานข้อมูลป้าย', 'Signage Database', 'db'], ['การรับประกัน', 'Warranty', 'war'], ['เอกสาร', 'Documents', 'doc'], ['แจ้งซ่อม', 'Maintenance', 'fix'], ['กำลังคน / กะ', 'Manpower', 'man'], ['งานภาคสนาม (มือถือ)', 'Field App', 'fld', 1], ['รายงาน', 'Reports', 'rep'], ['ตั้งค่าระบบ', 'Settings', 'set']].map((x) => {
+      const on = x[1] === active, sub = !!x[3];
+      const link = !on && !!HR[x[1]];
+      return { th: x[0], en: x[1], d: IC[x[2]], pad: sub ? '7px 10px' : '8px 10px', ml: sub ? '14px' : '0px', is: sub ? '15' : '17', fs: sub ? '12px' : '13px', bg: on ? '#2878C7' : 'transparent', fg: on ? '#FFFFFF' : '#C9D6E8', sub: on ? '#E3F0FB' : '#9FB4D1', href: HR[x[1]] || '#', isLink: link, isBtn: !link };
+    });
+    const chip = (label, on, fn) => ({ label, bg: on ? '#142B4F' : '#FFFFFF', fg: on ? '#FFFFFF' : '#263445', bd: on ? '#142B4F' : '#B8C4D4', pick: fn });
+    const nf = (n) => Math.round(n).toLocaleString('en-US');
+    const S = this.state, set = (p) => this.setState(p);
+    const STG = ['แจ้งแล้ว รอแจกงาน', 'Engineer แจกงานแล้ว', 'Chief Technician รับงาน', 'Technician กำลังซ่อม', 'ซ่อมเสร็จ รอเจ้าของพื้นที่ยืนยัน', 'รอ Engineer ปิดงาน', 'ปิดงานแล้ว'];
+    const SC = [['#EEF1F5', '#5B6B7F'], ['#E3F0FB', '#1B5C9E'], ['#E3F0FB', '#1B5C9E'], ['#E3F0FB', '#1B5C9E'], ['#FFF1DB', '#8A4B08'], ['#FFF1DB', '#8A4B08'], ['#E1F4EA', '#1B6B43']];
+    const ROLES = { ENG: ['Engineer', 'Engineer · East'], CT: ['Chief Technician', 'Chief Technician · East'], TECH: ['Technician', 'Technician · ' + S.pickT], CE: ['Chief Engineer', 'Chief Engineer'] };
+    const role = S.role;
+    const visible = (r) => role === 'ENG' || role === 'CE' ? true : (role === 'CT' ? r.stage >= 1 : (r.stage >= 2 && r.stage <= 4));
+    const base = S.reqs.filter(visible);
+    const rows0 = base.filter((r) => S.f === 'all' || String(r.stage) === S.f);
+    const upd = (no, patch, msg) => set({ reqs: S.reqs.map((r) => (r.no === no ? { ...r, ...patch } : r)), toast: msg });
+    const rows = rows0.map((r) => ({ no: r.no, st: r.st, first: r.items[0].sid + ' · ' + r.items[0].txt.split(' · ')[0], more: r.items.length > 1 ? 'และอีก ' + (r.items.length - 1) + ' รายการ' : r.items[0].pos, qty: String(r.items.reduce((t, x) => t + x.q, 0)),
+      who: r.t ? r.t : (r.ct ? r.ct : (r.appr ? 'CE อนุมัติแล้ว' : '—')), sTh: STG[r.stage], sBg: SC[r.stage][0], sFg: SC[r.stage][1], bg: S.sel === r.no ? '#EEF5FC' : '#FFFFFF', bar: S.sel === r.no ? '#2878C7' : 'transparent', pick: () => set({ sel: r.no, toast: '' }) }));
+    const r = S.reqs.find((x) => x.no === S.sel) || S.reqs[0];
+    const steps = STG.map((th, i) => ({ th, w: r.stage === i ? '700' : '500', fg: r.stage >= i ? '#142B4F' : '#8A95A5', dot: r.stage > i ? '#2E9E6B' : (r.stage === i ? '#F28C28' : '#C9D3E1'),
+      note: i === 1 && r.ct ? '· ' + r.ct : (i === 3 && r.t ? '· ' + r.t : (i === 0 && r.appr ? '· CE อนุมัติแล้ว' : '')) }));
+    const SHN = { 'ช': 'เข้ากะเช้า', 'บ': 'กะบ่าย', 'ด': 'กะดึก', 'ห': 'หยุด', 'ล': 'ลา' };
+    const CTS = [['CT-สมชาย', 'ช'], ['CT-วิชัย', 'ช'], ['CT-ประสิทธิ์', 'ช']], TS = [['T-ปรีชา', 'ช'], ['T-สุรศักดิ์', 'ช'], ['T-ณัฐพล', 'ช'], ['T-ธนากร', 'บ'], ['T-นพดล', 'ด'], ['T-อนันต์', 'ห']];
+    const pk = (list, cur, key) => list.map((x) => { const ok = x[1] === 'ช', on = cur === x[0]; return { label: x[0] + ' · ' + SHN[x[1]], bg: on ? '#142B4F' : '#FFFFFF', fg: on ? '#FFFFFF' : (ok ? '#263445' : '#A0AABA'), bd: on ? '#142B4F' : (ok ? '#B8C4D4' : '#E1E7EF'), pick: () => (ok ? set({ [key]: x[0] }) : set({ toast: x[0] + ' ' + SHN[x[1]] + ' — ไม่ได้อยู่ในกะเช้าตอนนี้ เลือกคนที่เข้ากะ (ดูตารางที่หน้า กำลังคน / กะ)' })) }; });
+    const none = (t, h) => ({ title: t, hasPick: false, picks: [], pickLabel: '', hasBtn: false, go: () => {}, label: '', bg: '#fff', fg: '#fff', bd: '#fff', hint: h });
+    const mk = (t, label, go, hint, o) => Object.assign({ title: t, hasPick: false, picks: [], pickLabel: '', hasBtn: true, go, label, bg: '#142B4F', fg: '#FFFFFF', bd: '#142B4F', hint }, o || {});
+    let act = none('ไม่มีงานที่ต้องทำในบทบาทนี้', 'ขั้นตอนนี้อยู่ที่บทบาทอื่น — สลับบทบาทด้านบนเพื่อดูมุมมองอื่น');
+    if (role === 'ENG' && r.stage === 0) act = mk('Engineer · แจกงาน', 'แจกงานให้ ' + S.pickCT, () => upd(r.no, { stage: 1, ct: S.pickCT }, r.no + ' แจกงานให้ ' + S.pickCT + ' แล้ว'), 'Chief Technician จะเห็นงานนี้และสั่งช่างเข้าซ่อม', { hasPick: true, pickLabel: 'Chief Technician', picks: pk(CTS, S.pickCT, 'pickCT') });
+    if (role === 'ENG' && r.stage === 5) act = mk('Engineer · ปิดงาน', 'ปิดงานซ่อม ' + r.no, () => upd(r.no, { stage: 6 }, 'ปิดงาน ' + r.no + ' แล้ว — ส่งสรุปให้ Chief Engineer / Manager / Division Manager ดูในรายงาน'), 'เจ้าของพื้นที่ยืนยันการซ่อมแล้ว');
+    if (role === 'ENG' && r.stage === 4) act = none('รอเจ้าของพื้นที่ยืนยัน', 'Technician ส่งงานแล้ว — ต้องรอ Station Manager ยืนยันที่ Screen 08');
+    if (role === 'CE' && r.stage === 0 && !r.appr) act = mk('Chief Engineer · อนุมัติใบแจ้งซ่อม', 'อนุมัติใบแจ้งซ่อม ' + r.no, () => upd(r.no, { appr: true }, 'อนุมัติ ' + r.no + ' แล้ว — Engineer แจกงานต่อได้'), 'Chief Engineer อนุมัติได้ตามที่กำหนดสิทธิ์', { bg: '#F28C28', fg: '#142B4F', bd: '#F28C28' });
+    if (role === 'CT' && r.stage === 1) act = mk('Chief Technician · รับงาน', 'รับงานและสั่ง ' + S.pickT + ' ซ่อม', () => upd(r.no, { stage: 2, t: S.pickT }, r.no + ' รับงานแล้ว สั่ง ' + S.pickT + ' ซ่อม'), 'แสดงสถานะกะวันนี้ (จันทร์ 16 พ.ย. · ตอนนี้กะเช้า) จากหน้า กำลังคน / กะ — เลือกได้เฉพาะคนที่เข้ากะ', { hasPick: true, pickLabel: 'Technician', picks: pk(TS, S.pickT, 'pickT') });
+    if (role === 'TECH' && r.stage === 2) act = mk('Technician · เริ่มซ่อม', 'เริ่มซ่อม ' + r.no, () => upd(r.no, { stage: 3 }, 'เริ่มซ่อม ' + r.no), 'แนบรูปก่อน/หลังซ่อมได้เมื่อส่งงาน');
+    if (role === 'TECH' && r.stage === 3) act = mk('Technician · ส่งงาน', 'ซ่อมเสร็จ ส่งงาน ' + r.no, () => upd(r.no, { stage: 4 }, 'ส่งงาน ' + r.no + ' แล้ว — รอเจ้าของพื้นที่ยืนยัน'), 'ระบบแจ้งเจ้าของพื้นที่ให้ยืนยันการซ่อม');
+    if (r.stage === 4 && role !== 'ENG') act = mk('รอเจ้าของพื้นที่ยืนยัน', 'จำลอง: เจ้าของพื้นที่ยืนยันการซ่อม', () => upd(r.no, { stage: 5 }, 'เจ้าของพื้นที่ยืนยัน ' + r.no + ' แล้ว — เด้งไปให้ Engineer ปิดงาน'), 'ปุ่มนี้ใช้จำลองเท่านั้น (จริงอยู่ที่ Screen 08)', { bg: '#fff', fg: '#142B4F' });
+    if (r.stage === 4 && role === 'ENG') act = mk('รอเจ้าของพื้นที่ยืนยัน', 'จำลอง: เจ้าของพื้นที่ยืนยันการซ่อม', () => upd(r.no, { stage: 5 }, 'เจ้าของพื้นที่ยืนยัน ' + r.no + ' แล้ว — เด้งไปให้ Engineer ปิดงาน'), 'ปุ่มนี้ใช้จำลองเท่านั้น (จริงอยู่ที่ Screen 08)', { bg: '#fff', fg: '#142B4F' });
+    const cnt = (f) => base.filter(f).length;
+    const kpis = [
+      { th: 'รอแจกงาน', val: String(S.reqs.filter((x) => x.stage === 0).length), unit: 'ใบ', fg: '#5B6B7F' },
+      { th: 'กำลังดำเนินการ', val: String(S.reqs.filter((x) => x.stage >= 1 && x.stage <= 3).length), unit: 'ใบ', fg: '#1B5C9E' },
+      { th: 'รอยืนยัน / รอปิดงาน', val: String(S.reqs.filter((x) => x.stage === 4 || x.stage === 5).length), unit: 'ใบ', fg: '#8A4B08' },
+      { th: 'ปิดงานแล้ว', val: String(S.reqs.filter((x) => x.stage === 6).length), unit: 'ใบ', fg: '#1B6B43' }
+    ];
+    const fSt = [['all', 'ทั้งหมด (' + base.length + ')']].concat(STG.map((s, i) => [String(i), s.replace('รอเจ้าของพื้นที่ยืนยัน', 'รอยืนยัน') + ' (' + cnt((x) => x.stage === i) + ')'])).map((c) => chip(c[1], S.f === c[0], () => set({ f: c[0] })));
+    const d = { no: r.no, st: r.st, by: r.by, date: r.date + ' 69', warranty: r.war ? 'ในประกัน' : 'นอกประกัน/ไม่ระบุ', wBg: r.war ? '#E1F4EA' : '#EEF1F5', wFg: r.war ? '#1B6B43' : '#5B6B7F', items: r.items.map((x) => ({ sid: x.sid, txt: x.txt, pos: x.pos })), steps };
+    return { nav: NAVF('Maintenance'), meRole: ROLES[role][1], meInit: role === 'ENG' ? 'E' : (role === 'CT' ? 'CT' : (role === 'TECH' ? 'T' : 'CE')), kpis, fSt, rows, empty: rows.length === 0, d, act,
+      roles: Object.keys(ROLES).map((k) => ({ label: ROLES[k][0], w: role === k ? '700' : '500', bg: role === k ? '#142B4F' : '#FFFFFF', fg: role === k ? '#FFFFFF' : '#263445', pick: () => set({ role: k, f: 'all', toast: '' }) })),
+      toastOn: !!S.toast, toast: S.toast };
+  }
+}
+</script>
+</body>
+</html>

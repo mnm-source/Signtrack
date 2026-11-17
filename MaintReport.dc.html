@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>Screen 09 Maintenance Report</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+button{cursor:pointer}
+summary{list-style:none;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+</style>
+</helmet>
+<div style="width:1440px;height:1180px;box-sizing:border-box;display:flex;background:#F5F7FA;font-family:'Sarabun','Noto Sans Thai',system-ui,sans-serif;color:#263445;line-height:1.3">
+
+  <!-- SIDEBAR -->
+  <div style="width:208px;flex:0 0 208px;background:#142B4F;display:flex;flex-direction:column;padding:16px 12px;box-sizing:border-box;gap:16px">
+    <div style="display:flex;align-items:center;gap:9px;padding:0 4px">
+      <div style="width:34px;height:34px;flex:0 0 34px;border-radius:9px;background:#F28C28;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="20" height="20" style="fill:none;stroke:#142B4F;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M4 7h11l5 5-5 5H4zM8 12h6"></path></svg></div>
+      <div style="display:flex;flex-direction:column;line-height:1.15"><span style="color:#fff;font-weight:700;font-size:15px">ORL-SignTrack</span><span style="color:#9FB4D1;font-size:10px">MRT Orange Line · GRS</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <sc-for list="{{nav}}" as="n" hint-placeholder-count="5">
+<sc-if value="{{n.isLink}}" hint-placeholder-val="{{ false }}"><a href="{{n.href}}" style="display:block;text-decoration:none;color:inherit">
+        <div style="display:flex;align-items:center;gap:10px;padding:{{n.pad}};margin-left:{{n.ml}};border-radius:8px;background:{{n.bg}};color:{{n.fg}}">
+          <svg viewBox="0 0 24 24" width="{{n.is}}" height="{{n.is}}" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+          <div style="display:flex;flex-direction:column;line-height:1.15;flex:1;min-width:0"><span style="font-size:{{n.fs}};font-weight:600">{{n.th}}</span><span style="font-size:10px;color:{{n.sub}}">{{n.en}}</span></div>
+        </div>
+      
+</a></sc-if>
+<sc-if value="{{n.isBtn}}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:10px;padding:{{n.pad}};margin-left:{{n.ml}};border-radius:8px;background:{{n.bg}};color:{{n.fg}}">
+          <svg viewBox="0 0 24 24" width="{{n.is}}" height="{{n.is}}" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+          <div style="display:flex;flex-direction:column;line-height:1.15;flex:1;min-width:0"><span style="font-size:{{n.fs}};font-weight:600">{{n.th}}</span><span style="font-size:10px;color:{{n.sub}}">{{n.en}}</span></div>
+        </div>
+      
+</sc-if>
+</sc-for>
+    </div>
+    <div style="margin-top:auto;background:rgba(255,255,255,0.08);border-radius:8px;padding:9px 11px;display:flex;flex-direction:column;line-height:1.2">
+      <span style="font-size:10px;color:#9FB4D1">ผู้ใช้งาน</span>
+      <span style="font-size:13px;font-weight:600;color:#fff">Engineer · Orange Line East</span>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+    <div style="height:54px;flex:0 0 54px;background:#fff;border-bottom:1px solid #E1E7EF;display:flex;align-items:center;padding:0 20px;gap:16px">
+      <div style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:#5B6B7F"><span>งาน Maintenance</span><span>/</span><span>แจ้งซ่อม</span><span>/</span><span style="color:#142B4F;font-weight:700">รายงานสรุป</span></div>
+      <div style="flex:1"></div>
+      <div style="display:flex;align-items:center;gap:9px">
+        <div style="width:32px;height:32px;border-radius:16px;background:#142B4F;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">E</div>
+        <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:12.5px;font-weight:600;color:#142B4F">ผู้ใช้ตัวอย่าง</span><span style="font-size:10px;color:#5B6B7F">Engineer</span></div>
+      </div>
+    </div>
+
+    <div style="flex:1;min-height:0;padding:18px 20px 16px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px">
+      <div style="flex:0 0 40px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <div style="display:flex;align-items:baseline;gap:12px"><span style="font-size:22px;font-weight:700;color:#142B4F">รายงานงานแจ้งซ่อม</span><span style="font-size:12.5px;color:#5B6B7F">Maintenance Report · Orange Line East OR13–OR29 · ข้อมูลเป็นตัวอย่าง</span></div>
+        <span style="font-size:11.5px;color:#5B6B7F">Chief Engineer · Manager · Division Manager ดูรายงานนี้ได้</span>
+      </div>
+
+      <sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}">
+        <div style="flex:0 0 36px;display:flex;align-items:center;gap:10px;background:#E1F4EA;color:#1B6B43;border-radius:8px;padding:0 14px;font-size:12.5px;font-weight:600">{{toast}}</div>
+      </sc-if>
+
+      <!-- controls -->
+      <div style="flex:0 0 52px;background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:0 16px;display:flex;align-items:center;gap:22px;box-sizing:border-box">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:#142B4F">ช่วงสรุป</span>
+          <div style="display:flex;border:1px solid #D5DDE8;border-radius:8px;overflow:hidden">
+            <sc-for list="{{periods}}" as="p" hint-placeholder-count="4"><button onClick="{{p.pick}}" style="border:0;padding:7px 16px;font-family:inherit;font-size:12.5px;font-weight:{{p.w}};background:{{p.bg}};color:{{p.fg}}">{{p.label}}</button></sc-for>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:#142B4F">ช่วงเวลา</span>
+          <button onClick="{{prev}}" aria-label="ก่อนหน้า" style="width:28px;height:28px;border:1px solid #D5DDE8;background:#fff;border-radius:7px;font-size:14px;padding:0">‹</button>
+          <span style="min-width:150px;text-align:center;font-size:13px;font-weight:700;color:#142B4F">{{range}}</span>
+          <button onClick="{{next}}" aria-label="ถัดไป" style="width:28px;height:28px;border:1px solid #D5DDE8;background:#fff;border-radius:7px;font-size:14px;padding:0">›</button>
+        </div>
+        <div style="flex:1"></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;font-weight:700;color:#142B4F">ไฟล์</span>
+          <div style="display:flex;gap:6px"><sc-for list="{{fmts}}" as="f" hint-placeholder-count="2"><button onClick="{{f.pick}}" style="height:30px;padding:0 14px;border-radius:8px;border:1px solid {{f.bd}};background:{{f.bg}};color:{{f.fg}};font-family:inherit;font-size:12.5px;font-weight:600">{{f.label}}</button></sc-for></div>
+        </div>
+        <button onClick="{{doExport}}" style="height:34px;padding:0 18px;border-radius:8px;border:1px solid #F28C28;background:#F28C28;color:#142B4F;font-family:inherit;font-size:12.5px;font-weight:700">ส่งออกสรุป{{periodLabel}}</button>
+      </div>
+
+      <!-- KPIs -->
+      <div style="flex:0 0 88px;display:grid;grid-template-columns:repeat(5, minmax(0, 1fr));gap:12px">
+        <sc-for list="{{kpis}}" as="k" hint-placeholder-count="5">
+          <div style="background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:11px 15px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
+            <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:13px;font-weight:600">{{k.th}}</span><span style="font-size:10.5px;color:#5B6B7F">{{k.en}}</span></div>
+            <div style="display:flex;align-items:baseline;gap:6px"><span style="font-size:28px;font-weight:700;line-height:1;color:{{k.fg}}">{{k.val}}</span><span style="font-size:12px;color:#5B6B7F">{{k.unit}}</span></div>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- trend + status -->
+      <div style="flex:0 0 250px;display:flex;gap:12px">
+        <div style="flex:1;min-width:0;background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:14px 16px;box-sizing:border-box;display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:14px;font-weight:700;color:#142B4F">{{trendTitle}}</span>
+            <div style="display:flex;gap:12px;font-size:11.5px"><span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:3px;background:#2878C7"></span>แจ้งเข้า</span><span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:3px;background:#2E9E6B"></span>ปิดงาน</span></div></div>
+          <div style="flex:1;min-height:0;display:flex;align-items:flex-end;gap:10px;border-bottom:1px solid #D5DDE8;padding-top:4px">
+            <sc-for list="{{trend}}" as="b" hint-placeholder-count="7">
+              <div style="flex:1;min-width:0;display:flex;align-items:flex-end;justify-content:center;gap:4px;height:100%">
+                <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:2px"><span style="font-size:10px;font-weight:600;color:#1B5C9E">{{b.a}}</span><div style="width:20px;border-radius:3px 3px 0 0;background:#2878C7;height:{{b.ah}}"></div></div>
+                <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:2px"><span style="font-size:10px;font-weight:600;color:#1B6B43">{{b.c}}</span><div style="width:20px;border-radius:3px 3px 0 0;background:#2E9E6B;height:{{b.ch}}"></div></div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;gap:10px;height:16px"><sc-for list="{{trend}}" as="b" hint-placeholder-count="7"><div style="flex:1;min-width:0;text-align:center;font-size:11px;font-weight:600;color:#142B4F">{{b.l}}</div></sc-for></div>
+        </div>
+        <div style="flex:0 0 420px;background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:14px 16px;box-sizing:border-box;display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:14px;font-weight:700;color:#142B4F">แยกตามขั้นตอน</span>
+          <div style="display:flex;flex-direction:column;flex:1;justify-content:space-between">
+            <sc-for list="{{byStage}}" as="s" hint-placeholder-count="7">
+              <div style="display:flex;align-items:center;gap:8px;font-size:11.5px"><span style="width:176px;color:#263445">{{s.label}}</span><div style="flex:1;height:8px;border-radius:4px;background:#E6EBF2;overflow:hidden"><div style="height:100%;background:{{s.bg}};width:{{s.w}}"></div></div><b style="width:30px;text-align:right;color:#142B4F">{{s.n}}</b></div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <!-- breakdowns -->
+      <div style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr);gap:12px">
+        <div style="background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:12px 16px;box-sizing:border-box;display:flex;flex-direction:column;gap:5px;overflow:hidden">
+          <span style="font-size:14px;font-weight:700;color:#142B4F">แยกตามสถานี</span>
+          <div style="flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:3px 22px;align-content:space-between">
+            <sc-for list="{{byStation}}" as="s" hint-placeholder-count="17">
+              <div style="display:flex;align-items:center;gap:7px;font-size:11.5px"><b style="width:38px;color:#142B4F">{{s.label}}</b><div style="flex:1;height:7px;border-radius:4px;background:#E6EBF2;overflow:hidden"><div style="height:100%;background:#2878C7;width:{{s.w}}"></div></div><span style="width:26px;text-align:right;font-weight:700">{{s.n}}</span></div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:12px 16px;box-sizing:border-box;display:flex;flex-direction:column;gap:6px;overflow:hidden">
+          <span style="font-size:14px;font-weight:700;color:#142B4F">แยกตามอาการชำรุด</span>
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between">
+            <sc-for list="{{byDamage}}" as="s" hint-placeholder-count="6">
+              <div style="display:flex;flex-direction:column;gap:2px;font-size:11.5px"><div style="display:flex;justify-content:space-between"><span>{{s.label}}</span><b>{{s.n}}</b></div><div style="height:7px;border-radius:4px;background:#E6EBF2;overflow:hidden"><div style="height:100%;background:#F28C28;width:{{s.w}}"></div></div></div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:12px 16px;box-sizing:border-box;display:flex;flex-direction:column;gap:6px;overflow:hidden">
+          <span style="font-size:14px;font-weight:700;color:#142B4F">แยกตามกลุ่มป้าย</span>
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between">
+            <sc-for list="{{byGroup}}" as="s" hint-placeholder-count="7">
+              <div style="display:flex;flex-direction:column;gap:2px;font-size:11.5px"><div style="display:flex;justify-content:space-between"><span>{{s.label}}</span><b>{{s.n}}</b></div><div style="height:7px;border-radius:4px;background:#E6EBF2;overflow:hidden"><div style="height:100%;background:#142B4F;width:{{s.w}}"></div></div></div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <!-- sections included -->
+      <div style="flex:0 0 46px;background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:0 16px;display:flex;align-items:center;gap:8px;box-sizing:border-box">
+        <span style="font-size:12px;font-weight:700;color:#142B4F">ส่วนที่ใส่ในไฟล์</span>
+        <sc-for list="{{secs}}" as="c" hint-placeholder-count="6"><button onClick="{{c.pick}}" style="height:28px;padding:0 12px;border-radius:14px;border:1px solid {{c.bd}};background:{{c.bg}};color:{{c.fg}};font-family:inherit;font-size:11.5px;font-weight:600">{{c.label}}</button></sc-for>
+        <span style="flex:1"></span><span style="font-size:11px;color:#5B6B7F">{{fileName}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { per: 'week', off: 0, fmt: 'pdf', toast: '', sec: { ov: true, stage: true, st: true, dmg: true, grp: true, open: true } };
+  }
+  // ---- file helpers (real .xlsx / .pdf export, .xlsx read) ----
+  xLoad() {
+    if (window.XLSX) return Promise.resolve(window.XLSX);
+    if (this._xp) return this._xp;
+    this._xp = new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+      s.onload = () => res(window.XLSX);
+      s.onerror = () => { this._xp = null; rej(new Error('xlsx-load')); };
+      document.head.appendChild(s);
+    });
+    return this._xp;
+  }
+  async fileSave(filename, data) {
+    const d = window.claude && window.claude.use ? await window.claude.use('downloads') : null;
+    if (!d) {
+      try { const a = document.createElement('a'); a.href = URL.createObjectURL(data); a.download = filename; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000); return { status: 'saved' }; }
+      catch (x) { const e = new Error('unavailable'); e.code = 'unavailable'; throw e; }
+    }
+    return d.save({ filename, data });
+  }
+  saveMsg(e, name) {
+    const c = e && e.code;
+    if (!e) return 'บันทึกไฟล์ ' + name + ' แล้ว';
+    if (c === 'declined') return 'ยกเลิกการบันทึกไฟล์';
+    if (c === 'unavailable' || c === 'not_granted' || c === 'capability_disabled') return 'มุมมองนี้ดาวน์โหลดไฟล์ไม่ได้ — เปิดหน้านี้ใน Claude แล้วลองอีกครั้ง';
+    if (e.message === 'xlsx-load') return 'โหลดตัวสร้างไฟล์ Excel ไม่สำเร็จ (ต้องต่อเน็ต) — ลองอีกครั้ง';
+    return 'สร้างไฟล์ไม่สำเร็จ: ' + (e.message || c || 'ไม่ทราบสาเหตุ');
+  }
+  async xlsxSave(name, sheets) {
+    const X = await this.xLoad(), wb = X.utils.book_new();
+    sheets.forEach((s) => { const ws = X.utils.aoa_to_sheet(s.aoa); if (s.cols) ws['!cols'] = s.cols.map((w) => ({ wch: w })); X.utils.book_append_sheet(wb, ws, s.name.slice(0, 31)); });
+    const buf = X.write(wb, { bookType: 'xlsx', type: 'array' });
+    return this.fileSave(name, new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
+  }
+  // table -> PDF (A4 landscape, one JPEG per page; Thai text rendered by the browser)
+  async pdfTable(title, sub, head, rows, widths) {
+    try { await document.fonts.load("700 16px Sarabun"); await document.fonts.load("400 16px Sarabun"); } catch (e) { /* ignore */ }
+    const W = 1123, H = 794, K = 2, M = 40, RH = 26, F = "Sarabun, 'Noto Sans Thai', sans-serif";
+    const sw = widths.reduce((a, b) => a + b, 0), cw = widths.map((w) => w / sw * (W - 2 * M));
+    const pages = []; let ri = 0, pg = 0;
+    const per0 = Math.floor((H - M - 110) / RH), perN = Math.floor((H - 2 * M - RH - 10) / RH);
+    do {
+      const cv = document.createElement('canvas'); cv.width = W * K; cv.height = H * K;
+      const g = cv.getContext('2d'); g.scale(K, K); g.fillStyle = '#FFFFFF'; g.fillRect(0, 0, W, H); g.textBaseline = 'middle';
+      let y = M;
+      if (pg === 0) { g.fillStyle = '#142B4F'; g.font = '700 24px ' + F; g.fillText(title, M, y + 12); g.fillStyle = '#5B6B7F'; g.font = '400 13px ' + F; g.fillText(sub, M, y + 42); y += 66; }
+      const fit = (t, w) => { let s = String(t); while (s.length > 1 && g.measureText(s).width > w - 12) s = s.slice(0, -1); return s === String(t) ? s : s + '…'; };
+      g.fillStyle = '#142B4F'; g.fillRect(M, y, W - 2 * M, RH); g.fillStyle = '#FFFFFF'; g.font = '700 12px ' + F;
+      let x = M; head.forEach((h, i) => { g.fillText(fit(h, cw[i]), x + 6, y + RH / 2); x += cw[i]; }); y += RH;
+      const cap = pg === 0 ? per0 : perN; let n = 0;
+      while (ri < rows.length && n < cap) {
+        const r = rows[ri], bold = r.bold; g.fillStyle = bold ? '#E3F0FB' : (ri % 2 ? '#F5F7FA' : '#FFFFFF'); g.fillRect(M, y, W - 2 * M, RH);
+        g.fillStyle = '#263445'; g.font = (bold ? '700 ' : '400 ') + '12px ' + F; x = M;
+        (r.c || r).forEach((v, i) => { g.fillText(fit(v, cw[i]), x + 6, y + RH / 2); x += cw[i]; }); y += RH; ri++; n++;
+      }
+      g.fillStyle = '#8A95A5'; g.font = '400 10px ' + F; g.fillText('ORL-SignTrack · หน้า ' + (pg + 1), M, H - 18);
+      pages.push(cv); pg++;
+    } while (ri < rows.length);
+    const jp = [];
+    for (const cv of pages) { const b = await new Promise((r) => cv.toBlob(r, 'image/jpeg', 0.92)); jp.push({ w: cv.width, h: cv.height, jpeg: new Uint8Array(await b.arrayBuffer()) }); }
+    const enc = new TextEncoder(), parts = [], offs = []; let len = 0;
+    const push = (u) => { parts.push(u); len += u.length; }, str = (s) => push(enc.encode(s));
+    const obj = (id, fn) => { offs[id] = len; str(id + ' 0 obj\n'); fn(); str('endobj\n'); };
+    const n = jp.length, total = 3 + 3 * n;
+    str('%PDF-1.4\n');
+    obj(1, () => str('<< /Type /Catalog /Pages 2 0 R >>\n'));
+    obj(2, () => str('<< /Type /Pages /Count ' + n + ' /Kids [' + jp.map((_, i) => (5 + 3 * i) + ' 0 R').join(' ') + '] >>\n'));
+    jp.forEach((p, i) => {
+      obj(3 + 3 * i, () => { str('<< /Type /XObject /Subtype /Image /Width ' + p.w + ' /Height ' + p.h + ' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ' + p.jpeg.length + ' >>\nstream\n'); push(p.jpeg); str('\nendstream\n'); });
+      const cs = 'q 842 0 0 595 0 0 cm /Im0 Do Q';
+      obj(4 + 3 * i, () => str('<< /Length ' + cs.length + ' >>\nstream\n' + cs + '\nendstream\n'));
+      obj(5 + 3 * i, () => str('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /XObject << /Im0 ' + (3 + 3 * i) + ' 0 R >> >> /Contents ' + (4 + 3 * i) + ' 0 R >>\n'));
+    });
+    const xref = len; str('xref\n0 ' + total + '\n0000000000 65535 f \n');
+    for (let k = 1; k < total; k++) str(String(offs[k]).padStart(10, '0') + ' 00000 n \n');
+    str('trailer\n<< /Size ' + total + ' /Root 1 0 R >>\nstartxref\n' + xref + '\n%%EOF');
+    return new Blob(parts, { type: 'application/pdf' });
+  }
+  async pdfSave(name, title, sub, head, rows, widths) { return this.fileSave(name, await this.pdfTable(title, sub, head, rows, widths)); }
+  renderVals() {
+    const LNAV = (arr) => {
+      const HR = { 'Dashboard': 'Dashboard.dc.html', 'Projects': 'ProjectEdit.dc.html', 'Production & Install': 'Progress.dc.html', 'Job Management': 'Jobs.dc.html', 'Warranty': 'Warranty.dc.html', 'Documents': 'Docs.dc.html', 'Maintenance': 'OwnerRepair.dc.html', 'Repair': 'OwnerRepair.dc.html', 'Repair Requests': 'OwnerRepair.dc.html', 'Maintenance Log': 'MaintReport.dc.html', 'Reports': 'MaintReport.dc.html', 'Summary Report': 'MaintReport.dc.html', 'Requests': 'OwnerRepair.dc.html', 'My Requests': 'OwnerRepair.dc.html', 'Report': 'OwnerRepair.dc.html' };
+      return arr.map((n) => {
+        const href = String(n.en).indexOf('Signage') === 0 ? 'SignDB.dc.html' : (HR[n.en] || '');
+        const active = !!n.bg && n.bg !== 'transparent';
+        const link = !!href && !active;
+        return { ...n, href: href || '#', isLink: link, isBtn: !link };
+      });
+    };
+    const S = this.state;
+    const nf = (n) => Math.round(n).toLocaleString('en-US');
+    // largest-remainder split of a total by weights
+    const split = (total, w) => {
+      const sw = w.reduce((a, b) => a + b, 0), raw = w.map((x) => total * x / sw), base = raw.map(Math.floor);
+      let rest = total - base.reduce((a, b) => a + b, 0);
+      raw.map((x, i) => [x - Math.floor(x), i]).sort((a, b) => b[0] - a[0]).forEach((p) => { if (rest > 0) { base[p[1]]++; rest--; } });
+      return base;
+    };
+    const P = {
+      day: { label: 'รายวัน', total: 6, avg: '2.1', title: 'แจ้งเข้า เทียบ ปิดงาน รายวัน (7 วันล่าสุด)', buckets: ['7', '8', '9', '10', '11', '12', '13'], a: [4, 7, 3, 5, 6, 8, 6], c: [3, 4, 4, 2, 5, 5, 4] },
+      week: { label: 'รายสัปดาห์', total: 38, avg: '3.4', title: 'แจ้งเข้า เทียบ ปิดงาน รายสัปดาห์ (7 สัปดาห์ล่าสุด)', buckets: ['W41', 'W42', 'W43', 'W44', 'W45', 'W46', 'W47'], a: [21, 28, 33, 30, 41, 36, 38], c: [15, 22, 27, 29, 33, 34, 31] },
+      month: { label: 'รายเดือน', total: 142, avg: '3.8', title: 'แจ้งเข้า เทียบ ปิดงาน รายเดือน (ก.ค.–พ.ย.)', buckets: ['ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.'], a: [18, 55, 96, 128, 142], c: [10, 41, 80, 112, 118] },
+      year: { label: 'รายปี', total: 439, avg: '4.1', title: 'แจ้งเข้า เทียบ ปิดงาน รายไตรมาส (ปี 2569)', buckets: ['Q1', 'Q2', 'Q3', 'Q4 (ถึง พ.ย.)'], a: [0, 6, 111, 322], c: [0, 3, 74, 286] }
+    };
+    const PN = ['day', 'week', 'month', 'year'];
+    const cur = P[S.per];
+    const rangeOf = () => {
+      if (S.per === 'day') return (13 + S.off) + ' พ.ย. 69';
+      if (S.per === 'week') return (9 + S.off * 7) + '–' + (15 + S.off * 7) + ' พ.ย. 69';
+      if (S.per === 'month') return (S.off === 0 ? 'พ.ย.' : S.off === -1 ? 'ต.ค.' : 'ก.ย.') + ' 69';
+      return 'ปี 2569';
+    };
+    const range = rangeOf();
+    const total = cur.total, closed = Math.round(total * 0.51), waitConf = Math.round(total * 0.06), prog = Math.round(total * 0.22);
+    const kpis = [
+      { th: 'ใบแจ้งซ่อมทั้งหมด', en: 'Total requests', val: nf(total), unit: 'ใบ', fg: '#142B4F' },
+      { th: 'ปิดงานแล้ว', en: 'Closed', val: nf(closed), unit: 'ใบ', fg: '#1B6B43' },
+      { th: 'อยู่ระหว่างซ่อม', en: 'In progress', val: nf(prog), unit: 'ใบ', fg: '#1B5C9E' },
+      { th: 'รอเจ้าของพื้นที่ยืนยัน', en: 'Awaiting confirmation', val: nf(waitConf), unit: 'ใบ', fg: '#A8590A' },
+      { th: 'เวลาเฉลี่ย แจ้ง → ปิดงาน', en: 'Avg. time to close', val: cur.avg, unit: 'วัน', fg: '#142B4F' }
+    ];
+    const mx = Math.max.apply(null, cur.a.concat(cur.c)) || 1;
+    const trend = cur.buckets.map((l, i) => ({ l, a: String(cur.a[i]), c: String(cur.c[i]), ah: Math.max(2, cur.a[i] / mx * 150).toFixed(0) + 'px', ch: Math.max(2, cur.c[i] / mx * 150).toFixed(0) + 'px' }));
+    const mk = (labels, w, color) => {
+      const n = split(total, w), m = Math.max.apply(null, n) || 1;
+      return labels.map((l, i) => ({ label: l, n: String(n[i]), w: (n[i] / m * 100).toFixed(0) + '%', bg: color }));
+    };
+    const STAGE = ['แจ้งแล้ว (รอแจกงาน)', 'Engineer แจกงานแล้ว', 'Chief Technician รับงาน', 'Technician กำลังซ่อม', 'ซ่อมเสร็จ · รอยืนยัน', 'รอ Engineer ปิดงาน', 'ปิดงานแล้ว'];
+    const SC = ['#8A95A5', '#2878C7', '#2878C7', '#2878C7', '#F28C28', '#F28C28', '#2E9E6B'];
+    const byStage = mk(STAGE, [8, 9, 7, 14, 6, 5, 51], '#2878C7').map((x, i) => ({ ...x, bg: SC[i] }));
+    const STN = ['OR13', 'OR14', 'OR15', 'OR16', 'OR17', 'OR18', 'OR19', 'OR20', 'OR21', 'OR22', 'OR23', 'OR24', 'OR25', 'OR26', 'OR27', 'OR28', 'OR29'];
+    const byStation = mk(STN, [9, 8, 7, 8, 6, 7, 5, 5, 5, 4, 6, 6, 5, 5, 4, 3, 3], '#2878C7');
+    const byDamage = mk(['หน้าป้ายแตก/ร้าว', 'ไฟไม่ติด', 'สติกเกอร์ลอก/ซีด', 'ป้ายหลุด/เอียง', 'สูญหาย', 'อื่นๆ'], [26, 20, 22, 18, 6, 8], '#F28C28');
+    const byGroup = mk(['กล่องไฟ', 'ป้ายตั้งพื้น', 'ป้ายติดผนัง', 'ป้ายติดพื้นผิว', 'ป้ายข้าง', 'สติกเกอร์', 'เสา A6'], [18, 10, 24, 6, 6, 30, 6], '#142B4F');
+    const periods = PN.map((p) => ({ label: P[p].label, w: S.per === p ? '700' : '500', bg: S.per === p ? '#142B4F' : '#FFFFFF', fg: S.per === p ? '#FFFFFF' : '#263445', pick: () => this.setState({ per: p, off: 0, toast: '' }) }));
+    const fmts = [['pdf', 'PDF (.pdf)'], ['xlsx', 'Excel (.xlsx)']].map((f) => ({ label: f[1], bg: S.fmt === f[0] ? '#142B4F' : '#FFFFFF', fg: S.fmt === f[0] ? '#FFFFFF' : '#263445', bd: S.fmt === f[0] ? '#142B4F' : '#B8C4D4', pick: () => this.setState({ fmt: f[0] }) }));
+    const SECS = [['ov', 'สรุปภาพรวม'], ['stage', 'ตามขั้นตอน'], ['st', 'ตามสถานี'], ['dmg', 'ตามอาการ'], ['grp', 'ตามกลุ่มป้าย'], ['open', 'รายการที่ค้างอยู่']];
+    const secs = SECS.map((c) => ({ label: (S.sec[c[0]] ? '✓ ' : '') + c[1], bg: S.sec[c[0]] ? '#E3F0FB' : '#FFFFFF', fg: S.sec[c[0]] ? '#1B5C9E' : '#5B6B7F', bd: S.sec[c[0]] ? '#2878C7' : '#C9D3E1', pick: () => this.setState({ sec: { ...S.sec, [c[0]]: !S.sec[c[0]] } }) }));
+    const nsec = SECS.filter((c) => S.sec[c[0]]).length;
+    const ext = S.fmt === 'pdf' ? 'pdf' : 'xlsx';
+    const fileName = 'Maintenance_Summary_' + S.per + '_' + range.replace(/[ –]/g, '') + '.' + ext;
+    const Pn = { dash: 'M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z', fix: 'M14.7 6.3a4 4 0 0 0-5 5L3 18l3 3 6.7-6.7a4 4 0 0 0 5-5l-2.5 2.5-2.2-.5-.5-2.2z', doc: 'M6 3h8l5 5v13H6zM14 3v5h5M9 13h6M9 17h6', rep: 'M5 20V10M12 20V4M19 20v-7M3 20h18', db: 'M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6' };
+    const nv = (th, en, d, o) => Object.assign({ th, en, d, pad: '8px 10px', ml: '0px', is: '17', fs: '13px', bg: 'transparent', fg: '#C9D6E8', sub: '#9FB4D1' }, o || {});
+    const nav = [
+      nv('ภาพรวม', 'Dashboard', Pn.dash),
+      nv('ฐานข้อมูลป้าย', 'Signage Database', Pn.db),
+      nv('แจ้งซ่อม', 'Maintenance', Pn.fix, { bg: 'rgba(255,255,255,0.10)', fg: '#FFFFFF' }),
+      nv('ใบแจ้งซ่อม', 'Requests', Pn.doc, { pad: '7px 10px', ml: '14px', is: '15', fs: '12px' }),
+      nv('รายงานสรุป', 'Summary Report', Pn.rep, { pad: '7px 10px', ml: '14px', is: '15', fs: '12px', bg: '#2878C7', fg: '#FFFFFF', sub: '#E3F0FB' })
+    ];
+    return {
+      nav: LNAV(nav), periods, fmts, secs, kpis, trend, byStage, byStation, byDamage, byGroup, range, fileName,
+      periodLabel: cur.label, trendTitle: cur.title,
+      prev: () => this.setState({ off: S.off - 1, toast: '' }), next: () => this.setState({ off: Math.min(0, S.off + 1), toast: '' }),
+      doExport: async () => {
+        const name = fileName, title = 'รายงานสรุปงานซ่อม ' + cur.label + ' · ORL-GRS', sub = range + ' · ' + nsec + ' ส่วน · ข้อมูลตัวอย่าง';
+        const T = [];
+        const sect = (t, list) => { T.push({ bold: true, c: [t, 'จำนวน', ''] }); list.forEach((x) => T.push(x)); };
+        if (S.sec.ov) sect('สรุปภาพรวม', kpis.map((k) => [k.th, k.val, k.unit]).concat(trend.map((t) => ['แจ้งเข้า/ปิดงาน ' + t.l, t.a + ' / ' + t.c, 'ใบ'])));
+        if (S.sec.stage) sect('ตามขั้นตอน', byStage.map((x) => [x.label, x.n, 'ใบ']));
+        if (S.sec.st) sect('ตามสถานี', byStation.map((x) => [x.label, x.n, 'ใบ']));
+        if (S.sec.dmg) sect('ตามอาการชำรุด', byDamage.map((x) => [x.label, x.n, 'ใบ']));
+        if (S.sec.grp) sect('ตามกลุ่มป้าย', byGroup.map((x) => [x.label, x.n, 'ใบ']));
+        if (S.sec.open) sect('รายการที่ค้างอยู่', [['RQ-0418 · OR13 · สติกเกอร์ PSD', '3', 'รอแจกงาน'], ['RQ-0419 · OR14 · ป้ายห้องเจ้าหน้าที่', '1', 'รอแจกงาน'], ['RQ-0415 · OR14 · ป้ายทางออก + ชื่อสถานี', '2', 'Engineer แจกงานแล้ว'], ['RQ-0410 · OR16 · จุดช่วยเหลือฉุกเฉิน', '2', 'Chief Technician รับงาน'], ['RQ-0408 · OR17 · ป้ายชานชาลา', '1', 'Technician กำลังซ่อม']]);
+        if (!T.length) { this.setState({ toast: 'เลือกอย่างน้อย 1 ส่วนที่จะใส่ในไฟล์' }); return; }
+        let msg;
+        try {
+          if (S.fmt === 'pdf') await this.pdfSave(name, title, sub, ['หัวข้อ / รายการ', 'จำนวน', 'หมายเหตุ'], T, [3, 1, 1.4]);
+          else await this.xlsxSave(name, [{ name: 'Summary', aoa: [[title], [sub], [], ['หัวข้อ / รายการ', 'จำนวน', 'หมายเหตุ']].concat(T.map((r) => (r.c || r))), cols: [44, 14, 22] }]);
+          msg = this.saveMsg(null, name);
+        } catch (e) { msg = this.saveMsg(e, name); }
+        this.setState({ toast: msg });
+      },
+      toastOn: !!S.toast, toast: S.toast
+    };
+  }
+}
+</script>
+</body>
+</html>

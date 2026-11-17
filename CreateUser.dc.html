@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>Screen 07 Create User</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+input::placeholder{color:#5B6B7F}
+button{cursor:pointer}
+summary{list-style:none;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+a{text-decoration:none}
+</style>
+</helmet>
+<div style="width:1440px;height:1180px;box-sizing:border-box;display:flex;background:#F5F7FA;font-family:'Sarabun','Noto Sans Thai',system-ui,sans-serif;color:#263445;line-height:1.3">
+
+  <!-- SIDEBAR -->
+  <div style="width:208px;flex:0 0 208px;background:#142B4F;display:flex;flex-direction:column;padding:16px 12px;box-sizing:border-box;gap:16px">
+    <div style="display:flex;align-items:center;gap:9px;padding:0 4px">
+      <div style="width:34px;height:34px;flex:0 0 34px;border-radius:9px;background:#F28C28;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="20" height="20" style="fill:none;stroke:#142B4F;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M4 7h11l5 5-5 5H4zM8 12h6"></path></svg></div>
+      <div style="display:flex;flex-direction:column;line-height:1.15"><span style="color:#fff;font-weight:700;font-size:15px">ORL-SignTrack</span><span style="color:#9FB4D1;font-size:10px">MRT Orange Line · GRS</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <sc-for list="{{nav}}" as="n" hint-placeholder-count="12">
+<sc-if value="{{n.isLink}}" hint-placeholder-val="{{ false }}"><a href="{{n.href}}" style="display:block;text-decoration:none;color:inherit">
+        <div style="display:flex;align-items:center;gap:10px;padding:{{n.pad}};margin-left:{{n.ml}};border-radius:8px;background:{{n.bg}};color:{{n.fg}}">
+          <svg viewBox="0 0 24 24" width="{{n.is}}" height="{{n.is}}" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+          <div style="display:flex;flex-direction:column;line-height:1.15;flex:1;min-width:0"><span style="font-size:{{n.fs}};font-weight:600">{{n.th}}</span><span style="font-size:10px;color:{{n.sub}}">{{n.en}}</span></div>
+          <svg viewBox="0 0 24 24" width="13" height="13" style="fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:{{n.chev}}" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+        </div>
+      
+</a></sc-if>
+<sc-if value="{{n.isBtn}}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:10px;padding:{{n.pad}};margin-left:{{n.ml}};border-radius:8px;background:{{n.bg}};color:{{n.fg}}">
+          <svg viewBox="0 0 24 24" width="{{n.is}}" height="{{n.is}}" style="fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto" aria-hidden="true"><path d="{{n.d}}"></path></svg>
+          <div style="display:flex;flex-direction:column;line-height:1.15;flex:1;min-width:0"><span style="font-size:{{n.fs}};font-weight:600">{{n.th}}</span><span style="font-size:10px;color:{{n.sub}}">{{n.en}}</span></div>
+          <svg viewBox="0 0 24 24" width="13" height="13" style="fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:{{n.chev}}" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+        </div>
+      
+</sc-if>
+</sc-for>
+    </div>
+    <div style="margin-top:auto;background:rgba(255,255,255,0.08);border-radius:8px;padding:9px 11px;display:flex;flex-direction:column;line-height:1.2">
+      <span style="font-size:10px;color:#9FB4D1">ผู้ใช้งาน</span>
+      <span style="font-size:13px;font-weight:600;color:#fff">{{meRole}}</span>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+    <div style="height:54px;flex:0 0 54px;background:#fff;border-bottom:1px solid #E1E7EF;display:flex;align-items:center;padding:0 20px;gap:16px">
+      <div style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:#5B6B7F"><span>ตั้งค่าระบบ</span><span>/</span><a href="Admin.dc.html" style="color:#5B6B7F">จัดการผู้ใช้</a><span>/</span><span style="color:#142B4F;font-weight:700">สร้างผู้ใช้ใหม่</span></div>
+      <div style="flex:1"></div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:11px;color:#5B6B7F">สลับมุมมองผู้ดูแล (จำลอง)</span>
+        <div style="display:flex;border:1px solid #D5DDE8;border-radius:8px;overflow:hidden;background:#fff">
+          <sc-for list="{{lineSwitch}}" as="l" hint-placeholder-count="2">
+            <button onClick="{{l.pick}}" style="border:0;padding:6px 13px;font-family:inherit;font-size:12px;font-weight:{{l.w}};background:{{l.bg}};color:{{l.fg}}">{{l.label}}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:9px">
+        <div style="width:32px;height:32px;border-radius:16px;background:#142B4F;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">AD</div>
+        <div style="display:flex;flex-direction:column;line-height:1.15"><span style="font-size:12.5px;font-weight:600;color:#142B4F">ผู้ดูแลระบบตัวอย่าง</span><span style="font-size:10px;color:#5B6B7F">{{meRole}}</span></div>
+      </div>
+    </div>
+
+    <div style="flex:1;min-height:0;padding:20px;box-sizing:border-box;display:flex;flex-direction:column;gap:14px">
+      <div style="flex:0 0 44px;display:flex;align-items:baseline;gap:12px"><span style="font-size:22px;font-weight:700;color:#142B4F">สร้างผู้ใช้ใหม่</span><span style="font-size:12.5px;color:#5B6B7F">Create User · เลือกงาน บทบาท และพื้นที่รับผิดชอบ</span></div>
+
+      <sc-if value="{{doneOn}}" hint-placeholder-val="{{ false }}">
+        <div style="flex:0 0 46px;display:flex;align-items:center;gap:10px;background:#E1F4EA;color:#1B6B43;border-radius:10px;padding:0 16px;font-size:13px;font-weight:600">
+          <svg viewBox="0 0 24 24" width="18" height="18" style="fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>{{doneMsg}}
+          <a href="Admin.dc.html" style="margin-left:auto;color:#142B4F;font-weight:700">กลับไปรายชื่อผู้ใช้</a>
+        </div>
+      </sc-if>
+
+      <div style="flex:1;min-height:0;display:flex;gap:14px">
+        <!-- FORM -->
+        <div style="flex:1;min-width:0;background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:20px 22px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px;overflow:hidden">
+
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <span style="font-size:14px;font-weight:700;color:#142B4F">1. งานของผู้ใช้ <span style="font-size:11.5px;font-weight:400;color:#5B6B7F">Administrator สร้างได้เฉพาะงานของตนเอง</span></span>
+            <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:10px">
+              <sc-for list="{{lineCards}}" as="c" hint-placeholder-count="2">
+                <div style="border:2px solid {{c.bd}};background:{{c.bg}};border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:12px;opacity:{{c.op}}">
+                  <span style="width:16px;height:16px;flex:0 0 16px;border-radius:8px;border:2px solid {{c.dot}};background:{{c.dotFill}}"></span>
+                  <div style="display:flex;flex-direction:column;line-height:1.25;min-width:0"><b style="font-size:13px;color:#142B4F">{{c.title}}</b><span style="font-size:11px;color:#5B6B7F">{{c.sub}}</span></div>
+                  <span style="margin-left:auto;font-size:10.5px;font-weight:600;color:{{c.tagFg}};background:{{c.tagBg}};padding:2px 9px;border-radius:9px;white-space:nowrap">{{c.tag}}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <span style="font-size:14px;font-weight:700;color:#142B4F">2. ข้อมูลผู้ใช้</span>
+            <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:12px 16px">
+              <div style="display:flex;flex-direction:column;gap:5px"><label for="fn" style="font-size:12px;font-weight:600">ชื่อ <span style="color:#A32019">*</span></label><input id="fn" value="{{f.first}}" onChange="{{onFirst}}" placeholder="เช่น สมหญิง" style="height:38px;box-sizing:border-box;border:1px solid {{bdFirst}};border-radius:7px;padding:0 12px;font-family:inherit;font-size:13.5px;color:#263445"></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><label for="ln" style="font-size:12px;font-weight:600">นามสกุล <span style="color:#A32019">*</span></label><input id="ln" value="{{f.last}}" onChange="{{onLast}}" placeholder="เช่น รักงาน" style="height:38px;box-sizing:border-box;border:1px solid {{bdLast}};border-radius:7px;padding:0 12px;font-family:inherit;font-size:13.5px;color:#263445"></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><label for="em" style="font-size:12px;font-weight:600">อีเมลสำหรับเข้าสู่ระบบ <span style="color:#A32019">*</span></label><input id="em" type="email" value="{{f.email}}" onChange="{{onEmail}}" placeholder="name@company.com" style="height:38px;box-sizing:border-box;border:1px solid {{bdEmail}};border-radius:7px;padding:0 12px;font-family:inherit;font-size:13.5px;color:#263445"></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><label for="ph" style="font-size:12px;font-weight:600">เบอร์โทรศัพท์</label><input id="ph" value="{{f.phone}}" onChange="{{onPhone}}" placeholder="08x-xxx-xxxx" style="height:38px;box-sizing:border-box;border:1px solid #B8C4D4;border-radius:7px;padding:0 12px;font-family:inherit;font-size:13.5px;color:#263445"></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><label for="co" style="font-size:12px;font-weight:600">บริษัท / หน่วยงาน</label><input id="co" value="{{f.company}}" onChange="{{onCompany}}" placeholder="เช่น ผู้รับเหมา GRS" style="height:38px;box-sizing:border-box;border:1px solid #B8C4D4;border-radius:7px;padding:0 12px;font-family:inherit;font-size:13.5px;color:#263445"></div>
+              <div style="display:flex;flex-direction:column;gap:5px"><label for="tm" style="font-size:12px;font-weight:600">ทีม</label><input id="tm" value="{{f.team}}" onChange="{{onTeam}}" placeholder="เช่น ทีมติดตั้ง A" style="height:38px;box-sizing:border-box;border:1px solid #B8C4D4;border-radius:7px;padding:0 12px;font-family:inherit;font-size:13.5px;color:#263445"></div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <span style="font-size:14px;font-weight:700;color:#142B4F">3. บทบาท <span style="font-size:11.5px;font-weight:400;color:#5B6B7F">บทบาทของ{{lineShort}}</span></span>
+            <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:8px">
+              <sc-for list="{{roles}}" as="r" hint-placeholder-count="7">
+                <button onClick="{{r.pick}}" style="text-align:left;font-family:inherit;border:2px solid {{r.bd}};background:{{r.bg}};border-radius:10px;padding:8px 11px;display:flex;flex-direction:column;gap:1px;color:#263445">
+                  <span style="display:flex;align-items:center;justify-content:space-between;gap:6px"><b style="font-size:12.5px;color:#142B4F">{{r.name}}</b><span style="width:14px;height:14px;flex:0 0 14px;border-radius:7px;border:2px solid {{r.dot}};background:{{r.dotFill}}"></span></span>
+                  <span style="font-size:10.5px;color:#5B6B7F">{{r.thai}}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <span style="font-size:14px;font-weight:700;color:#142B4F">4. {{areaTitle}} <span style="font-size:11.5px;font-weight:400;color:#5B6B7F">{{areaHint}}</span></span>
+
+            <sc-if value="{{showStations}}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;gap:7px;flex-wrap:wrap">
+                <sc-for list="{{scopes}}" as="s" hint-placeholder-count="4">
+                  <button onClick="{{s.pick}}" style="height:34px;padding:0 15px;border-radius:17px;border:1px solid {{s.bd}};background:{{s.bg}};color:{{s.fg}};font-family:inherit;font-size:12.5px;font-weight:600">{{s.label}}</button>
+                </sc-for>
+              </div>
+              <sc-if value="{{customOn}}" hint-placeholder-val="{{ false }}">
+                <div style="display:grid;grid-template-columns:repeat(9, minmax(0, 1fr));gap:5px">
+                  <sc-for list="{{stations}}" as="s" hint-placeholder-count="17">
+                    <button onClick="{{s.pick}}" style="height:28px;border-radius:6px;border:1px solid {{s.bd}};background:{{s.bg}};color:{{s.fg}};font-family:inherit;font-size:11.5px;font-weight:600;padding:0">{{s.st}}</button>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </sc-if>
+
+            <sc-if value="{{showArea}}" hint-placeholder-val="{{ false }}">
+              <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:10px">
+                <sc-for list="{{areas}}" as="a" hint-placeholder-count="2">
+                  <button onClick="{{a.pick}}" style="text-align:left;font-family:inherit;border:2px solid {{a.bd}};background:{{a.bg}};border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:12px;color:{{a.fg}}">
+                    <span style="width:16px;height:16px;flex:0 0 16px;border-radius:8px;border:2px solid {{a.dot}};background:{{a.dotFill}}"></span>
+                    <span style="display:flex;flex-direction:column;line-height:1.25"><b style="font-size:13px">{{a.title}}</b><span style="font-size:11px">{{a.sub}}</span></span>
+                    <span style="margin-left:auto;font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:9px;background:{{a.tagBg}};color:{{a.tagFg}};white-space:nowrap">{{a.tag}}</span>
+                  </button>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{showChief}}" hint-placeholder-val="{{ false }}">
+              <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:10px">
+                <sc-for list="{{chiefs}}" as="a" hint-placeholder-count="2">
+                  <button onClick="{{a.pick}}" style="text-align:left;font-family:inherit;border:2px solid {{a.bd}};background:{{a.bg}};border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:12px;color:{{a.fg}}">
+                    <span style="width:16px;height:16px;flex:0 0 16px;border-radius:8px;border:2px solid {{a.dot}};background:{{a.dotFill}}"></span>
+                    <span style="display:flex;flex-direction:column;line-height:1.25"><b style="font-size:13px">{{a.title}}</b><span style="font-size:11px">{{a.sub}}</span></span>
+                    <span style="margin-left:auto;font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:9px;background:{{a.tagBg}};color:{{a.tagFg}};white-space:nowrap">{{a.tag}}</span>
+                  </button>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{showOwnerSt}}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:grid;grid-template-columns:repeat(9, minmax(0, 1fr));gap:5px">
+                  <sc-for list="{{stations}}" as="s" hint-placeholder-count="17">
+                    <button onClick="{{s.pick}}" style="height:28px;border-radius:6px;border:1px solid {{s.bd}};background:{{s.bg}};color:{{s.fg}};font-family:inherit;font-size:11.5px;font-weight:600;padding:0">{{s.st}}</button>
+                  </sc-for>
+                </div>
+                <span style="font-size:11.5px;color:#5B6B7F">West (OR02–OR12) ยังไม่เปิดสิทธิ์ จึงเลือกไม่ได้</span>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{showInfo}}" hint-placeholder-val="{{ false }}">
+              <div style="background:#F5F7FA;border-radius:9px;padding:10px 14px;font-size:12.5px;color:#263445;display:flex;align-items:center;gap:10px">
+                <span style="background:#E1F4EA;color:#1B6B43;font-weight:600;font-size:11px;padding:2px 9px;border-radius:9px">East เปิดใช้งาน</span>
+                <span style="background:#E8ECF1;color:#5B6B7F;font-weight:600;font-size:11px;padding:2px 9px;border-radius:9px">West ยังไม่เปิดสิทธิ์</span>
+                <span>{{infoText}}</span>
+              </div>
+            </sc-if>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-size:14px;font-weight:700;color:#142B4F">5. การเข้าสู่ระบบ</span>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <sc-for list="{{opts}}" as="o" hint-placeholder-count="3">
+                <button onClick="{{o.pick}}" style="height:34px;padding:0 14px;border-radius:8px;border:1px solid {{o.bd}};background:{{o.bg}};color:{{o.fg}};font-family:inherit;font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:4px;border:2px solid {{o.bd}};background:{{o.box}};display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="11" height="11" style="fill:none;stroke:#fff;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;opacity:{{o.tick}}" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>{{o.label}}</button>
+              </sc-for>
+            </div>
+          </div>
+
+          <sc-if value="{{errOn}}" hint-placeholder-val="{{ false }}"><div style="color:#A32019;font-size:12.5px;font-weight:600">{{err}}</div></sc-if>
+          <div style="display:flex;gap:10px;margin-top:auto;justify-content:flex-end">
+            <a href="Admin.dc.html" style="height:40px;padding:0 22px;border-radius:8px;border:1px solid #142B4F;background:#fff;color:#142B4F;font-size:13px;font-weight:600;display:flex;align-items:center;box-sizing:border-box">ยกเลิก</a>
+            <button onClick="{{create}}" style="height:40px;padding:0 26px;border-radius:8px;border:1px solid #142B4F;background:#142B4F;color:#fff;font-family:inherit;font-size:13px;font-weight:700">สร้างผู้ใช้และส่งอีเมลเชิญ</button>
+          </div>
+        </div>
+
+        <!-- PREVIEW -->
+        <div style="flex:0 0 380px;background:#fff;border:1px solid #E1E7EF;border-radius:10px;padding:18px 20px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px;overflow:hidden">
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;font-weight:700;color:#142B4F">ตัวอย่างสิทธิ์ที่จะได้รับ</span><span style="font-size:11.5px;color:#5B6B7F">{{lineShort}} · บทบาท: <b style="color:#142B4F">{{roleName}}</b></span></div>
+          <div style="display:flex;align-items:center;gap:10px;background:#F5F7FA;border-radius:9px;padding:10px 12px">
+            <div style="width:38px;height:38px;flex:0 0 38px;border-radius:19px;background:#142B4F;color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center">{{ini}}</div>
+            <div style="display:flex;flex-direction:column;line-height:1.25;min-width:0"><b style="font-size:13px;color:#142B4F">{{fullName}}</b><span style="font-size:11px;color:#5B6B7F">{{f.email}}</span><span style="font-size:11px;color:#263445">{{scopeText}}</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <sc-for list="{{pmods}}" as="m" hint-placeholder-count="9">
+              <div style="display:flex;align-items:center;justify-content:space-between;height:30px;border-top:1px solid #EEF1F5;font-size:12px"><span style="color:#263445">{{m.th}}</span><span style="min-width:62px;text-align:center;padding:2px 10px;border-radius:12px;font-size:11.5px;font-weight:600;background:{{m.bg}};color:{{m.fg}}">{{m.label}}</span></div>
+            </sc-for>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px;border-top:1px solid #EEF1F5;padding-top:10px">
+            <span style="font-size:12px;font-weight:700;color:#142B4F">สิทธิ์เฉพาะงาน</span>
+            <sc-for list="{{pacts}}" as="a" hint-placeholder-count="5">
+              <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:{{a.fg}}"><span style="width:16px;text-align:center;font-weight:700">{{a.mark}}</span>{{a.th}}</div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      f: { first: '', last: '', email: '', phone: '', company: '', team: '' },
+      line: 'project', role: 1, scope: 'all', custom: [], area: '', chief: '',
+      invite: true, force: true, mfa: false, err: '', done: ''
+    };
+  }
+  renderVals() {
+    const LNAV = (arr) => {
+      const HR = { 'Dashboard': 'Dashboard.dc.html', 'Projects': 'ProjectEdit.dc.html', 'Production & Install': 'Progress.dc.html', 'Job Management': 'Jobs.dc.html', 'Warranty': 'Warranty.dc.html', 'Documents': 'Docs.dc.html', 'Maintenance': 'OwnerRepair.dc.html', 'Repair': 'OwnerRepair.dc.html', 'Repair Requests': 'OwnerRepair.dc.html', 'Maintenance Log': 'MaintReport.dc.html', 'Reports': 'MaintReport.dc.html', 'Summary Report': 'MaintReport.dc.html', 'Requests': 'OwnerRepair.dc.html', 'My Requests': 'OwnerRepair.dc.html', 'Report': 'OwnerRepair.dc.html' };
+      return arr.map((n) => {
+        const href = String(n.en).indexOf('Signage') === 0 ? 'SignDB.dc.html' : (HR[n.en] || '');
+        const active = !!n.bg && n.bg !== 'transparent';
+        const link = !!href && !active;
+        return { ...n, href: href || '#', isLink: link, isBtn: !link };
+      });
+    };
+    const S = this.state;
+    const F = S.f;
+    const set = (patch) => this.setState(patch);
+    const upd = (k) => (e) => set({ f: { ...F, [k]: e.target.value }, err: '' });
+    const isMaint = S.line === 'maint';
+
+    const LINES = {
+      project: {
+        me: 'Administrator · งาน Project', short: 'งาน Project',
+        roles: [
+          ['Project Manager / Higher', 'ผู้จัดการโครงการและระดับสูงกว่า'], ['GRS Leader', 'หัวหน้างานกราฟิกและป้าย'], ['Designer', 'นักออกแบบ'],
+          ['Installation', 'ทีมติดตั้ง (รวมผู้รับเหมา)'], ['Administrator', 'ผู้ดูแลระบบงาน Project']
+        ],
+        mods: [
+          ['ภาพรวม', [1,1,0,0,0]], ['โครงการ', [2,1,1,1,0]], ['ความคืบหน้าผลิต/ติดตั้ง', [3,2,1,2,0]], ['จัดการงาน', [3,2,1,2,0]],
+          ['ฐานข้อมูลป้าย', [2,2,1,2,0]], ['เอกสารและไฟล์แบบ', [3,2,2,1,0]], ['Warranty', [1,1,0,1,0]], ['รายงาน', [2,1,0,0,0]], ['ผู้ใช้และสิทธิ์ (งาน Project)', [0,0,0,0,3]]
+        ],
+        acts: [
+          ['อัปเดตความคืบหน้างานผลิต/ติดตั้ง', [1,1,0,1,0]], ['อัปโหลดแบบและ Revision เอกสาร', [1,1,1,0,0]], ['อนุมัติเอกสารและตรวจรับงาน', [1,0,0,0,0]],
+          ['ส่งออกรายงาน', [1,0,0,0,0]], ['สร้างและจัดการผู้ใช้ (งาน Project)', [0,0,0,0,1]]
+        ]
+      },
+      maint: {
+        me: 'Administrator · งาน Maintenance', short: 'งาน Maintenance',
+        roles: [
+          ['Division Manager / Higher', 'ผู้อำนวยการฝ่ายและสูงกว่า'], ['Manager', 'ผู้จัดการ'], ['Chief Engineer', 'หัวหน้าวิศวกร'], ['Engineer', 'วิศวกร'],
+          ['Chief Technician', 'หัวหน้าช่าง · East/West'], ['Technician', 'ช่าง · พื้นที่ตาม Chief'], ['Station Manager', 'เจ้าของพื้นที่ (ผู้แจ้ง)'], ['Administrator', 'ผู้ดูแลระบบงาน Maintenance']
+        ],
+        mods: [
+          ['ภาพรวม', [1,1,1,1,1,0,0,0]], ['ใบแจ้งซ่อม', [1,1,3,3,2,2,2,0]], ['ฐานข้อมูลป้าย', [1,1,2,2,2,1,1,0]], ['ประวัติซ่อมบำรุง', [1,1,2,2,2,2,0,0]],
+          ['รายงาน', [1,1,2,1,1,0,0,0]], ['มอบหมายพื้นที่ช่าง', [0,0,0,0,3,0,0,0]], ['ผู้ใช้และสิทธิ์ (งาน Maintenance)', [0,0,0,0,0,0,0,3]]
+        ],
+        acts: [
+          ['แจ้งป้ายชำรุดและยืนยันการซ่อม (ผู้แจ้ง)', [0,0,0,0,0,0,1,0]], ['แจกงานซ่อม', [0,0,0,1,0,0,0,0]], ['รับงานและสั่งช่างไปซ่อม', [0,0,0,0,1,0,0,0]],
+          ['ซ่อมและส่งงาน', [0,0,0,0,0,1,0,0]], ['ปิดงานซ่อม', [0,0,1,1,0,0,0,0]], ['สร้างและจัดการผู้ใช้ (งาน Maintenance)', [0,0,0,0,0,0,0,1]]
+        ]
+      }
+    };
+    const L = LINES[S.line];
+    const roleIdx = Math.min(S.role, L.roles.length - 1);
+    const roleName = L.roles[roleIdx][0];
+    const isCT = isMaint && roleIdx === 4;
+    const isTech = isMaint && roleIdx === 5;
+
+    const LV = [
+      { label: '—', bg: '#F0F3F8', fg: '#5B6B7F' }, { label: 'ดู', bg: '#E3F0FB', fg: '#1B5C9E' },
+      { label: 'แก้ไข', bg: '#FDEBD3', fg: '#6B3803' }, { label: 'อนุมัติ', bg: '#142B4F', fg: '#FFFFFF' }
+    ];
+
+    const lineSwitch = [['project', 'Project Administrator'], ['maint', 'Maintenance Administrator']].map((l) => ({
+      label: l[1], w: S.line === l[0] ? '700' : '500',
+      bg: S.line === l[0] ? '#142B4F' : '#FFFFFF', fg: S.line === l[0] ? '#FFFFFF' : '#263445',
+      pick: () => set({ line: l[0], role: l[0] === 'project' ? 1 : 3, scope: 'all', custom: [], area: '', chief: '', err: '', done: '' })
+    }));
+    const lineCards = [['project', 'งาน Project', 'ส่วนของโครงการ · 5 บทบาท'], ['maint', 'งาน Maintenance', 'ส่วนของงานซ่อมบำรุง · 8 บทบาท']].map((c) => {
+      const on = S.line === c[0];
+      return {
+        title: c[1], sub: c[2], bd: on ? '#2878C7' : '#D5DDE8', bg: on ? '#EEF5FC' : '#F5F7FA', op: on ? '1' : '0.6',
+        dot: on ? '#2878C7' : '#B8C4D4', dotFill: on ? '#2878C7' : '#FFFFFF',
+        tag: on ? 'งานของคุณ' : 'ล็อก · สร้างโดย Admin งานนั้น', tagBg: on ? '#E1F4EA' : '#E8ECF1', tagFg: on ? '#1B6B43' : '#5B6B7F'
+      };
+    });
+
+    const roles = L.roles.map((r, i) => {
+      const on = roleIdx === i;
+      return {
+        name: r[0], thai: r[1], bd: on ? '#2878C7' : '#D5DDE8', bg: on ? '#EEF5FC' : '#FFFFFF',
+        dot: on ? '#2878C7' : '#B8C4D4', dotFill: on ? '#2878C7' : '#FFFFFF',
+        pick: () => set({ role: i, area: '', chief: '', err: '' })
+      };
+    });
+
+    // ---- area / scope ----
+    const sd = [['all', 'ทุกสถานี OR13–OR29'], ['ch', 'OR13–OR22'], ['tnk', 'OR23–OR29'], ['custom', 'เลือกเอง']];
+    const scopes = sd.map((s) => ({
+      label: s[1],
+      bg: S.scope === s[0] ? '#142B4F' : '#FFFFFF', fg: S.scope === s[0] ? '#FFFFFF' : '#263445', bd: S.scope === s[0] ? '#142B4F' : '#B8C4D4',
+      pick: () => set({ scope: s[0] })
+    }));
+    const stNames = []; for (let i = 13; i <= 29; i++) stNames.push('OR' + i);
+    const stations = stNames.map((n) => {
+      const on = S.custom.indexOf(n) >= 0;
+      return {
+        st: n, bg: on ? '#2878C7' : '#FFFFFF', fg: on ? '#FFFFFF' : '#263445', bd: on ? '#2878C7' : '#B8C4D4',
+        pick: () => set({ custom: on ? S.custom.filter((x) => x !== n) : S.custom.concat([n]) })
+      };
+    });
+    const mkCard = (title, sub, on, off, tag, fn) => ({
+      title, sub, tag,
+      bd: off ? '#D5DDE8' : (on ? '#2878C7' : '#B8C4D4'), bg: off ? '#E8ECF1' : (on ? '#EEF5FC' : '#FFFFFF'), fg: off ? '#8A95A5' : '#263445',
+      dot: off ? '#C5CED9' : (on ? '#2878C7' : '#B8C4D4'), dotFill: on && !off ? '#2878C7' : '#FFFFFF',
+      tagBg: off ? '#D5DDE8' : '#E1F4EA', tagFg: off ? '#5B6B7F' : '#1B6B43',
+      pick: off ? () => {} : fn
+    });
+    const areas = [
+      mkCard('Orange Line East Section', 'OR13–OR29', S.area === 'east', false, 'เปิดใช้งาน', () => set({ area: 'east', err: '' })),
+      mkCard('Orange Line West Section', 'OR02–OR12', false, true, 'ยังไม่เปิดสิทธิ์', () => {})
+    ];
+    const chiefs = [
+      mkCard('อนุชา ใจเย็น', 'Chief Technician · East OR13–OR29', S.chief === 'anucha', false, 'East', () => set({ chief: 'anucha', err: '' })),
+      mkCard('สุรีย์ แสนสุข', 'Chief Technician · West OR02–OR12', false, true, 'West · ยังไม่เปิดสิทธิ์', () => {})
+    ];
+    const showStations = !isMaint;
+    const showArea = isCT;
+    const showChief = isTech;
+    const isOwner = isMaint && roleIdx === 6;
+    const showOwnerSt = isOwner;
+    const showInfo = isMaint && !isCT && !isTech && !isOwner;
+    const areaTitle = isMaint ? (isCT ? 'พื้นที่รับผิดชอบ' : (isTech ? 'Chief Technician ผู้ดูแล' : (isOwner ? 'สถานีที่รับผิดชอบ' : 'พื้นที่ที่เห็นข้อมูล'))) : 'ขอบเขตข้อมูล';
+    const areaHint = isMaint ? (isCT ? 'เลือกกลุ่มพื้นที่ที่หัวหน้าช่างรับผิดชอบ' : (isTech ? 'ช่างได้พื้นที่ตาม Chief ที่เลือก' : (isOwner ? 'เลือกได้หลายสถานี · ผู้แจ้งเห็นเฉพาะป้ายและใบแจ้งซ่อมของสถานีที่เลือก' : ''))) : 'ผู้ใช้เห็นและอัปเดตได้เฉพาะสถานีที่เลือก';
+    const infoText = roleIdx === L.roles.length - 1 ? 'Administrator จัดการผู้ใช้ทั้งงาน Maintenance' : 'เห็นข้อมูลทุกพื้นที่ที่เปิดสิทธิ์ (ปัจจุบันคือ East)';
+
+    const mkOpt = (label, on, key) => ({
+      label, bg: on ? '#EEF5FC' : '#FFFFFF', fg: '#263445', bd: on ? '#2878C7' : '#B8C4D4',
+      box: on ? '#2878C7' : '#FFFFFF', tick: on ? '1' : '0', pick: () => set({ [key]: !on })
+    });
+    const opts = [
+      mkOpt('ส่งอีเมลเชิญให้ตั้งรหัสผ่านเอง', S.invite, 'invite'),
+      mkOpt('บังคับเปลี่ยนรหัสผ่านเมื่อเข้าใช้ครั้งแรก', S.force, 'force'),
+      mkOpt('เปิดยืนยันตัวตน 2 ขั้นตอน', S.mfa, 'mfa')
+    ];
+
+    const pmods = L.mods.map((m) => ({ th: m[0], label: LV[m[1][roleIdx]].label, bg: LV[m[1][roleIdx]].bg, fg: LV[m[1][roleIdx]].fg }));
+    const pacts = L.acts.map((a) => ({ th: a[0], mark: a[1][roleIdx] ? '✓' : '—', fg: a[1][roleIdx] ? '#1B6B43' : '#5B6B7F' }));
+    const full = (F.first + ' ' + F.last).trim();
+    let scopeText;
+    if (!isMaint) scopeText = 'ขอบเขต: ' + (S.scope === 'all' ? 'ทุกสถานี OR13–OR29' : S.scope === 'ch' ? 'OR13–OR22' : S.scope === 'tnk' ? 'OR23–OR29' : (S.custom.length ? S.custom.join(', ') : 'ยังไม่ได้เลือกสถานี'));
+    else if (isCT) scopeText = S.area ? 'พื้นที่: East · OR13–OR29' : 'พื้นที่: ยังไม่ได้เลือก';
+    else if (isTech) scopeText = S.chief ? 'พื้นที่: East · ตาม Chief อนุชา ใจเย็น' : 'พื้นที่: ยังไม่ได้เลือก Chief';
+    else if (isOwner) scopeText = 'สถานี: ' + (S.custom.length ? S.custom.join(', ') : 'ยังไม่ได้เลือกสถานี');
+    else scopeText = roleIdx === L.roles.length - 1 ? 'ขอบเขต: ทั้งงาน Maintenance' : 'พื้นที่: ทุกพื้นที่ที่เปิดสิทธิ์ (East)';
+
+    const miss = (v) => (S.err && !v.trim() ? '#A32019' : '#B8C4D4');
+    const create = () => {
+      if (!F.first.trim() || !F.last.trim()) { set({ err: 'กรุณากรอกชื่อและนามสกุล' }); return; }
+      if (!/^\S+@\S+\.\S+$/.test(F.email.trim())) { set({ err: 'กรุณากรอกอีเมลให้ถูกต้อง' }); return; }
+      if (!isMaint && S.scope === 'custom' && !S.custom.length) { set({ err: 'กรุณาเลือกสถานีอย่างน้อย 1 สถานี' }); return; }
+      if (isCT && !S.area) { set({ err: 'กรุณาเลือกพื้นที่รับผิดชอบของ Chief Technician' }); return; }
+      if (isOwner && !S.custom.length) { set({ err: 'กรุณาเลือกสถานีที่รับผิดชอบอย่างน้อย 1 สถานี' }); return; }
+      if (isTech && !S.chief) { set({ err: 'กรุณาเลือก Chief Technician ผู้ดูแล' }); return; }
+      set({ err: '', done: 'สร้างผู้ใช้ ' + full + ' (' + roleName + ' · ' + L.short + ') แล้ว' + (S.invite ? ' · ส่งอีเมลเชิญไปที่ ' + F.email.trim() : '') });
+    };
+
+    // ---------- navigation ----------
+    const P = {
+      dash: 'M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z',
+      proj: 'M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z',
+      job: 'M9 4h6v3H9zM7 5H5v15h14V5h-2M9 13l2 2 4-4',
+      prog: 'M3 17l5-5 4 4 8-9M15 7h5v5',
+      db: 'M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6',
+      doc: 'M6 3h8l5 5v13H6zM14 3v5h5M9 13h6M9 17h6',
+      fix: 'M14.7 6.3a4 4 0 0 0-5 5L3 18l3 3 6.7-6.7a4 4 0 0 0 5-5l-2.5 2.5-2.2-.5-.5-2.2z',
+      rep: 'M5 20V10M12 20V4M19 20v-7M3 20h18',
+      set: 'M4 7h10M18 7h2M4 17h2M10 17h10M14 5v4M8 15v4',
+      usr: 'M16 19v-1a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v1M10 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM20 19v-1a3 3 0 0 0-2-2.8M16 4.2a3.5 3.5 0 0 1 0 6.6',
+      key: 'M7 11V8a5 5 0 0 1 10 0v3M5 11h14v9H5z',
+      shield: 'M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6zM9 12l2 2 4-4'
+    };
+    const mk = (th, en, d, o) => Object.assign({ th, en, d, pad: '8px 10px', ml: '0px', is: '17', fs: '13px', bg: 'transparent', fg: '#C9D6E8', sub: '#9FB4D1', chev: '0' }, o || {});
+    const kid = (th, en, d, on) => mk(th, en, d, { pad: '7px 10px', ml: '14px', is: '15', fs: '12px', bg: on ? '#2878C7' : 'transparent', fg: on ? '#FFFFFF' : '#C9D6E8', sub: on ? '#E3F0FB' : '#9FB4D1' });
+    const setNav = [
+      mk('ตั้งค่าระบบ', 'Settings', P.set, { bg: 'rgba(255,255,255,0.10)', fg: '#FFFFFF', chev: '0.9' }),
+      kid('จัดการผู้ใช้', 'Users', P.usr, true), kid('บทบาทและสิทธิ์', 'Roles & Permissions', P.key, false)
+    ];
+    const nav = (isMaint ? [
+      mk('ภาพรวม', 'Dashboard', P.dash), mk('แจ้งซ่อม', 'Repair Requests', P.fix), mk('ฐานข้อมูลป้าย', 'Signage Database', P.db),
+      mk('ประวัติซ่อมบำรุง', 'Maintenance Log', P.job), mk('รายงาน', 'Reports', P.rep)
+    ] : [
+      mk('ภาพรวม', 'Dashboard', P.dash), mk('โครงการ', 'Projects', P.proj, { chev: '0.5' }),
+      kid('ความคืบหน้าผลิต/ติดตั้ง', 'Production & Install', P.prog, false), kid('Warranty', 'Warranty', P.shield, false),
+      mk('จัดการงาน', 'Job Management', P.job), mk('ฐานข้อมูลป้าย', 'Signage Database', P.db),
+      mk('เอกสาร', 'Documents', P.doc), mk('รายงาน', 'Reports', P.rep)
+    ]).concat(setNav);
+
+    return {
+      nav: LNAV(nav), lineSwitch, lineCards, meRole: L.me, lineShort: L.short, f: F, roles, scopes, stations, areas, chiefs, opts, pmods, pacts,
+      showStations, showArea, showChief, showInfo, showOwnerSt, areaTitle, areaHint, infoText,
+      customOn: !isMaint && S.scope === 'custom', roleName, fullName: full || 'ชื่อผู้ใช้ใหม่', ini: (full || 'ผ').charAt(0), scopeText,
+      onFirst: upd('first'), onLast: upd('last'), onEmail: upd('email'), onPhone: upd('phone'), onCompany: upd('company'), onTeam: upd('team'),
+      bdFirst: miss(F.first), bdLast: miss(F.last), bdEmail: miss(F.email),
+      errOn: !!S.err, err: S.err, doneOn: !!S.done, doneMsg: S.done, create
+    };
+  }
+}
+</script>
+</body>
+</html>
